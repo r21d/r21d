@@ -10,11 +10,14 @@ get '/h/:filename' do
     send_file file_path
   else
     status 404
-    "File not found"
-    "#{file_path}!"
+    "File not found #{file_path}!"
+    
   end
 end
 get "/" do
-  name = ENV["NAME"] || "World"
-  "Hello #{name}!"
+  redirect "https://www.youtube.com/channel/UCkfI4g-ztKQZa3bB_QX9gBw?sub_confirmation=1"
+
+end
+get "/list" do
+  redirect "https://www.youtube.com/watch?v=QblWYWmXOQ4&list=PL6sZpQz3MZtnG4B2W5RlaXUKUkr6catIr"
 end
