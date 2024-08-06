@@ -56,28 +56,23 @@ get "/gowithit" do
   end
 
 fld.each do |key, item|
-    if combined_data.key?(key) && combined_data[key].is_a?(Hash)  # Check key existence and type
-      combined_data[key].merge!(item)
+    if cd.key?(key) && cd[key].is_a?(Hash)  
+      cd[key].merge!(item)
     else
-      # Handle the case where the key is not in combined_data or not a hash 
-      puts "Warning: Key '#{key}' not found in combined_data or not a hash."
-      # You can add logic here to create the key with an empty hash or take other actions.
-      combined_data[key] ||= {}  # Example: create the key with an empty hash
-      combined_data[key].merge!(item)
+      puts "Warning: Key '#{key}' not found in cd or not a hash."
+      cd[key] ||= {}  
+      cd[key].merge!(item)
     end
   end  fad.each do |key, item|
     if cd.key?(key)  
       cd[key]['sum'] = item['sum'] if item.key?('sum')
       cd[key]['rad'] = item['rad'] if item.key?('rad')
     else
-      
       puts "Warning: Key '#{key}' not found in primary data."
     end
   end
-
   fld.each do |key, item|
     cd[key] =   cd.fetch(key, {}).merge(item)  
   end
-
   erb :gowithit, locals: { cd: cd.to_json }
 end
