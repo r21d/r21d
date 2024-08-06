@@ -44,6 +44,7 @@ get "/gowithit" do
 
   
   cd = {}
+
   fod.each do |key, item|
     cd[key] = {
       'id' => item['id'],
@@ -53,26 +54,21 @@ get "/gowithit" do
       'img' => item['img'],
       'txt' => item['txt']
     }
-  end
 
-fld.each do |key, item|
-    if cd.key?(key) && cd[key].is_a?(Hash)  
-      cd[key].merge!(item)
+    if fld.key?(key) && cd[key].is_a?(Hash)
+      cd[key].merge!(fld[key])
     else
       puts "Warning: Key '#{key}' not found in cd or not a hash."
-      cd[key] ||= {}  
-      cd[key].merge!(item)
+      cd[key] ||= {}
+      cd[key].merge!(fld[key])
     end
-  end  fad.each do |key, item|
-    if cd.key?(key)  
-      cd[key]['sum'] = item['sum'] if item.key?('sum')
-      cd[key]['rad'] = item['rad'] if item.key?('rad')
+
+    if fad.key?(key)
+      cd[key]['sum'] = fad[key]['sum'] if fad[key].key?('sum')
+      cd[key]['rad'] = fad[key]['rad'] if fad[key].key?('rad')
     else
       puts "Warning: Key '#{key}' not found in primary data."
     end
   end
-  fld.each do |key, item|
-    cd[key] =   cd.fetch(key, {}).merge(item)  
-  end
+
   erb :gowithit, locals: { cd: cd.to_json }
-end
