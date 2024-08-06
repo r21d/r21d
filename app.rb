@@ -24,39 +24,38 @@ get "/list" do
 end
 
 require 'json'
+require 'open-uri'
 
 get "/gowithit" do
+  begin
+    fl = open('http://' + request.host + '/lyricsbi.json').read
+    fa = open('http://' + request.host + '/ASFA.json').read
+    fo = open('http://' + request.host + '/ogjssonfix.json').read
 
-  fl = 'lyricsbi.json'
-  fa = 'ASFA.json'
-  fo = 'ogjssonfix.json'
+    fld = JSON.parse(fl)
+    fad = JSON.parse(fa)
+    fod = JSON.parse(fo)
+  rescue OpenURI::HTTPError => e
+    status 404
+    return "File not found: #{e.message}"
+  rescue JSON::ParserError => e
+    status 500
+    return "Invalid JSON data: #{e.message}"
+  end
 
-  fld = JSON.parse(File.read(fl))
-  fad = JSON.parse(File.read(fa))
-  fod = JSON.parse(File.read(fo))
-
+  # Combine data
   cd = {}
-
   fod.each do |key, item|
-    cd[key] = {
-      'id' => item['id'],
-      'sub' => item['sub'],
-      'obj' => item['obj'],
-      'tag' => item['tag'],
-      'img' => item['img'],
-      'txt' => item['txt']
-    }
+    cd[key] = item.slice('id', 'sub', 'obj', 'tag', 'img', 'txt')
   end
 
   fad.each do |key, item|
-    cd[key]['sum'] = item['sum']
-    cd[key]['rad'] = item['rad']
+    cd[key] = cd[key].merge(item.slice('sum', 'rad'))
   end
 
   fld.each do |key, item|
-    cd[key].merge!(item)  
+    cd[key].merge!(item)
   end
 
-    erb :gowithit, locals: { cd: cd.to_json } 
-
+  erb :gowithit, locals: { cd: cd.to_json } 
 end
