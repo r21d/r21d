@@ -20,6 +20,7 @@ get "/" do
 end
 
 get "/u" do
+morts.rb
   redirect "https://www.youtube.com/channel/UCkfI4g-ztKQZa3bB_QX9gBw?sub_confirmation=1"
 end
 
