@@ -28,9 +28,9 @@ require 'open-uri'
 
 get "/gowithit" do
   begin
-    fl = open('http://' + request.host + '/lyricsbi.json').read
-    fa = open('http://' + request.host + '/ASFA.json').read
-    fo = open('http://' + request.host + '/ogjssonfix.json').read
+    fl = URI.open('http://' + request.host + '/lyricsbi.json').read  # Use URI.open for URLs
+    fa = URI.open('http://' + request.host + '/ASFA.json').read
+    fo = URI.open('http://' + request.host + '/ogjssonfix.json').read
 
     fld = JSON.parse(fl)
     fad = JSON.parse(fa)
