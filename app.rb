@@ -15,8 +15,11 @@ get '/h/:filename' do
   end
 end
 
-
 get "/" do
+  redirect "pabe.html"
+end
+
+get "/u" do
   redirect "https://www.youtube.com/channel/UCkfI4g-ztKQZa3bB_QX9gBw?sub_confirmation=1"
 end
 
