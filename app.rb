@@ -6,12 +6,11 @@ set :port, port
 
 get '/h/:filename' do
   filename = params[:filename].split(':')
-  file_path = File.join("public/", "#{filename[0]}.#{filename[1]}")
+  file_path = File.join("/public/", "#{filename[0]}.#{filename[1]}")
   if File.exist?(file_path)
     send_file file_path
   else
-    status 404
-    "File not found #{file_path}!"
+    redirect "/public/#{file_path}"
   end
 end
 
