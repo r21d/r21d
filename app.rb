@@ -72,6 +72,7 @@ get "/gowithit" do
     else
       puts "Warning: Key '#{key}' not found in primary data."
     end
-  end
+  
 
   erb :gowithit, locals: { cd: cd.to_json }
+  end
