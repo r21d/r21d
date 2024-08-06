@@ -11,6 +11,7 @@ get '/h/:filename' do
   else
     status 404
     "File not found"
+    "#{file_path}!"
   end
 end
 get "/" do
