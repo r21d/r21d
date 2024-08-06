@@ -8,7 +8,7 @@ group :test do
   gem "rest-client"
   gem "rspec"
   gem "rspec_junit_formatter"
-  gem "rspec-retry"und
+  gem "rspec-retry"
   gem "rubysl-securerandom"
 end
 
