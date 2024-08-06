@@ -1,5 +1,6 @@
 require "sinatra"
-
+require 'json'
+require 'open-uri'
 set :bind, "0.0.0.0"
 port = ENV["PORT"] || "3000"
 set :port, port
@@ -23,12 +24,10 @@ get "/list" do
   redirect "https://www.youtube.com/watch?v=QblWYWmXOQ4&list=PL6sZpQz3MZtnG4B2W5RlaXUKUkr6catIr"
 end
 
-require 'json'
-require 'open-uri'
 
 get "/gowithit" do
   begin
-    fl = URI.open('http://' + request.host + '/lyricsbi.json').read  # Use URI.open for URLs
+    fl = URI.open('http://' + request.host + '/lyricsbi.json').read  
     fa = URI.open('http://' + request.host + '/ASFA.json').read
     fo = URI.open('http://' + request.host + '/ogjssonfix.json').read
 
@@ -43,19 +42,32 @@ get "/gowithit" do
     return "Invalid JSON data: #{e.message}"
   end
 
-  # Combine data
+  
   cd = {}
   fod.each do |key, item|
-    cd[key] = item.slice('id', 'sub', 'obj', 'tag', 'img', 'txt')
+    cd[key] = {
+      'id' => item['id'],
+      'sub' => item['sub'],
+      'obj' => item['obj'],
+      'tag' => item['tag'],
+      'img' => item['img'],
+      'txt' => item['txt']
+    }
   end
 
   fad.each do |key, item|
-    cd[key] = cd[key].merge(item.slice('sum', 'rad'))
+    if cd.key?(key)  
+      cd[key]['sum'] = item['sum'] if item.key?('sum')
+      cd[key]['rad'] = item['rad'] if item.key?('rad')
+    else
+      
+      puts "Warning: Key '#{key}' not found in primary data."
+    end
   end
 
   fld.each do |key, item|
-    cd[key].merge!(item)
+    cd[key] = cd.fetch(key, {}).merge(item)  
   end
 
-  erb :gowithit, locals: { cd: cd.to_json } 
+  erb :gowithit, locals: { cd: cd.to_json }
 end
