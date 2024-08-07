@@ -28,7 +28,7 @@ get "/list" do
 end
 
 get '/wow' do
-  json_file_path = File.join(settings.public_folder, 'o.json') 
+  json_file_path = File.join(settings.public_folder, 'i.json') 
   begin
     json_data0 = JSON.parse(File.read(json_file_path))
   rescue Errno::ENOENT => e
@@ -48,7 +48,7 @@ get '/wow' do
     status 500
     return "Invalid JSON data: #{e.message}"
   end
-    json_file_path = File.join(settings.public_folder, 'o.json') 
+    json_file_path = File.join(settings.public_folder, 'a.json') 
   begin
     json_data2 = JSON.parse(File.read(json_file_path))
   rescue Errno::ENOENT => e
