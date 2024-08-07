@@ -58,7 +58,8 @@ get '/wow' do
     status 500
     return "Invalid JSON data: #{e.message}"
   end
-  erb :gow, locals: { data: json_data1, json_data2, json_data0 } 
+  data = [json_data0, json_data1, json_data2]
+  erb :gow, locals: { data: data  } 
 end
 
 get "/gowithit" do
@@ -79,7 +80,9 @@ end
 
 
 get "/dafuq" do 
-    json_data = [JSON.parse(File.read(File.join(settings.public_folder, 'l.json'))), JSON.parse(File.read(File.join(settings.public_folder, 'a.json'))), JSON.parse(File.read(File.join(settings.public_folder, 'o.json')))]
+    json_data = [JSON.parse(File.read(File.join(settings.public_folder, 'l.json'))), 
+    JSON.parse(File.read(File.join(settings.public_folder, 'a.json'))), 
+    JSON.parse(File.read(File.join(settings.public_folder, 'o.json')))]
 
   
   erb :dafuq, locals: { data: json_data }
