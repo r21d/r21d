@@ -1,0 +1,9 @@
+ignore:
+  - 'local/**/*'
+  - '**/*':
+    - Style/TrailingCommaInArguments
+    - Style/TrailingCommaInArrayLiteral
+    - Style/TrailingCommaInHashLiteral
+    - Style/CommentedKeyword
+  - 'app/controllers/**/*':
+    - Style/RedundantAssignment
