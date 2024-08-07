@@ -59,14 +59,11 @@ end
 
 
 get "/dafuq" do 
-    fl = URI.open('/l.json').read  
-    fa = URI.open('/a.json').read
-    fo = URI.open('/o.json').read
+    fl = JSON.parse(File.read(File.join(settings.public_folder, 'l.json')))  
+    fa = JSON.parse(File.read(File.join(settings.public_folder, 'a.json')))
+    fo = JSON.parse(File.read(File.join(settings.public_folder, 'o.json')))
 
-    fld = JSON.parse(fl)
-    fad = JSON.parse(fa)
-    fod = JSON.parse(fo)
-    json_data[] = fld.merge(fad, fod)
+    json_data[] = fl.merge(fa, fo)
   
   erb :dafuq, locals: { data: json_data }
   end
