@@ -26,9 +26,9 @@
     <div id="dataContainer"></div>
 
     <script>const urls = [
-            '/lyricsbi.json',
-            '/ASFA.json',
-            '/ogjssonfix.json'
+            'lyricsbi.json',
+            'ASFA.json',
+            'ogjssonfix.json'
         ];
 
         // Function to fetch and parse JSON
@@ -38,10 +38,10 @@
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                const data = await  
+                const data = await ï¿½
  response.json();
                 return data;
-            } catch (error)  
+            } catch (error) ï¿½
  {
                 console.error('Error fetching or parsing JSON:', error);
                 return null;
