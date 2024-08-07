@@ -28,7 +28,7 @@ get "/list" do
 end
 
 get '/wow' do
-  json_file_path = File.join(settings.public_folder, 'i.json') 
+  json_file_path = File.join(settings.public_folder, 'l.json') 
   begin
     json_data0 = JSON.parse(File.read(json_file_path))
   rescue Errno::ENOENT => e
@@ -80,9 +80,9 @@ end
 
 
 get "/dafuq" do 
-    json_data = [JSON.parse(File.read(File.join(settings.public_folder, 'l.json'))), 
+    json_data = [JSON.parse(File.read(File.join(settings.public_folder, 'o.json'))), 
     JSON.parse(File.read(File.join(settings.public_folder, 'a.json'))), 
-    JSON.parse(File.read(File.join(settings.public_folder, 'o.json')))]
+    JSON.parse(File.read(File.join(settings.public_folder, 'l.json')))]
 
   
   erb :dafuq, locals: { data: json_data }
