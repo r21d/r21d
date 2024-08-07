@@ -38,14 +38,15 @@ get '/wow' do
   rescue JSON::ParserError => e
     status 500
     return "Invalid JSON data: #{e.message}"
-  end
+  endrub
   erb :gow, locals: { data: json_data } 
 end
 
 get "/gowithit" do
   playlist_id = "PL6sZpQz3MZtnG4B2W5RlaXUKUkr6catIr" 
   api_key = "AIzaSyCMkYOzj-pE5BlUmdnJBStvsNtdOalHKMo"
-  url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=#{playlist_id}&key=#{api_key}&maxResults=50"   
+  url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=#{playlist_id}&key=#{api_key}&maxResults=50"
+end
   response = open(url)
   data = JSON.parse(response.read)
   videos = data['items'].map do |item|
