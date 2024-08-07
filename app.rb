@@ -30,7 +30,27 @@ end
 get '/wow' do
   json_file_path = File.join(settings.public_folder, 'o.json') 
   begin
-    json_data = JSON.parse(File.read(json_file_path))
+    json_data[0] = JSON.parse(File.read(json_file_path))
+  rescue Errno::ENOENT => e
+    status 404
+    return "File not found: #{e.message}"
+  rescue JSON::ParserError => e
+    status 500
+    return "Invalid JSON data: #{e.message}"
+  end
+    json_file_path = File.join(settings.public_folder, 'o.json') 
+  begin
+    json_data[1] = JSON.parse(File.read(json_file_path))
+  rescue Errno::ENOENT => e
+    status 404
+    return "File not found: #{e.message}"
+  rescue JSON::ParserError => e
+    status 500
+    return "Invalid JSON data: #{e.message}"
+  end
+    json_file_path = File.join(settings.public_folder, 'o.json') 
+  begin
+    json_data[2] = JSON.parse(File.read(json_file_path))
   rescue Errno::ENOENT => e
     status 404
     return "File not found: #{e.message}"
@@ -59,11 +79,10 @@ end
 
 
 get "/dafuq" do 
-    fl = JSON.parse(File.read(File.join(settings.public_folder, 'l.json')))  
-    fa = JSON.parse(File.read(File.join(settings.public_folder, 'a.json')))
-    fo = JSON.parse(File.read(File.join(settings.public_folder, 'o.json')))
+    json_data[0] = JSON.parse(File.read(File.join(settings.public_folder, 'l.json')))  
+    json_data[1] = JSON.parse(File.read(File.join(settings.public_folder, 'a.json')))
+    json_data[2] = JSON.parse(File.read(File.join(settings.public_folder, 'o.json')))
 
-    json_data[] = fl.merge(fa, fo)
   
   erb :dafuq, locals: { data: json_data }
   end
