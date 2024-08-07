@@ -64,5 +64,13 @@ h2, h3 {
     <p><strong><%= key %>:</strong> <%= value %></p>
   <% end %>
 
+
+  <% data.each do |key, value| %>
+  <p><strong><%= key %>:</strong> <%= value %></p>
+<% end %><% data.each do |key, value| %>
+  <% if key == "id" && value == i %>
+    <p><strong><%= key %>:</strong> <%= value %></p>
+  <% end %>
+<% end %>
 </body>
 </html>
