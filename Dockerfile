@@ -2,6 +2,15 @@
 # https://hub.docker.com/_/ruby
 FROM ruby:3.2-buster
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    libyaml-dev \
+    libpq-dev \
+    libicu-dev 
+
+# Install gems
+RUN bundle install
+
 # Install production dependencies.
 WORKDIR /usr/src/app
 COPY Gemfile Gemfile.lock ./
