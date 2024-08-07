@@ -59,9 +59,9 @@ end
 
 
 get "/dafuq" do 
-    fl = URI.open('http://' + request.host + '/lyricsbi.json').read  
-    fa = URI.open('http://' + request.host + '/ASFA.json').read
-    fo = URI.open('http://' + request.host + '/ogjssonfix.json').read
+    fl = URI.open('/l.json').read  
+    fa = URI.open('/a.json').read
+    fo = URI.open('/o.json').read
 
     fld = JSON.parse(fl)
     fad = JSON.parse(fa)
