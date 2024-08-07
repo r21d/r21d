@@ -30,7 +30,7 @@ end
 get '/wow' do
   json_file_path = File.join(settings.public_folder, 'o.json') 
   begin
-    json_data[0] = JSON.parse(File.read(json_file_path))
+    json_data0 = JSON.parse(File.read(json_file_path))
   rescue Errno::ENOENT => e
     status 404
     return "File not found: #{e.message}"
@@ -40,7 +40,7 @@ get '/wow' do
   end
     json_file_path = File.join(settings.public_folder, 'o.json') 
   begin
-    json_data[1] = JSON.parse(File.read(json_file_path))
+    json_data1 = JSON.parse(File.read(json_file_path))
   rescue Errno::ENOENT => e
     status 404
     return "File not found: #{e.message}"
@@ -50,7 +50,7 @@ get '/wow' do
   end
     json_file_path = File.join(settings.public_folder, 'o.json') 
   begin
-    json_data[2] = JSON.parse(File.read(json_file_path))
+    json_data2 = JSON.parse(File.read(json_file_path))
   rescue Errno::ENOENT => e
     status 404
     return "File not found: #{e.message}"
@@ -58,7 +58,7 @@ get '/wow' do
     status 500
     return "Invalid JSON data: #{e.message}"
   end
-  erb :gow, locals: { data: json_data[] } 
+  erb :gow, locals: { data: json_data1, json_data2, json_data0 } 
 end
 
 get "/gowithit" do
@@ -79,10 +79,8 @@ end
 
 
 get "/dafuq" do 
-    json_data[0] = JSON.parse(File.read(File.join(settings.public_folder, 'l.json')))  
-    json_data[1] = JSON.parse(File.read(File.join(settings.public_folder, 'a.json')))
-    json_data[2] = JSON.parse(File.read(File.join(settings.public_folder, 'o.json')))
+    json_data = [JSON.parse(File.read(File.join(settings.public_folder, 'l.json'))), JSON.parse(File.read(File.join(settings.public_folder, 'a.json'))), JSON.parse(File.read(File.join(settings.public_folder, 'o.json')))]
 
   
-  erb :dafuq, locals: { data: json_data[] }
+  erb :dafuq, locals: { data: json_data }
   end
