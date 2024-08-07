@@ -20,7 +20,6 @@ get "/" do
 end
 
 get "/u" do
-morts.rb
   redirect "https://www.youtube.com/channel/UCkfI4g-ztKQZa3bB_QX9gBw?sub_confirmation=1"
 end
 
@@ -45,8 +44,8 @@ end
 get "/gowithit" do
   playlist_id = "PL6sZpQz3MZtnG4B2W5RlaXUKUkr6catIr" 
   api_key = "AIzaSyCMkYOzj-pE5BlUmdnJBStvsNtdOalHKMo"
-  url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=#{playlist_id}&key=#{api_key}&maxResults=50"   
-  response = open(url)
+  url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=#{playlist_id}&key=#{api_key}&maxResults=50"   
+  response = URI.open(url)
   data = JSON.parse(response.read)
   videos = data['items'].map do |item|
     {
@@ -57,3 +56,17 @@ get "/gowithit" do
   end
   erb :playlist, locals: { videos: videos }
 end
+
+
+get "/dafuq" do 
+    fl = URI.open('http://' + request.host + '/lyricsbi.json').read  
+    fa = URI.open('http://' + request.host + '/ASFA.json').read
+    fo = URI.open('http://' + request.host + '/ogjssonfix.json').read
+
+    fld = JSON.parse(fl)
+    fad = JSON.parse(fa)
+    fod = JSON.parse(fo)
+    json_data[] = fld.merge(fad, fod)
+  
+  erb :dafuq, locals: { data: json_data }
+  end

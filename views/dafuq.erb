@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>withh</title>
+  <style>
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px;
+    background: #111;
+    color: #fff;
+    max-width: 80%; /* Limit to 40% width */
+}
+
+.item {
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  flex: 0 0 200px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
+  background-color: #f1f1f1;
+  margin: 10px;
+  /* Add any other styles you want for the squares */
+}
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2, h3 {
+    color: #00c040; /* Darker, more readable green */
+}
+
+.item-center {
+    background: linear-gradient(45deg, #00c040, #008080); /* Adjusted gradient */
+    padding: 30px;
+    color: #fff; /* Ensure white text on gradient */
+}
+
+.item-tail {
+    background: #1a1a1a;
+    color: #aaa; /* Slightly lighter gray */
+    padding: 20px;
+    line-height: 1.6;
+    text-align: justify;
+    white-space: pre-wrap;
+}
+  </style>
+</head>
+<body>
+
+  <h1>h1>Playlist</h1>
+  <h1>Data from JSON File</h1>
+
+  <% data.each do |key, value| %>
+    <p><strong><%= key %>:</strong> <%= value %></p>
+  <% end %>
+
+</body>
+</html>
