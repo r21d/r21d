@@ -78,6 +78,33 @@ h2, h3 {
 </head>
 <body>
 
+  <div class="pretty-container">
+    <% data.each do |data_item| %>
+      <% if data_item.is_a?(Hash) %>
+        <% data_item.each do |key, value| %>
+          <% if key.start_with?("id") %> <%# Check if the key starts with "id" %>
+            <div class="item">
+              <p><strong><%= key %>:</strong> <%= value %></p>
+            </div>
+          <% end %>
+        <% end %>
+
+      <% elsif data_item.is_a?(Array) %>
+        <% data_item.each do |element| %>
+          <% if element.is_a?(Hash) %>
+            <% element.each do |key, value| %>
+              <% if key.start_with?("id") %> 
+                <div class="item">
+                  <p><strong><%= key %>:</strong> <%= value %></p>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+      <% end %>
+    <% end %>
+  </div>
   <h1>h1>Playlist</h1>
   <h1>Data from JSON File</h1>
   <div class="pretty-container">
