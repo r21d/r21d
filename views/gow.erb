@@ -4,7 +4,28 @@
 <head>
   <title>withh</title>
   <style>
+  .pretty-container {
+  /* Core Layout & Styling */
+  display: block; /* Ensures it's a block-level element */
+  width: 80%; /* Adjust as needed */
+  max-width: 800px; /* Prevent it from getting too wide */
+  margin: 20px auto; /* Center the container horizontally */
+  padding: 30px; 
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 
+  /* Background & Text */
+  background-color: #f5f5f5; /* Light background */
+  color: #333; /* Dark text for contrast */
+
+  /* Optional Enhancements */
+  overflow: hidden; /* Hide content that overflows the container */
+  transition: box-shadow 0.3s ease; /* Smooth shadow transition on hover */
+}
+
+.pretty-container:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow on hover */
+}
 body {
     font-family: 'Montserrat', sans-serif;
     display: flex;
@@ -59,6 +80,40 @@ h2, h3 {
 
   <h1>h1>Playlist</h1>
   <h1>Data from JSON File</h1>
+  <div class="pretty-container">
+    <% data.each_with_index do |data_item, index| %>
+      <h2>Data Set <%= index + 1 %></h2> 
+
+      <% if data_item.is_a?(Hash) %>
+        <% data_item.each do |key, value| %>
+          <div class="item">
+            <p><strong><%= key %>:</strong> <%= value %></p>
+          </div>
+        <% end %>
+
+      <% elsif data_item.is_a?(Array) %>
+        <% data_item.each do |element| %>
+          <% if element.is_a?(Hash) %>
+            <div class="item">
+              <% element.each do |key, value| %>
+                <p><strong><%= key %>:</strong> <%= value %></p>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="item">
+              <p><%= element %></p> <%# Handle other data types as needed %>
+            </div>
+          <% end %>
+        <% end %>
+
+      <% else %>
+        <div class="item">
+          <p>Unsupported data type</p>
+        </div>
+      <% end %>
+
+    <% end %>
+  </div>
 
   <% data.each do |key, value| %>
     <p><strong><%= key %>:</strong> <%= value %></p>
