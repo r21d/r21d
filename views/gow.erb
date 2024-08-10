@@ -102,11 +102,9 @@ h2, h3 {
           <h2><%= item["index"] %></h2> 
           <p><%= item["summary"] %></p> 
 
-          <%# Display image if available %>
           <% image_filename = "image(#{item['index']}).png" %>
-          <% if File.exist?(File.join(settings.public_folder, image_filename)) %> 
             <img src="/<%= image_filename %>" alt="Image for Item <%= item['index'] %>">
-          <% end %>
+          
 
           <%# Add more details from 'item' as needed %>
         <% else %>
