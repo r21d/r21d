@@ -78,32 +78,43 @@ h2, h3 {
 </head>
 <body>
 
+
+  <% 
+    # Collect all 'idN' items into a single array
+    id_items = []
+    data.each do |data_item|
+      if data_item.is_a?(Hash)
+        id_items += data_item.select { |key, _| key.to_s.start_with?("id") }.values 
+      elsif data_item.is_a?(Array)
+        data_item.each do |element|
+          if element.is_a?(Hash)
+            id_items += element.select { |key, _| key.to_s.start_with?("id") }.values 
+          end
+        end
+      end
+    end
+  %>
+
   <div class="pretty-container">
-    <% data.each do |data_item| %>
-      <% if data_item.is_a?(Hash) %>
-        <% data_item.each do |key, value| %>
-          <% if key.start_with?("id") %> <%# Check if the key starts with "id" %>
-            <div class="item">
-              <p><strong><%= key %>:</strong> <%= value %></p>
-            </div>
-          <% end %>
-        <% end %>
+    <% id_items.each do |item| %> 
+      <div class="item">
+        <% if item.is_a?(Hash) %> 
+          <h2><%= item["index"] %></h2> 
+          <p><%= item["summary"] %></p> 
 
-      <% elsif data_item.is_a?(Array) %>
-        <% data_item.each do |element| %>
-          <% if element.is_a?(Hash) %>
-            <% element.each do |key, value| %>
-              <% if key.start_with?("id") %> 
-                <div class="item">
-                  <p><strong><%= key %>:</strong> <%= value %></p>
-                </div>
-              <% end %>
-            <% end %>
+          <%# Display image if available %>
+          <% image_filename = "image(#{item['index']}).png" %>
+          <% if File.exist?(File.join(settings.public_folder, image_filename)) %> 
+            <img src="/<%= image_filename %>" alt="Image for Item <%= item['index'] %>">
           <% end %>
-        <% end %>
 
-      <% end %>
+          <%# Add more details from 'item' as needed %>
+        <% else %>
+          <p><%= item %></p> 
+        <% end %>
+      </div>
     <% end %>
+  </div>
   </div>
   <h1>h1>Playlist</h1>
   <h1>Data from JSON File</h1>
