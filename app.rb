@@ -19,6 +19,10 @@ get "/" do
   redirect "pabe.html"
 end
 
+get "/fax" do
+  redirect "https://r21d.atlassian.net/servicedesk/customer/portals"
+end
+
 get "/u" do
   redirect "https://www.youtube.com/channel/UCkfI4g-ztKQZa3bB_QX9gBw?sub_confirmation=1"
 end
