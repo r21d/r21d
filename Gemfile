@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "sinatra", "~>3.1"
 gem "thin"
+gem "google-cloud-ai_platform", '~> 1.4.0'
 
 group :test do
   gem "rack-test"
