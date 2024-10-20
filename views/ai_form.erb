@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Generator</title>
+</head>
+<body>
+  <h1>Text Generator</h1>
+  <form id="generate-form" method="post" action="/generate">
+    <label for="apiKey">OpenAI API Key:</label>
+    <input type="text" id="apiKey" name="apiKey" required><br><br>
+
+    <label for="prompt">Prompt:</label>
+    <textarea id="prompt" name="prompt" required></textarea><br><br>
+
+    <button type="submit">Generate Text</button>
+  </form>
+  <div id="response"></div>
+
+  <script>
+    const form = document.getElementById('generate-form');
+    const responseDiv = document.getElementById('response');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent default form submission
+
+      const formData = new FormData(form);
+      const apiKey = formData.get('apiKey');
+      const prompt = formData.get('prompt');
+
+      const response = await fetch('/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ apiKey: apiKey, prompt: prompt })
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        responseDiv.innerText = `Error: ${data.error}`;
+      } else {
+        responseDiv.innerText = data.text;
+      }
+    });
+  </script>
+</body>
+</html>

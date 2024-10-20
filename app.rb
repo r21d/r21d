@@ -1,18 +1,42 @@
-require "sinatra"
+require 'sinatra'
 require 'json'
-require 'open-uri'
+require 'open3' # For running curl
+
 set :bind, "0.0.0.0"
 port = ENV["PORT"] || "3000"
 set :port, port
 
-get '/h/:filename' do
-  filename = params[:filename].split(':')
-  file_path = File.join("/public", "#{filename[0]}.#{filename[1]}")
-  if File.exist?(file_path)
-    send_file file_path
-  else
-    redirect "#{file_path}"
+post '/generate' do
+  content_type :json
+
+  begin
+    params = JSON.parse(request.body.read)
+    api_key = params['apiKey']
+    prompt = params['prompt']
+
+    # Use curl to make the API request.  Error handling is crucial here.
+    cmd = "curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: Bearer #{api_key}\" \"https://api.openai.com/v1/completions\" -d '{\"model\": \"text-davinci-003\", \"prompt\": \"#{prompt}\", \"max_tokens\": 150}'"
+    stdout, stderr, status = Open3.capture3(cmd)
+
+    if status.success?
+      response = JSON.parse(stdout)
+      { text: response['choices'][0]['text'] }.to_json
+    else
+      error_message = "Error generating text: #{stderr.strip}"
+      puts error_message # Log to server console for debugging.
+      { error: error_message }.to_json
+    end
+
+  rescue JSON::ParserError => e
+    { error: "Invalid JSON response from API: #{e.message}" }.to_json
+  rescue StandardError => e
+    { error: "An error occurred: #{e.message}" }.to_json
   end
+end
+
+
+get '/ai' do
+  erb :ai_form
 end
 
 get "/" do
@@ -30,6 +54,8 @@ end
 get "/list" do
   redirect "https://www.youtube.com/watch?v=QblWYWmXOQ4&list=PL6sZpQz3MZtnG4B2W5RlaXUKUkr6catIr"
 end
+
+
 
 get '/wow' do
   json_file_path = File.join(settings.public_folder, 'l.json') 
@@ -68,7 +94,7 @@ end
 
 get "/gowithit" do
   playlist_id = "PL6sZpQz3MZtnG4B2W5RlaXUKUkr6catIr" 
-  api_key = "AIzaSyCMkYOzj-pE5BlUmdnJBStvsNtdOalHKMo"
+  api_key = ""
   url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=#{playlist_id}&key=#{api_key}&maxResults=50"   
   response = URI.open(url)
   data = JSON.parse(response.read)
