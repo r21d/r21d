@@ -156,7 +156,7 @@ end
 
 get "/gowithit" do
   playlist_id = "PL6sZpQz3MZtnG4B2W5RlaXUKUkr6catIr" 
-  api_key = "AIzaSyCMkYOzj-pE5BlUmdnJBStvsNtdOalHKMo"
+  api_key = ""
   url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=#{playlist_id}&key=#{api_key}&maxResults=50"   
   response = URI.open(url)
   data = JSON.parse(response.read)
