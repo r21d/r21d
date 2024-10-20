@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'json'
-require 'open3' # For running curl
+require 'open3'
+require 'base64'
 
 set :bind, "0.0.0.0"
 port = ENV["PORT"] || "3000"
@@ -11,29 +12,47 @@ post '/generate' do
 
   begin
     params = JSON.parse(request.body.read)
-    api_key = params['apiKey']
+    api_key = params['apiKey'] #This will be the path to your service account JSON key file
+    project_id = params['projectId']
+    location = params['location']
     prompt = params['prompt']
 
-    # Use curl to make the API request.  Error handling is crucial here.
-    cmd = "curl -X POST -H \"Content-Type: application/json\" -H \"Authorization: Bearer #{api_key}\" \"https://api.openai.com/v1/completions\" -d '{\"model\": \"text-davinci-003\", \"prompt\": \"#{prompt}\", \"max_tokens\": 150}'"
-    stdout, stderr, status = Open3.capture3(cmd)
+    # Read the service account key file
+    begin
+        key_file_contents = File.read(api_key)
+        key_file_data = JSON.parse(key_file_contents)
 
-    if status.success?
-      response = JSON.parse(stdout)
-      { text: response['choices'][0]['text'] }.to_json
-    else
-      error_message = "Error generating text: #{stderr.strip}"
-      puts error_message # Log to server console for debugging.
-      { error: error_message }.to_json
+        # Construct the base64 encoded key
+        encoded_key = Base64.encode64(key_file_data["private_key"])
+
+        #Construct Curl command, with service account key included
+        cmd = "curl -H \"Authorization: Bearer $(gcloud auth activate-service-account --key-file=#{api_key} print-access-token)\" -H \"Content-Type: application/json\" -X POST -d \"{\\\"contents\\\": [{\\\"role\\\": \\\"user\\\", \\\"parts\\\": [{\\\"text\\\": \\\"#{prompt}\\\"}]}], \\\"systemInstruction\\\": {\\\"parts\\\": [{\\\"text\\\": \\\"Respond concisely.\\\"}]}, \\\"generationConfig\\\": {\\\"temperature\\\": 1, \\\"maxOutputTokens\\\": 200, \\\"topP\\\": 0.95}, \\\"safetySettings\\\": [{\\\"category\\\": \\\"HARM_CATEGORY_HATE_SPEECH\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_DANGEROUS_CONTENT\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_SEXUALLY_EXPLICIT\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_HARASSMENT\\\", \\\"threshold\\\": \\\"OFF\\\"}]}\" \"https://#{location}-aiplatform.googleapis.com/v1/projects/#{project_id}/locations/#{location}/publishers/google/models/gemini-1.5-flash-002:streamGenerateContent\""
+
+
+        stdout, stderr, status = Open3.capture3(cmd)
+
+
+        if status.success?
+            begin
+                response_json = JSON.parse(stdout)
+                generated_text = response_json["result"]["parts"][0]["text"] rescue nil
+                if generated_text.nil?
+                    { error: "Could not extract text from Vertex AI response" }.to_json
+                else
+                    { text: generated_text }.to_json
+                end
+            rescue JSON::ParserError => e
+                { error: "Invalid JSON response from Vertex AI: #{e.message}" }.to_json
+            end
+        else
+            { error: "Error generating text from Vertex AI: #{stderr.strip}" }.to_json
+        end
+    rescue Errno::ENOENT => e
+        { error: "Service account key file not found: #{e.message}" }.to_json
+    rescue JSON::ParserError => e
+        { error: "Invalid JSON in service account key file: #{e.message}" }.to_json
     end
-
-  rescue JSON::ParserError => e
-    { error: "Invalid JSON response from API: #{e.message}" }.to_json
-  rescue StandardError => e
-    { error: "An error occurred: #{e.message}" }.to_json
-  end
 end
-
 
 get '/ai' do
   erb :ai_form

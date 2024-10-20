@@ -1,21 +1,62 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Text Generator</title>
-</head>
-<body>
-  <h1>Text Generator</h1>
-  <form id="generate-form" method="post" action="/generate">
-    <label for="apiKey">OpenAI API Key:</label>
-    <input type="text" id="apiKey" name="apiKey" required><br><br>
+require 'sinatra'
+require 'json'
+require 'open3'
+require 'base64'
 
-    <label for="prompt">Prompt:</label>
-    <textarea id="prompt" name="prompt" required></textarea><br><br>
+set :bind, "0.0.0.0"
+port = ENV["PORT"] || "3000"
+set :port, port
 
-    <button type="submit">Generate Text</button>
-  </form>
-  <div id="response"></div>
+post '/generate' do
+  content_type :json
 
+  begin
+    params = JSON.parse(request.body.read)
+    api_key = params['apiKey'] #This will be the path to your service account JSON key file
+    project_id = params['projectId']
+    location = params['location']
+    prompt = params['prompt']
+
+    # Read the service account key file
+    begin
+        key_file_contents = File.read(api_key)
+        key_file_data = JSON.parse(key_file_contents)
+
+        # Construct the base64 encoded key
+        encoded_key = Base64.encode64(key_file_data["private_key"])
+
+        #Construct Curl command, with service account key included
+        cmd = "curl -H \"Authorization: Bearer $(gcloud auth activate-service-account --key-file=#{api_key} print-access-token)\" -H \"Content-Type: application/json\" -X POST -d \"{\\\"contents\\\": [{\\\"role\\\": \\\"user\\\", \\\"parts\\\": [{\\\"text\\\": \\\"#{prompt}\\\"}]}], \\\"systemInstruction\\\": {\\\"parts\\\": [{\\\"text\\\": \\\"Respond concisely.\\\"}]}, \\\"generationConfig\\\": {\\\"temperature\\\": 1, \\\"maxOutputTokens\\\": 200, \\\"topP\\\": 0.95}, \\\"safetySettings\\\": [{\\\"category\\\": \\\"HARM_CATEGORY_HATE_SPEECH\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_DANGEROUS_CONTENT\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_SEXUALLY_EXPLICIT\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_HARASSMENT\\\", \\\"threshold\\\": \\\"OFF\\\"}]}\" \"https://#{location}-aiplatform.googleapis.com/v1/projects/#{project_id}/locations/#{location}/publishers/google/models/gemini-1.5-flash-002:streamGenerateContent\""
+
+
+        stdout, stderr, status = Open3.capture3(cmd)
+
+
+        if status.success?
+            begin
+                response_json = JSON.parse(stdout)
+                generated_text = response_json["result"]["parts"][0]["text"] rescue nil
+                if generated_text.nil?
+                    { error: "Could not extract text from Vertex AI response" }.to_json
+                else
+                    { text: generated_text }.to_json
+                end
+            rescue JSON::ParserError => e
+                { error: "Invalid JSON response from Vertex AI: #{e.message}" }.to_json
+            end
+        else
+            { error: "Error generating text from Vertex AI: #{stderr.strip}" }.to_json
+        end
+    rescue Errno::ENOENT => e
+        { error: "Service account key file not found: #{e.message}" }.to_json
+    rescue JSON::ParserError => e
+        { error: "Invalid JSON in service account key file: #{e.message}" }.to_json
+    end
+end
+
+get '/ai' do
+  erb :ai_form
+end
   <script>
     const form = document.getElementById('generate-form');
     const responseDiv = document.getElementById('response');
