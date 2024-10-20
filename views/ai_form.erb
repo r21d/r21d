@@ -1,64 +1,30 @@
-require 'sinatra'
-require 'json'
-require 'open3'
-require 'base64'
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vertex AI Prompt Generator</title>
+</head>
+<body>
+  <h1>Vertex AI Prompt Generator</h1>
+  <form id="prompt-form" method="post" action="/vertex_ai">
+    <label for="projectId">Project ID:</label>
+    <input type="text" id="projectId" name="projectId" required><br><br>
 
-set :bind, "0.0.0.0"
-port = ENV["PORT"] || "3000"
-set :port, port
+    <label for="location">Location (e.g., us-central1):</label>
+    <input type="text" id="location" name="location" required><br><br>
 
-post '/generate' do
-  content_type :json
+    <label for="apiKey">Vertex AI API Key:</label>
+    <input type="text" id="apiKey" name="apiKey" required><br><br>
 
-  begin
-    params = JSON.parse(request.body.read)
-    api_key = params['apiKey'] #This will be the path to your service account JSON key file
-    project_id = params['projectId']
-    location = params['location']
-    prompt = params['prompt']
+    <label for="prompt">Prompt:</label>
+    <textarea id="prompt" name="prompt" required></textarea><br><br>
 
-    # Read the service account key file
-    begin
-        key_file_contents = File.read(api_key)
-        key_file_data = JSON.parse(key_file_contents)
+    <button type="submit">Generate Text</button>
+  </form>
 
-        # Construct the base64 encoded key
-        encoded_key = Base64.encode64(key_file_data["private_key"])
+  <div id="response"></div>
 
-        #Construct Curl command, with service account key included
-        cmd = "curl -H \"Authorization: Bearer $(gcloud auth activate-service-account --key-file=#{api_key} print-access-token)\" -H \"Content-Type: application/json\" -X POST -d \"{\\\"contents\\\": [{\\\"role\\\": \\\"user\\\", \\\"parts\\\": [{\\\"text\\\": \\\"#{prompt}\\\"}]}], \\\"systemInstruction\\\": {\\\"parts\\\": [{\\\"text\\\": \\\"Respond concisely.\\\"}]}, \\\"generationConfig\\\": {\\\"temperature\\\": 1, \\\"maxOutputTokens\\\": 200, \\\"topP\\\": 0.95}, \\\"safetySettings\\\": [{\\\"category\\\": \\\"HARM_CATEGORY_HATE_SPEECH\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_DANGEROUS_CONTENT\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_SEXUALLY_EXPLICIT\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_HARASSMENT\\\", \\\"threshold\\\": \\\"OFF\\\"}]}\" \"https://#{location}-aiplatform.googleapis.com/v1/projects/#{project_id}/locations/#{location}/publishers/google/models/gemini-1.5-flash-002:streamGenerateContent\""
-
-
-        stdout, stderr, status = Open3.capture3(cmd)
-
-
-        if status.success?
-            begin
-                response_json = JSON.parse(stdout)
-                generated_text = response_json["result"]["parts"][0]["text"] rescue nil
-                if generated_text.nil?
-                    { error: "Could not extract text from Vertex AI response" }.to_json
-                else
-                    { text: generated_text }.to_json
-                end
-            rescue JSON::ParserError => e
-                { error: "Invalid JSON response from Vertex AI: #{e.message}" }.to_json
-            end
-        else
-            { error: "Error generating text from Vertex AI: #{stderr.strip}" }.to_json
-        end
-    rescue Errno::ENOENT => e
-        { error: "Service account key file not found: #{e.message}" }.to_json
-    rescue JSON::ParserError => e
-        { error: "Invalid JSON in service account key file: #{e.message}" }.to_json
-    end
-end
-
-get '/ai' do
-  erb :ai_form
-end
   <script>
-    const form = document.getElementById('generate-form');
+    const form = document.getElementById('prompt-form');
     const responseDiv = document.getElementById('response');
 
     form.addEventListener('submit', async (event) => {
@@ -67,21 +33,23 @@ end
       const formData = new FormData(form);
       const apiKey = formData.get('apiKey');
       const prompt = formData.get('prompt');
+      const projectId = formData.get('projectId');
+      const location = formData.get('location');
 
-      const response = await fetch('/generate', {
+      const response = await fetch('/vertex_ai', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ apiKey: apiKey, prompt: prompt })
+        body: JSON.stringify({ apiKey: apiKey, prompt: prompt, projectId: projectId, location: location })
       });
 
       const data = await response.json();
 
       if (data.error) {
-        responseDiv.innerText = `Error: ${data.error}`;
+        responseDiv.innerText = `<p style="color: red;">Error: ${data.error}</p>`;
       } else {
-        responseDiv.innerText = data.text;
+        responseDiv.innerHTML = `<p>${data.text}</p>`;
       }
     });
   </script>
