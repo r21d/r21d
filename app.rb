@@ -4,7 +4,7 @@ require 'open3'
 require 'base64'
 
 set :bind, "0.0.0.0"
-port = ENV["PORT"] || "3000"
+port = ENV["PORT"] || "8080"
 set :port, port
 
 post '/generate' do
