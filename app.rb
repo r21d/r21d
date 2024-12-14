@@ -54,6 +54,10 @@ get "/" do
   redirect "pabe.html"
 end
 
+
+get "/insta" do
+  redirect "https://www.instagram.com/r21d/"
+end
 get "/fax" do
   redirect "https://r21d.atlassian.net/servicedesk/customer/portals"
 end
