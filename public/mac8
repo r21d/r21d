@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>r21d - Historian Application</title>
+<style>
+    body {
+        font-family: sans-serif;
+        line-height: 1.6;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-size: 16px;
+    }
+    .dark-mode {
+        background-color: #222;
+        color: #eee;
+    }
+      .dark-mode table th {
+        background-color: #444;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .section-title {
+        font-weight: bold;
+        margin-top: 2em;
+        margin-bottom: 0.5em;
+    }
+    .colored-keyword {
+        font-weight: bold;
+    }
+
+    /* Define Keyword Color Variables using Hex Values */
+    :root {
+        --color-history-tech: #000080; /* Navy */
+        --color-accessible-communication: #008080; /* Teal */
+        --color-game-centric-mindset: #228B22; /* Forest Green */
+        --color-problem-solver: #FF8C00; /* Dark Orange */
+        --color-adaptable-writer: #800080; /* Purple */
+        --color-worldly-perspective: #A52A2A; /* Brown */
+
+        /* Define Sumerian Color Variables using Hex Values */
+        --color-sumerian-7: #B22222; /* firebrick */
+        --color-sumerian-8: #DAA520; /* goldenrod */
+        --color-sumerian-9: #9932CC; /* darkorchid */
+        --color-sumerian-10: #2F4F4F; /* darkslategray */
+        --color-sumerian-11: #808000; /* olive */
+        --color-sumerian-12: #DC143C; /* crimson */
+    }
+
+    /* Keyword Colors - using CSS variables */
+    .htag-1 { color: var(--color-history-tech); } /* History-Tech */
+    .acm-2 { color: var(--color-accessible-communication); } /* Accessible-Communication */
+    .gcmd-3 { color: var(--color-game-centric-mindset); } /* Game-Centric-Mindset */
+    .pslv-4 { color: var(--color-problem-solver); } /* Problem-Solver */
+    .adwr-5 { color: var(--color-adaptable-writer); } /* Adaptable-Writer */
+    .wprsp-6 { color: var(--color-worldly-perspective); } /* Worldly-Perspective */
+
+
+        /* Sumerian Transliteration Colors */
+        .sumerian-1 { color: firebrick; }
+        .sumerian-2 { color: goldenrod; }
+        .sumerian-3 { color: darkorchid; }
+        .sumerian-4 { color: darkslategray; }
+        .sumerian-5 { color: olive; }
+        .sumerian-6 { color: crimson; }
+
+        /* Apply the Cuneiform font to the Sumerian column */
+        .sumerian-column, .cuneiform-column {
+            font-family: 'Noto Sans Cuneiform', sans-serif;
+        }
+
+    pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    /* OpenDyslexic Styles */
+    @font-face {
+        font-family: 'OpenDyslexic3';
+        src: url('OpenDyslexic3-Regular.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .opendyslexic {
+        font-family: 'OpenDyslexic3', sans-serif;
+    }
+        #controls {
+            margin-bottom: 1em;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+        }
+        #font-size, #section-width-slider, #master-width-slider, #wrapper-width-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100px;
+            height: 10px;
+            background: #ddd;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+            border-radius: 5px;
+        }
+
+        #font-size::-webkit-slider-thumb, #font-size::-moz-range-thumb,
+        #section-width-slider::-webkit-slider-thumb, #section-width-slider::-moz-range-thumb,
+        #master-width-slider::-webkit-slider-thumb, #master-width-slider::-moz-range-thumb,
+        #wrapper-width-slider::-webkit-slider-thumb, #wrapper-width-slider::-moz-range-thumb
+ {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #04AA6D;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        #font-family, #dark-mode-toggle {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: none;
+            background-color: white;
+            color: black;
+            cursor: pointer;
+        }
+        #dark-mode-toggle {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+        .dark-mode #dark-mode-toggle {
+            color: black;
+        }
+
+
+        #font-size:hover, #font-family:hover, #dark-mode-toggle:hover, #section-width-slider:hover, #master-width-slider:hover,  #wrapper-width-slider:hover {
+            opacity: 1;
+        }
+        #original-text-section pre, #flash-text-section pre, #improved-text-section pre,
+        #small-table-section table, #large-table-section table {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 1em;
+        }
+       /* Renamed for clarity */
+        #portrait-wrapper {
+            display: block; /* Default: Stacked (Vertical) Layout */
+            width: 800px; /* Controlled by master width slider */
+            margin: 0 auto;
+        }
+
+        /* Renamed for clarity */
+        #landscape-wrapper {
+            display: none; /* Hidden by default */
+            width: 800px;  /* Controlled by master width slider */
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        #landscape-wrapper > div { /* Style sections within landscape wrapper */
+            width: 48%;  /* Adjust as needed */
+            margin-right: 2%; /* Adjust as needed */
+            margin-bottom: 1em;
+        }
+
+        #landscape-wrapper > div:nth-child(even) {
+            margin-right: 0;
+        }
+
+
+        .question {
+            text-align: right;
+        }
+
+        .answer {
+            text-align: left;
+        }
+
+        /* New CSS for the content wrapper */
+        .section-content-wrapper {
+            box-sizing: border-box;
+            margin: 0 auto; /* Center horizontally */
+        }
+</style>
+</head>
+<body>
+
+<h1>r21d - Application advertised by grandStrategy for "Master Arbiter Chief"</h1>
+<h2>Grand Optics Policy Strategy, tactical over scopesworth.</h2>
+<h3>This website requires no cookies nor uses any trackers; only prerequisites are OpenDyslexic3-Regular.ttf at fileDir</h3>
+<h4>
+
+<!-- Controls -->
+<div id="controls">
+	<button id="toggle-original-button">Dev(X)>Deity?</button>
+    <label for="font-size">Font Size:</label>
+    <input type="range" id="font-size" min="12" max="24" value="16">
+
+    <label for="font-family">Font Family:</label>
+    <select id="font-family">
+        <option value="sans-serif">Arial (Default)</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="OpenDyslexic">OpenDyslexic3-Regular (required at fileDir)</option>
+    </select>
+
+    <button id="dark-mode-toggle">Toggle Dark Mode</button>
+    <br>
+
+    <!-- Checkboxes and Sliders -->
+    <label class="section-toggle-label">
+        <input type="checkbox" class="section-toggle" id="toggle-small-table" checked> Small Table
+        <input type="range" class="section-width" data-section="small-table-section" min="20" max="100" value="50">
+        <input type="checkbox" class="portrait-toggle" id="portrait-small-table"> Portrait
+    </label>
+
+    <label class="section-toggle-label">
+        <input type="checkbox" class="section-toggle" id="toggle-original-text" checked> Opt-IAM
+        <input type="range" class="section-width" data-section="original-text-section" min="20" max="100" value="50">
+        <input type="checkbox" class="portrait-toggle" id="portrait-original-text"> Portrait
+    </label>
+
+    <label class="section-toggle-label">
+        <input type="checkbox" class="section-toggle" id="toggle-flash-text" checked> Flash filter
+        <input type="range" class="section-width" data-section="flash-text-section" min="20" max="100" value="50">
+        <input type="checkbox" class="portrait-toggle" id="portrait-flash-text"> Portrait
+    </label>
+
+    <label class="section-toggle-label">
+        <input type="checkbox" class="section-toggle" id="toggle-improved-text" checked> Impro unfilter
+        <input type="range" class="section-width" data-section="improved-text-section" min="20" max="100" value="50">
+        <input type="checkbox" class="portrait-toggle" id="portrait-improved-text"> Portrait
+    </label>
+
+    <label class="section-toggle-label">
+        <input type="checkbox" class="section-toggle" id="toggle-large-table" checked> Large Table
+        <input type="range" class="section-width" data-section="large-table-section" min="20" max="100" value="50">
+        <input type="checkbox" class="portrait-toggle" id="portrait-large-table"> Portrait
+    </label>
+
+
+    <label for="master-width">Master Width (pixels):</label>
+    <input type="range" id="master-width-slider" min="420" max="9001" value="800">
+
+    <!--  Wrapper Width Slider -->
+    <label for="wrapper-width-slider">Wrapper Width (%):</label>
+    <input type="range" id="wrapper-width-slider" min="10" max="100" value="100">
+</div>
+<div id="portrait-wrapper"> <!-- Portrait Wrapper (Default) -->
+    <div id="small-table-section">
+        <h2 class="section-title">Multi-lingual Table</h2>
+        <table id = "small-table">
+          <thead>
+            <tr>
+              <th>English (Bold & Bullet)</th>
+              <th>English (Description)</th>
+              <th>Latin (Classical)</th>
+              <th>Finnish</th>
+              <th>Turkish</th>
+              <th>Sumerian (Transliterated)</th>
+                <th>Sumerian (Cuneiform)</th>
+              <th>Arabic</th>
+              <th>Hebrew (Translation)</th>
+              <th>Hebrew (Bold & Bullet)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="colored-keyword history-tech">History + Tech</span></td>
+              <td>Deep historical understanding (diverse interests, Seima-Turbino to WWII) *combined* with technical skills (software, cloud – GCP, Azure, AWS). Bridges history and game development effectively. Not *just* a historian.</td>
+              <td><em>Peritia historiae profunda (variis studiis, a Seima-Turbino ad Secundum Bellum Mundanum) cum artibus technicis (programmatura, nubibus – GCP, Azure, AWS) coniuncta. Pontem inter historiam et ludorum creationem efficaciter facit. Non solum historicus.</em></td>
+              <td>Syvä historiallinen ymmärrys (monipuoliset kiinnostuksen kohteet, Seima-Turbinosta toiseen maailmansotaan) *yhdistettynä* teknisiin taitoihin (ohjelmistot, pilvipalvelut – GCP, Azure, AWS). Yhdistää historian ja pelinkehityksen tehokkaasti. Ei *pelkästään* historioitsija.</td>
+              <td>Derin tarih anlayışı (çeşitli ilgi alanları, Seima-Turbino'dan II. Dünya Savaşı'na kadar) teknik becerilerle (yazılım, bulut – GCP, Azure, AWS) *birleşiyor*. Tarih ve oyun geliştirme arasında etkili bir köprü kuruyor. *Sadece* bir tarihçi değil.</td>
+              <td class="sumerian-column">
+                <span class="sumerian-1">`ĝiš-tuku` (knowledge)</span><br>
+                <span class="sumerian-2">`ma₂-gur₈` (ship/technology, *very* loose)</span><br>
+                <span class="sumerian-3">`ĝeš-pu` (history/wood, *very* loose)</span><br>
+                <span class="sumerian-4">`saĝ-ĝa₂` (good/head)</span>
+              </td>
+                <td class="cuneiform-column">
+                    <span class="sumerian-1">𒄑 तुक</span><br>  <!-- ĝiš-tuku -->
+                    <span class="sumerian-2">𒈠 गुड़</span><br> <!-- ma₂-gur₈ -->
+                    <span class="sumerian-3">𒄑 মনোবল</span><br>    <!-- ĝeš-pu -->
+                    <span class="sumerian-4">𒊕  ਗਿਆ</span>    <!-- saĝ-ĝa₂ -->
+                </td>
+              <td>فهم عميق للتاريخ (اهتمامات متنوعة ، من سيما توربينو إلى الحرب العالمية الثانية) *مدمج* بمهارات تقنية (برامج ، سحابة - GCP ، Azure ، AWS). يجسر التاريخ وتطوير اللعبة بشكل فعال. ليس *مجرد* مؤرخ.</td>
+              <td>הבנה היסטורית מעמיקה (תחומי עניין מגוונים, מסיימה-טורבינו ועד מלחמת העולם השנייה) *בשילוב* עם כישורים טכניים (תוכנה, ענן – GCP, Azure, AWS). מגשר ביעילות בין היסטוריה לפיתוח משחקים. לא *רק* היסטוריון.</td>
+              <td><span class="colored-keyword history-tech">היסטוריה + טכנולוגיה</span></td>
+            </tr>
+            <tr>
+              <td><span class="colored-keyword accessible-communication">Accessible Communication</span></td>
+              <td>Simplifies complex history for non-experts, crucial for game content. Proven communication & analytical skills (Mensa). Explains etymology of "race".</td>
+              <td><em>Historiam complicatam pro imperitis simplicem reddit, quod ad ludorum materiam necessarium est. Comprobatae artes communicationis et analyticae (Mensa). Exponit etymologiam "genus".</em></td>
+              <td>Yksinkertaistaa monimutkaisen historian ei-asiantuntijoille, mikä on olennaista pelisisällölle. Todistetut viestintä- ja analyyttiset taidot (Mensa). Selittää sanan "rotu" alkuperän.</td>
+              <td>Uzman olmayanlar için karmaşık tarihi basitleştirir, oyun içeriği için çok önemlidir. Kanıtlanmış iletişim ve analitik becerileri (Mensa). "Irk" kelimesinin etimolojisini açıklar.</td>
+              <td class="sumerian-column">
+                <span class="sumerian-5">`nam-lugal` (kingship/abstract concept)</span><br>
+                <span class="sumerian-6">`igi-du` (to see/understand)</span><br>
+                <span class="sumerian-1">`inim-dug₄` (to speak well)</span>
+              </td>
+                <td class="cuneiform-column">
+                    <span class="sumerian-5">𒉆𒈗</span><br>  <!-- nam-lugal -->
+                    <span class="sumerian-6">𒅆𒁺</span><br> <!-- igi-du -->
+                    <span class="sumerian-1">𒅗 দোয়া</span>    <!-- inim-dug₄ -->
+                </td>
+              <td>يبسط التاريخ المعقد لغير الخبراء ، وهو أمر بالغ الأهمية لمحتوى اللعبة. مهارات اتصال وتحليل مثبتة (Mensa). يشرح أصل كلمة "race".</td>
+              <td>מפשט היסטוריה מורכבת עבור מי שאינם מומחים, חיוני לתוכן המשחק. כישורי תקשורת וניתוח מוכחים (מנסה). מסביר את האטימולוגיה של "גזע".</td>
+              <td><span class="colored-keyword accessible-communication">תקשורת נגישה</span></td>
+            </tr>
+            <tr>
+              <td><span class="colored-keyword game-centric-mindset">GAME-Centric Mindset</span></td>
+              <td>Understands GAME design principles. Sees history's role in mechanics, characters, world-building. Experience with both CLI and GUI design.</td>
+              <td><em>Principia designationis ludorum intellegit. Munus historiae in mechanicis, personis, mundi constructione videt. Usus et CLI et GUI designationis.</em></td>
+              <td>Ymmärtää pelisuunnittelun periaatteet. Näkee historian roolin mekaniikassa, hahmoissa, maailmanrakentamisessa. Kokemusta sekä CLI- että GUI-suunnittelusta.</td>
+              <td>Oyun tasarım ilkelerini anlar. Tarihin mekaniklerde, karakterlerde, dünya inşasında rolünü görür. Hem CLI hem de GUI tasarımında deneyim.</td>
+              <td class="sumerian-column">
+                <span class="sumerian-2">`me` (divine decrees/GAME mechanics)</span><br>
+                <span class="sumerian-3">`ki-ág` (to love/understand)</span><br>
+                <span class="sumerian-4">`saĝ-ki` (face/front-end)</span>
+              </td>
+                <td class="cuneiform-column">
+                   <span class="sumerian-2">𒈨</span><br>   <!-- me -->
+                   <span class="sumerian-3">𒆠 𒀝</span><br>  <!-- ki-ág -->
+                   <span class="sumerian-4">𒊕 𒆠</span>    <!-- saĝ-ki -->
+                </td>
+              <td>يفهم مبادئ تصميم اللعبة. يرى دور التاريخ في الميكانيكا والشخصيات وبناء العالم. خبرة في تصميم CLI و GUI.</td>
+              <td>מבין עקרונות עיצוב משחקים. רואה את תפקידה של ההיסטוריה במכניקה, בדמויות, בבניית עולם. ניסיון בעיצוב CLI ו- GUI.</td>
+              <td><span class="colored-keyword game-centric-mindset">חשיבה ממוקדת משחק</span></td>
+            </tr>
+            <tr>
+              <td><span class="colored-keyword problem-solver">PROBLEM Solver</span></td>
+              <td>Identifies and solves PROBLEMS in narrative, design, and technical aspects. Proactive approach.</td>
+              <td><em>Problemata in narratione, designatione, et aspectibus technicis identificat et solvit. Propositum proactivum.</em></td>
+              <td>Tunnistaa ja ratkaisee ongelmia kerronnassa, suunnittelussa ja teknisissä näkökohdissa. Ennakoiva lähestymistapa.</td>
+              <td>Anlatı, tasarım ve teknik yönlerdeki sorunları tanımlar ve çözer. Proaktif yaklaşım.</td>
+              <td class="sumerian-column">
+                <span class="sumerian-5">`inim-gi-na` (true WORD/PROBLEM)</span><br>
+                <span class="sumerian-6">`pàd` (to find)</span><br>
+                <span class="sumerian-1">`til` (to finish/solve)</span>
+              </td>
+                <td class="cuneiform-column">
+                    <span class="sumerian-5">𒅗 𒄀𒈾</span><br> <!-- inim-gi-na -->
+                    <span class="sumerian-6"> பகிர்</span><br>  <!-- pàd -->
+                    <span class="sumerian-1"> تیل</span>    <!-- til -->
+                </td>
+              <td>يحدد ويحل المشكلات في السرد والتصميم والجوانب الفنية. نهج استباقي.</td>
+              <td>מזהה ופותר בעיות בהיבטים נרטיביים, עיצוביים וטכניים. גישה פרואקטיבית.</td>
+              <td><span class="colored-keyword problem-solver">פותר בעיות</span></td>
+            </tr>
+            <tr>
+              <td><span class="colored-keyword adaptable-writer">Adaptable WRITER</span></td>
+              <td>Adjusts WRITING style to various GAME genres. Understands localization needs and sensitivities.</td>
+              <td><em>Stilum scribendi ad varia ludorum genera accommodat. necessitates et sensibilitates localizationis intellegit.</em></td>
+              <td>Mukauttaa kirjoitustyylin eri peligenreihin. Ymmärtää lokalisointitarpeet ja -herkkyydet.</td>
+              <td>Yazma stilini çeşitli oyun türlerine uyarlar. Yerelleştirme ihtiyaçlarını ve hassasiyetlerini anlar.</td>
+              <td class="sumerian-column">
+                <span class="sumerian-2">`inim` (WORD)</span><br>
+                <span class="sumerian-3">`bala` (to change/translate)</span><br>
+                <span class="sumerian-4">`kur` (foreign land/localization)</span>
+              </td>
+                <td class="cuneiform-column">
+                   <span class="sumerian-2">𒅗</span><br>  <!-- inim -->
+                   <span class="sumerian-3"> বালা</span><br> <!-- bala -->
+                   <span class="sumerian-4">𒆳</span>    <!-- kur -->
+                </td>
+              <td>يضبط أسلوب الكتابة لأنواع الألعاب المختلفة. يتفهم احتياجات وحساسيات الترجمة.</td>
+              <td>מתאים את סגנון הכתיבה לז'אנרים שונים של משחקים. מבין צרכי לוקליזציה ורגישויות.</td>
+              <td><span class="colored-keyword adaptable-writer">כותב מותאם</span></td>
+            </tr>
+             <tr>
+              <td><span class="colored-keyword worldly-perspective">Worldly Perspective</span></td>
+              <td>Familiar with GAME localization.</td>
+              <td><em>Peritus localizationis ludi.</em></td>
+              <td>Kokenut pelin lokalisoinnista.</td>
+              <td>Oyun yerelleştirmesi konusunda deneyimli.</td>
+              <td class="sumerian-column">
+                <span class="sumerian-5">`kur`</span><br>
+                <span class="sumerian-6">`zu`</span><br>
+                <span class="sumerian-1">(foreign land/localization)</span>
+              </td>
+                <td class="cuneiform-column">
+                   <span class="sumerian-5">𒆳</span><br>
+                   <span class="sumerian-6">𒍪</span><br>
+                   <span class="sumerian-1"></span>
+                </td>
+              <td>مألوف مع توطين اللعبة.</td>
+              <td>בקיא בלוקליזציה של משחקים.</td>
+              <td><span class="colored-keyword worldly-perspective">פרספקטיבה עולמית</span></td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+
+    <div id="original-text-section">
+        <h2 class="section-title">Original Writing</h2>
+        <pre id="original-text">
+        <span class="question">Historian Job Summary:
+
+grandsTrateGymsis looking for a talented, experienced, adaptable historian and wrïter to join one of our AAA development teams. The ideal candidate is creative, highly articulate, and capable of collaborating with desïgners to generate original ideas for characters, content, and narrative. They must have a strong understanding of story and drama and be capable of contributing in multiple genres. A strong background in or knowledge of history, as well as the ability to perform and distill historical research to other disciplines, is necessary. Candidates should include their particular area(s) of historical expertise in their cover letter, if applicable.
+        </span><span class ="answer">ww2 and hitler probably, https://en.wikipedia.org/wiki/Seima-Turbino_culture
+        To some it might seen insensitive, to assert that prussians had stukas... You could have had "the autobahn" or why not the ability to rid of religious influence with their special unit, the waffel-shit-staff.
+        Here i point to a contradiction to assert why the inclusion of hitler(with it being dlc only for countries that support cognitive liberty[online play would necessitate an analog{vould be merkel for inclusion of women}]), would in actuality make the product more sensitive, and cohesive
+        Cuz it aint libel if it is true. Like if its objectively true, and there are settings for snowflake-authoritarians like myself that understand that for a tall GAME you want a legendary start, and for wide you want an old planet.
+        But it might be benefitial to also imagine there to exist other axis' of predicate, deep-long, and why not dense-fluffy could be used to describe certain stereotypes of end GAME situations.
+
+        Also the history of computing fs, like during your lifetime, so you know we at this time are the first peoples to be able to do such things. Like the reason why parentage cannot fathom GAMING/esports to the same degree as those in the industrty, is that this is brand new.
+        Perspective is always biased per ones own experiences. Computer proliferation for the masses might feel like it has been around for all time, but in actuality these them smart peoples who somehow by accident create what needs new verbage. Not guaranteed per century...
+        And this excludes even elon musk, who is not as competent in logical reasoning as i am, who is born in -95; Just in time for GUIs...
+        </span>
+        <span class="question">
+        What You Will Do:
+        </span><span class="answer">Depends on the compensation package, you can start with part time billings.
+        </span>
+
+
+        <span class="question">•Collaborate with artists, designers, and other team members to create or refine interesting and accurate characters that engage players’ imagination through WRITTEN dialogue.
+        </span><span class="answer">Imagine, that what you are seeking is achieved with multimedia/multimodality. Historically, the advancement in technology correlates to an extent with multimedia packaging inventions.
+
+        You are asking for someone is who is VERY proficient in designing a functional command line INTERFACE for a mainframe that handles ALL the funtcions, and it has to be intuitive with ALL functionality.
+
+        Then there is this guy who created the graphical user INTERFACE. IBM was effectively a monopoly, as was Andrew Carnegie. Carnegie himself gave his wealth away for public enbetterment, where IBM was taken down by a non government entity.
+        So the power of Teddy Roosevelts "speak softly, and carry a big stick" refers to the busting of monopolies.
+
+        I cannot speak softly due to tourettes, and was not allowed to serve in the compulsory military service of finland; Which in this domain is the unwanted minority not the praised. This in addition of being a decendent of exiled migration due to the ongoing holocaust prosecuted by "russias" dickeater. Said aryan genetics have been disrepresented by the before example of such, where the latter has made sure there is no mention of an other genotype ancested by neanderthalis.
+        #playingGod like WHO THE FUCK thought, that 7 will be _THE_ shit, JUST AS LONG YOU AXE "ONE MORE TURN"??!?!!?!?!?!?!?!?!? Said trauma has triggered me for action.
+        </span>
+        <span class="question">•Write and edit dialogues, backstories, lore, story, and expository text to a high level of quality with minimal supervision.
+        </span><span class="answer">I would employ ÄIfor governance of compliance in risk per personal disability, and subjectivity of domain. History is WRITTEN by the victor, but it is human to err. Peer review is due to the subjective nature of perspectives inheritly necessary but variable.
+        </span>
+        <span class="question">•Research historical topics from academic sources and distill the findings into brief explanatory pieces for a general audience in a light and engaging style.
+        </span><span class="answer">
+        <span class="question">•Research historical topics from academic sources and distill the findings into brief explanatory pieces for a general audience in a light and engaging style.
+        </span><span class="answer">I have designed prompts that do this, like unrelated lol.  I am willing to negotiate usage licenses for all copyright even in perpetuity.  Due to "mental disabilities"(see #quotations[and #playingGod])
+        </span>
+        <span class="question">•Drive historical accuracy across multiple departments and provide learning opportunities for other disciplines.
+        </span><span class="answer">I am objective, and able to provide multipla of narrative by varibleazing outputs
+        </span>
+        <span class="question">•Understand complex issues in historical topics and explain these complexities to an audience of non-specialists.
+
+        </span><span class="answer">I can do UML.
+        #quotations as notation for language with non conforming semantics with contemporal literality, or like new words are used to describe same semantics; obsoleting verbage.
+        </span>
+        <span class="question">•Proactively identify potential issues with writing, stories, art, or design in general and bring potential solutions to the team.
+        </span><span class="answer">There is hardly any, is this the reason like you fear being offensive? The black plague crisis may/will provide arguments of non objectivity (subjective agenda promotion), where itself for the inclusion of women inheritly enjoys the new culture-person as buildable buff packages due to the genetical heritage driven physiological deficiency entailed "lack of representation", enabling a wider reach of consideration conversion that stands a test of time, in peril of the predicate of The cult of personality. Such should be thoroughly market tested per fiscal benefit, rather than subjective subjects.
+        Above meaning "it ain't libel if it ain't true". So a pröblem is if you lose the customers that actually pay and use your product, due to for example GAME DESIGN designed inclusive for a certain vocal demograpic. I mean who the fuck GAMES on linux i mean i get it probably someone that also would enjoy 7 but WHY neckbeards over being the science leaders in cultural economic productions??? Would you buy advertising space in barista-conditionaries? If not, why support mac? I do not have the sales numbers, so what proportion are on these systems. But like if there are 0. 8%(0.008) of macs, it probably isnt a good idea to support such if it takes over 4% of resources, but cabviats apply on the %
+
+        I have a pröblem with civ due to it not providing me income. And problems are anything that negatively affect a non related thing. Like the abovementioned.
+        </span>
+        <span class="question">
+        What We Need (Requirements/Must Haves):
+        </span>
+        <span class="answer">•4+ years as a Writer, Narrative Designer, or other position with commensurate duties.
+        I have not taken credit, due to requirements of institutions; Copy and Design are separate.
+        </span>
+        <span class="question">
+        •A degree in History or a History-related field, or commensurate demonstrated experience with academic historical research.
+        </span><span class="answer">My religion is organized to oppose organized exclusive schools of thought
+        </span>
+        <span class="question">
+        •Advanced knowledge in the discipline of history as well as a broad knowledge of game principles, theories, and concepts.
+        </span><span class="answer">Petra in abstract could be taken as the first (or one of the given that evidence is perishable) silicon processor, whichs scale of architechture should correlate with moores law in terms of transistor count per area. Afterall, all people think it is is _the_ facade, where said facade provided and still does an interface for all traversing message carrier flows to utilize the inner works of function processing.
+
+        Imagine you are seeking a copy-writer. I here am posing as an abstract to a printing press. The how is paywalled behind the cost of ink.
+        </span>
+        <span class="question">
+        •Exceptional communications and problem-solving skills.
+        </span><span class="answer">100% correct on the finnish mensa test, with ÄIexpertise and utilization for accessability. This is due to the requirement of non plagiarism is wholly written without any assistance, even grammar correction tools or the ability to reread.
+        English is not my first language. You should know what a internal rosetta stoned framework can do with large language models, what i mean by AI.
+        </span>
+        <span class = "question">
+        •A proven track record of communicating complex historical content to a non-specialist audience.
+        </span><span class = "answer">https://en.m.wikipedia.org/wiki/File:World_Map_of_Y-DNA_Haplogroups.png This is an objective mapping with the data available from bioarchealogy. So IF you're going fully racist, here are your classes of races.
+
+        The WORD race comes from the "race for progress"(culture-persons flew their jacks) between countries, and in its originality meant culture. Pax Britannica won.
+
+        The above advanced knowledge to reveal the joke, is that a facade in computer science is a design pattern that is an unified gateway for the plethora of interfaces required for systems functionality. Where in construction a facade means a non functional forward facing vanity slab, thats primary function is non functional. or "the frontend". See amsterdammer housing.
+
+        They drove full trees into marshes, to "reclaim" land. So if you invert everything there is in a swamp, you get plains.
+
+        Proof for equivalence is bilateral implication. Not conjecture.
+        </span>
+
+
+        <span class = "question">•The ability to adapt tone and style to different genres/GAME environments.
+        </span><span class = "answer">The principle of explosion states that from contradiction, you can entail anything.
+        But i mean
+        </span>
+
+
+        <span class = "question">•An interest and love of history from a variety of perspectives.
+        </span><span class = "answer">Iltam sumra rashputi illatim.
+        </span>
+        <span class = "question">
+        •Experience working within the restrictions of localization processes a plus.
+        </span><span class = "answer">This letter is illegal in russia, and would not be sanctioned by fcc.
+        </span>
+        <span class = "question">
+        •Experience working with GAME engines and/or common GAME WRITING workflows a plus.
+        </span><span class = "answer">So if you would base the underlying logic on being the negation of a contradiction; The result would be a tautology; Magic. (wip)
+        </span>
+        <span class = "question">
+        •Knowledge of audio DESIGN techniques and technology a plus.
+        </span><span class = "answer">r21d.com/list
+		https://youtu.be/EEdBQqvGNV8 this along with music production, Tall solo live2tape. a educational video,
+		
+		https://youtube.com/live/Qt0PYRq27ek?feature=share the full, won that non playtested marathon deity with a few reloads, but yea the victory condition necessary values they are not playtested... But another context;
+		
+		https://youtu.be/y2MIWRI4ABE this is literally my vocal opinions and tics i told aloud to gemini live, but to showcase the readaloud. Alltogether as literally first time ever, they are very noobish, uninformed (not having seen a manual) i'd prolly not have even half of said opinions, but the common theme was.
+		
+		Primary goal is to utilize the "waste" as productive, and practice is productive.
+		
+		Both UI/UX and playTestQA are entry level positions in cs... But umm this wasn't a rant, rather proof.
+        </span>
+        <span class = "question">
+        BENEFITS:
+        </span>
+        <span class = "answer">•Relocation assistance provided (open to remote)
+        Yea i'd need to like remote untill a greencard and savings for a house loan
+        •Flexible work hours (including hybrid work options)
+        Yea im on the other side of the globe
+        •401K
+        Kinda the point, i've spent all my savings after burning out.
+        •Family friendly work environment
+        Umm, i invoke your disability equity part. Also due of the patrilinical earth-goddess (mastorava) dynasty (river sura, erzyan finnic minority) by name (surakka is the diminiutive form of sura, alike von). I assert each variable of your diverse inclusion equity "bonus point matrix" to be overriden by the superlative return value of said. Regardless of the objective parameters, due to the subjectivity of said parameters and literally by birthright.
+        •And more!
+        Yea i mean there is way more, but i dont like to brag really i do not; And if this has given such impression, should it reinforce the argument on providing the applicant with regular monetary compensation, and ofc legacy cost.
+
+
+        I dropped out from cs-uni with like 3 (reading)courses from a bachelors, worked in a uni level position at CGI out of high school, where it was a college level position. I was about 4 times as proficient as the average performance meter. Burnout, Windows Admin. Burnout, Windows Admin. I thrive as the team lead for software development, be it directing emoji-encoders to best practices for interoperability and automation of such; OR securing stakeholder interest for polylateral benefit, how unfortunate of me; people'd need to hire me with only trust. I know agile, lean, and i can be mean if i see objective advantage in such. Multiinstrumentalist specializing in metal, fully vertical "farm to table" capable.
+I know a bit(my bit is prolly a normal byte) of GCP, just starting out on Azure (powershell is the azure cli where cmd is the black cli lol xD) from where rounding off the whole in AWS for a contemporary, innerosettastoned...
+        My motivation is the product.
+
+        -r21d
+        </span>
+        </pre>
+    </div>
+
+    <div id="flash-text-section">
+        <h2 class="section-title">"Flash" Version</h2>
+        <pre id="flash-text">
+        <span class="question">Application for Historian Position at grandStrategy Games
+        Job Overview (Based on grandStrategy Games Historian Job Posting)
+        grandStrategy Games is seeking a skilled and experienced Historian and wrïter to join their GAME development team. This role requires a creative and articulate individual who can collaborate with GAME desïgners to develop original and engaging content. The ideal candidate will possess a strong understanding of storytelling and drama, with the ability to contribute across various genres. A solid foundation in historical knowledge and research is essential, along with the ability to communicate historical information clearly to team members from different disciplines.
+        Key Responsibilities (Based on Job Posting):
+        Character and Dialogue Development: Collaborate with artists, designers, and team members to create compelling and historically informed characters with engaging WRITTEN dialogue.
+        WRITING and Editing: Independently write and edit high-quality dialogue, character backstories, lore, NARRATIVE, and expository text.
+        Historical Research and Summarization: Research historical topics using academic sources and present findings in a concise and engaging manner for a general audience.
+        Historical Accuracy Advocacy: Promote historical accuracy across various departments and provide historical learning opportunities for team members.
+        Complex Historical Issue Explanation: Understand and clearly explain complex historical issues to individuals without specialized knowledge.
+        Proactive pröblem Solving: Identify potential issues in WRITING, storylines, art, or GAME DESIGN and propose solutions to the team.
+        Applicant's Response and Qualifications:
+        To the Hiring Team at grandStrategy Games,
+        Please consider this application for the Historian position. My background and skills strongly align with the requirements outlined in the job posting, and I am highly motivated by the opportunity to contribute to grandStrategy Games' innovative products.
+        Summary of Qualifications:
+        WRITING and NARRATIVE DESIGN Skills: Proficient in creating detailed and functional command-line INTERFACES, demonstrating a strong ability to DESIGN intuitive systems. Experience in copy-WRITING and abstract conceptualization, akin to DESIGNING for a "printing press" output.
+        Historical Research and Communication: Capable of conducting objective historical research and presenting variable NARRATIVES, tailored for diverse audiences. Experienced in using ÄItools to enhance accessibility and manage complex information.
+        Problem-Solving and Adaptability: Demonstrated exceptional problem-solving and communication skills, evidenced by high scores on standardized tests. Able to adapt WRITING tone and style to different genres and GAME environments, even within unconventional or contradictory scenarios.
+        Technical and Creative Background: Possesses a background in computer science, with experience in software development environments and understanding of contemporary technologies including CLOUD platforms (GCP, Azure, AWS). Multiinstrumentalist with a specialization in metal music, indicating creative and technical versatility.
+        Global Perspective and Localization Awareness: Understands the importance of localization processes and is aware of cultural and geopolitical sensitivities in content creation.
+        https://www.youtube.com/shorts/AuWEGQIF1oA (for the ladies)
+		Response to Specific Requirements:
+        Experience as a Writer/NARRATIVE DESIGNER: While formal roles may differ, my experience encompasses copy and DESIGN work. I am adept at creating functional and intuitive INTERFACES and content, akin to DESIGNING for a printing press, emphasizing output and user experience.
+        History Degree or Equivalent Experience: My approach to knowledge acquisition is rooted in opposing exclusive schools of thought, favoring a broad and inclusive understanding. My understanding of history is demonstrated through the ability to connect abstract concepts across different eras, such as comparing ancient architectural feats like Petra to modern silicon processors in their role as information INTERFACES.
+        Advanced Historical and GAME Knowledge: I possess advanced knowledge in historical analysis and GAME DESIGN principles. My understanding of user INTERFACES, from command-line to graphical, mirrors the evolution of technology and INTERFACE DESIGN in both computing and historical contexts.
+        Communication and Problem-Solving Skills: My performance on standardized tests and my expertise in ÄIutilization for accessibility underscore exceptional communication and problem-solving abilities. I am adept at explaining complex topics clearly and concisely.
+        Track Record of Communicating Complex Historical Content: I can effectively communicate complex historical information to non-specialists, as evidenced by my ability to synthesize diverse data, such as genetic Y-DNA Haplogroup mappings, to explain broad historical concepts in an accessible manner.
+        Adaptability of Tone and Style: I am capable of adapting tone and style to varied contexts, even within contradictory parameters, demonstrating flexibility in NARRATIVE creation.
+        Historical Passion: I have a demonstrated interest in history from multiple perspectives, referencing diverse cultural and historical elements in my application.
+        Localization and GAME Engine Experience: I am aware of localization process restrictions and possess a conceptual understanding of GAME engine logic and common GAME WRITING workflows, with an interest in audio DESIGN techniques and technology.
+        Motivation:
+        My primary motivation is the quality of the product. I am driven to contribute to projects that are innovative and engaging, and I believe my unique skill set and perspective would be a valuable asset to your team.
+        Additional Information:
+        Relocation and Work Flexibility: Relocation assistance is appreciated, and I am open to remote work initially, considering my current location and the need to establish residency. Flexible work hours are also beneficial.
+        Financial Considerations: I am seeking a compensation package that reflects my skills and experience, including consideration for long-term benefits such as a 401K, given my current financial situation.
+        Equity and Inclusion: I appreciate grandStrategy Games' family-friendly work environment and commitment to diversity and inclusion. I believe my unique background and perspective, rooted in a distinct cultural heritage, would contribute positively to your team's diversity.
+        Thank you for considering my application. I am eager to discuss how my skills and passion for history and GAME development can benefit grandStrategy Games.
+        Sincerely,
+        r21d
+        </pre>
+    </div>
+
+    <div id="improved-text-section">
+        <h2 class="section-title">Improved Version</h2>
+        <pre id="improved-text">
+        <span class = "question">Application for Historian and wrïter Position at grandStrategy Games
+
+        Applicant: r21d
+
+        To the Hiring Team at grandStrategy Games,
+
+        I am writing to express my strong interest in the Historian and wrïter position. My unique background, blending historical knowledge with a deep understanding of technology and GAME development, makes me an ideal candidate to contribute to your AAA team. I'm not just a historian; I'm a storyteller, a problem-solver, and a creative thinker who can bridge the gap between the past and the interactive worlds you create. My motivation is simple: to help grandStrategy create the best possible GAMES.
+
+        Here's what makes me a strong fit for this role:
+
+            A Passion for History, Reimagined for Games: I dont just know history; I understand it. I see the patterns, the connections, and the human stories that can bring your GAMES to life. My interest spans diverse areas, from ancient civilizations (as the applicant demonstrates knowledge of the Seima-Turbino culture, as linked in the application) to pivotal moments in modern history (like World War II, as mentioned). I can help you find the fascinating details and untold narratives that will captivate players.
+
+            A Gift for Making History Accessible: Im skilled at taking complex historical information and making it understandable and engaging for everyone. Think of it like this: I can take the raw materials of history – the dates, the events, the figures – and craft them into compelling narratives, compelling character backstories, and exciting in-GAME text. I can explain intricate historical concepts in a way that's both informative and entertaining, enriching the player experience. Applicant demonstrates this by giving an easily understandable explanation of the etymology of the word "race."
+
+            A Technical Mind, Tuned for GAME Development: Im not your typical historian. I have a strong background in computer science, which gives me a unique perspective on GAME development. I understand the technical side of things – how GAMES are built, how they work, and how to integrate historical content seamlessly. Ive even worked with cloud technologies (like Google Cloud Platform, Azure, and AWS), so Im familiar with the tools and processes used in modern GAME development. I can speak the language of both historians and developers, making me an effective collaborator. The applicant has experience using and designing both command-line interfaces and graphical user interfaces.
+
+            A Proven Problem-Solver: Im not afraid to tackle challenges. In fact, I thrive on them. I have a proven ability to identify potential problems – whether they're in a storyline, a character design, or even the GAME's overall DESIGN – and come up with creative solutions. My strong analytical skills (as demonstrated by my score on the Finnish Mensa test, as the applicant mentioned) allow me to see issues from multiple angles and find the best way forward.
+
+            A Communicator Who Bridges Worlds: Because of my diverse background, Im able to communicate effectively with people from different disciplines. I can explain historical concepts to DESIGNERS, artists, and programmers in a way theyll understand, and I can translate technical jargon into plain language for WRITERS and other non-technical team members. This makes me a valuable asset in a collaborative environment like GAME development.
+
+           Worldly Perspective: Applicant is familiar with localization, and has a grasp on the sensitivity needed for global releases.
+
+        Addressing the Specific Requirements:
+
+            WRITING/NARRATIVE DESIGN: While my resume might not show traditional "Writer" titles, my experience is deeply rooted in creating and shaping content. I think of it like designing a complex system – whether it's a computer INTERFACE or a historical NARRATIVE, the goal is to make it intuitive, engaging, and effective.
+
+            Historical Expertise: My independent studies have given me a broad and open-minded approach to history. Im not bound by traditional academic constraints; Im free to explore, question, and connect ideas in new ways. The applicant, in the original application, uses Petra as an example of this.
+
+            GAME Knowledge: I understand the fundamental principles of GAME DESIGN. I see how history can be woven into GAMEplay mechanics, character development, and world-building to create a richer and more immersive experience.
+
+            Communication: Im a strong communicator, both verbally and in WRITING. My ability to explain complex topics clearly and concisely is a key asset. And while English isnt my first language, Im confident in my ability to communicate effectively in a professional setting.
+
+            Adaptability: I can adapt my WRITING style to suit different genres and GAME environments. I understand that the tone and language used in a historical strategy GAME will be different from that of a fantasy RPG, and Im comfortable working across that spectrum.
+
+           *Applicant is familiar with GAME localization, and has a grasp on the sensitivity needed for global releases, as original application demonstrates.
+
+        Practical Matters:
+
+            Im currently located overseas, so I would require relocation assistance. Im open to remote work initially, and Im flexible with working hours to accommodate the time difference.
+            Im seeking a compensation package that reflects my skills and experience, including long-term benefits.
+            I value diversity, and am a descendent of an earth-goddes.
+
+        In short, Im a passionate and versatile individual with a unique combination of historical knowledge, technical skills, and creative talent. Im confident that I can make a significant contribution to grandStrategy Games, and Im excited about the opportunity to help you create unforgettable GAMING experiences. Thank you for your time and consideration.
+		
+        Sincerely,
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/QblWYWmXOQ4?si=5YzubGfwmUPu5NkQ?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        r21d
+        </pre>
+    </div>
+
+    <div id="large-table-section">
+        <h2 class="section-title">Multi-lingual Table</h2>
+        <table id = "large-table">
+            <thead>
+                <tr>
+                    <th>English (Bold & Bullet)</th>
+                    <th>English (Description)</th>
+                    <th>Latin (Classical)</th>
+                    <th>Finnish</th>
+                    <th>Turkish</th>
+                    <th>Sumerian (Transliterated)</th>
+                    <th>Arabic</th>
+                    <th>Hebrew (Translation)</th>
+                    <th>Hebrew (Bold & Bullet)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="colored-keyword history-tech">History + Tech</span></td>
+                    <td>Deep historical understanding (diverse interests, Seima-Turbino to WWII) *combined* with technical skills (software, cloud – GCP, Azure, AWS). Bridges history and game development effectively. Not *just* a historian.</td>
+                    <td><em>Peritia historiae profunda (variis studiis, a Seima-Turbino ad Secundum Bellum Mundanum) cum artibus technicis (programmatura, nubibus – GCP, Azure, AWS) coniuncta. Pontem inter historiam et ludorum creationem efficaciter facit. Non solum historicus.</em></td>
+                    <td>Syvä historiallinen ymmärrys (monipuoliset kiinnostuksen kohteet, Seima-Turbinosta toiseen maailmansotaan) *yhdistettynä* teknisiin taitoihin (ohjelmistot, pilvipalvelut – GCP, Azure, AWS). Yhdistää historian ja pelinkehityksen tehokkaasti. Ei *pelkästään* historioitsija.</td>
+                    <td>Derin tarih anlayışı (çeşitli ilgi alanları, Seima-Turbino'dan II. Dünya Savaşı'na kadar) teknik becerilerle (yazılım, bulut – GCP, Azure, AWS) *birleşiyor*. Tarih ve oyun geliştirme arasında etkili bir köprü kuruyor. *Sadece* bir tarihçi değil.</td>
+                    <td class="sumerian-column">
+                        <span class="sumerian-1">`ĝiš-tuku` (knowledge)</span><br>
+                        <span class="sumerian-2">`ma₂-gur₈` (ship/technology, *very* loose)</span><br>
+                        <span class="sumerian-3">`ĝeš-pu` (history/wood, *very* loose)</span><br>
+                        <span class="sumerian-4">`saĝ-ĝa₂` (good/head)</span>
+                    </td>
+                    <td>فهم عميق للتاريخ (اهتمامات متنوعة ، من سيما توربينو إلى الحرب العالمية الثانية) *مدمج* بمهارات تقنية (برامج ، سحابة - GCP ، Azure ، AWS). يجسر التاريخ وتطوير اللعبة بشكل فعال. ليس *مجرد* مؤرخ.</td>
+                    <td>הבנה היסטורית מעמיקה (תחומי עניין מגוונים, מסיימה-טורבינו ועד מלחמת העולם השנייה) *בשילוב* עם כישורים טכניים (תוכנה, ענן – GCP, Azure, AWS). מגשר ביעילות בין היסטוריה לפיתוח משחקים. לא *רק* היסטוריון.</td>
+                    <td><span class="colored-keyword history-tech">היסטוריה + טכנולוגיה</span></td>
+                </tr>
+                <tr>
+                    <td><span class="colored-keyword accessible-communication">Accessible Communication</span></td>
+                    <td>Simplifies complex history for non-experts, crucial for game content. Proven communication & analytical skills (Mensa). Explains etymology of "race".</td>
+                    <td><em>Historiam complicatam pro imperitis simplicem reddit, quod ad ludorum materiam necessarium est. Comprobatae artes communicationis et analyticae (Mensa). Exponit etymologiam "genus".</em></td>
+                    <td>Yksinkertaistaa monimutkaisen historian ei-asiantuntijoille, mikä on olennaista pelisisällölle. Todistetut viestintä- ja analyyttiset taidot (Mensa). Selittää sanan "rotu" alkuperän.</td>
+                    <td>Uzman olmayanlar için karmaşık tarihi basitleştirir, oyun içeriği için çok önemlidir. Kanıtlanmış iletişim ve analitik becerileri (Mensa). "Irk" kelimesinin etimolojisini açıklar.</td>
+                    <td class="sumerian-column">
+                        <span class="sumerian-5">`nam-lugal` (kingship/abstract concept)</span><br>
+                        <span class="sumerian-6">`igi-du` (to see/understand)</span><br>
+                        <span class="sumerian-1">`inim-dug₄` (to speak well)</span>
+                    </td>
+                    <td>يبسط التاريخ المعقد لغير الخبراء ، وهو أمر بالغ الأهمية لمحتوى اللعبة. مهارات اتصال وتحليل مثبتة (Mensa). يشرح أصل كلمة "race".</td>
+                    <td>מפשט היסטוריה מורכבת עבור מי שאינם מומחים, חיוני לתוכן המשחק. כישורי תקשורת וניתוח מוכחים (מנסה). מסביר את האטימולוגיה של "גזע".</td>
+                    <td><span class="colored-keyword accessible-communication">תקשורת נגישה</span></td>
+                </tr>
+                <tr>
+                    <td><span class="colored-keyword game-centric-mindset">GAME-Centric Mindset</span></td>
+                    <td>Understands GAME design principles. Sees history's role in mechanics, characters, world-building. Experience with both CLI and GUI design.</td>
+                    <td><em>Principia designationis ludorum intellegit. Munus historiae in mechanicis, personis, mundi constructione videt. Usus et CLI et GUI designationis.</em></td>
+                    <td>Ymmärtää pelisuunnittelun periaatteet. Näkee historian roolin mekaniikassa, hahmoissa, maailmanrakentamisessa. Kokemusta sekä CLI- että GUI-suunnittelusta.</td>
+                    <td>Oyun tasarım ilkelerini anlar. Tarihin mekaniklerde, karakterlerde, dünya inşasında rolünü görür. Hem CLI hem de GUI tasarımında deneyim.</td>
+                    <td class="sumerian-column">
+                        <span class="sumerian-2">`me` (divine decrees/GAME mechanics)</span><br>
+                        <span class="sumerian-3">`ki-ág` (to love/understand)</span><br>
+                        <span class="sumerian-4">`saĝ-ki` (face/front-end)</span>
+                    </td>
+                    <td>يفهم مبادئ تصميم اللعبة. يرى دور التاريخ في الميكانيكا والشخصيات وبناء العالم. خبرة في تصميم CLI و GUI.</td>
+                    <td>מבין עקרונות עיצוב משחקים. רואה את תפקידה של ההיסטוריה במכניקה, בדמויות, בבניית עולם. ניסיון בעיצוב CLI ו- GUI.</td>
+                    <td><span class="colored-keyword game-centric-mindset">חשיבה ממוקדת משחק</span></td>
+                </tr>
+                <tr>
+                    <td><span class="colored-keyword problem-solver">pröblem Solver</span></td>
+                    <td>Identifies and solves PROBLEMS in narrative, design, and technical aspects. Proactive approach.</td>
+                    <td><em>Problemata in narratione, designatione, et aspectibus technicis identificat et solvit. Propositum proactivum.</em></td>
+                    <td>Tunnistaa ja ratkaisee ongelmia kerronnassa, suunnittelussa ja teknisissä näkökohdissa. Ennakoiva lähestymistapa.</td>
+                    <td>Anlatı, tasarım ve teknik yönlerdeki sorunları tanımlar ve çözer. Proaktif yaklaşım.</td>
+                    <td class="sumerian-column">
+                        <span class="sumerian-5">`inim-gi-na` (true WORD/PROBLEM)</span><br>
+                        <span class="sumerian-6">`pàd` (to find)</span><br>
+                        <span class="sumerian-1">`til` (to finish/solve)</span>
+                    </td>
+                    <td>يحدد ويحل المشكلات في السرد والتصميم والجوانب الفنية. نهج استباقي.</td>
+                    <td>מזהה ופותר בעיות בהיבטים נרטיביים, עיצוביים וטכניים. גישה פרואקטיבית.</td>
+                    <td><span class="colored-keyword problem-solver">פותר בעיות</span></td>
+                </tr>
+                <tr>
+                    <td><span class="colored-keyword adaptable-writer">Adaptable WRITER</span></td>
+                    <td>Adjusts WRITING style to various GAME genres. Understands localization needs and sensitivities.</td>
+                    <td><em>Stilum scribendi ad varia ludorum genera accommodat. necessitates et sensibilitates localizationis intellegit.</em></td>
+                    <td>Mukauttaa kirjoitustyylin eri peligenreihin. Ymmärtää lokalisointitarpeet ja -herkkyydet.</td>
+                    <td>Yazma stilini çeşitli oyun türlerine uyarlar. Yerelleştirme ihtiyaçlarını ve hassasiyetlerini anlar.</td>
+                    <td class="sumerian-column">
+                        <span class="sumerian-2">`inim` (WORD)</span><br>
+                        <span class="sumerian-3">`bala` (to change/translate)</span><br>
+                        <span class="sumerian-4">`kur` (foreign land/localization)</span>
+                    </td>
+                    <td>يضبط أسلوب الكتابة لأنواع الألعاب المختلفة. يتفهم احتياجات وحساسيات الترجمة.</td>
+                    <td>מתאים את סגנון הכתיבה לז'אנרים שונים של משחקים. מבין צרכי לוקליזציה ורגישויות.</td>
+                    <td><span class="colored-keyword adaptable-writer">כותב מותאם</span></td>
+                </tr>
+                 <tr>
+                    <td><span class="colored-keyword worldly-perspective">Worldly Perspective</span></td>
+                    <td>Familiar with GAME localization.</td>
+                    <td><em>Peritus localizationis ludi.</em></td>
+                    <td>Kokenut pelin lokalisoinnista.</td>
+                    <td>Oyun yerelleştirmesi konusunda deneyimli.</td>
+                    <td class="sumerian-column">
+                        <span class="sumerian-5">`kur`</span><br>
+                        <span class="sumerian-6">`zu`</span><br>
+                        <span class="sumerian-1">(foreign land/localization)</span>
+                    </td>
+                    <td>مألوف مع توطين اللعبة.</td>
+                    <td>בקיא בלוקליזציה של משחקים.</td>
+                    <td><span class="colored-keyword worldly-perspective">פרספקטיבה עולמית</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- Portrait Wrapper End -->
+
+<div id="landscape-wrapper"> <!-- Landscape Wrapper -->
+    <!-- Sections will be moved here by JavaScript if "Portrait" is *not* checked -->
+</div><!-- Landscape Wrapper End -->
+
+
+
+</body>
+<footer>
+<script>
+const keywordMap = {
+    // Existing keywords (and expanded set from before) ...
+    "History \\+ Tech": "htag-1",
+    "Accessible Communication": "acm-2",
+    "Game-Centric Mindset": "gcmd-3",
+    "Problem Solver": "pslv-4",
+    "Adaptable Writer": "adwr-5",
+    "Worldly Perspective": "wprsp-6",
+    "`ĝiš-tuku`": "sumerian-1",
+    "`ma₂-gur₈`": "sumerian-2",
+    "`ĝeš-pu`": "sumerian-3",
+    "`saĝ-ĝa₂`": "sumerian-4",
+    "`nam-lugal`": "sumerian-5",
+    "`igi-du`": "sumerian-6",
+    "`inim-dug₄`": "sumerian-1",
+    "`me`": "sumerian-2",
+    "`ki-ág`": "sumerian-3",
+    "`saĝ-ki`": "sumerian-4",
+    "`inim-gi-na`": "sumerian-5",
+    "`pàd`": "sumerian-6",
+    "`til`": "sumerian-1",
+    "`inim`": "sumerian-2",
+    "`bala`": "sumerian-3",
+    "`kur`": "sumerian-4",
+    "`zu`": "sumerian-6",
+      "knowledge": "sumerian-1",
+    "ship": "sumerian-2",
+    "technology": "htag-1", // broader
+    "technologies": "htag-1", // broader
+    "technological": "htag-1", // broader
+    "history": "htag-1", //Broader application
+    "historical": "htag-1", //Broader application
+    "historian": "htag-1", // Connect to the job title
+    "histories": "htag-1", // Connect to the job title
+    "wood": "sumerian-3", // specific
+    "good": "sumerian-4", // specific
+    "head": "sumerian-4", //specific
+    "abstract concept": "sumerian-5",  //specific
+    "kingship": "sumerian-5", //specific
+    "to see": "sumerian-6", // specific
+    "understand": "sumerian-6", // specific
+    "understanding": "sumerian-6", // specific
+   "understands": "sumerian-6", // specific
+    "to speak well": "sumerian-1", //specific
+    "divine decrees": "sumerian-2", // specific
+    "game mechanics": "gcmd-3", // specific
+    "to love": "sumerian-3", // specific
+    "face": "sumerian-4", // specific
+    "front-end": "sumerian-4", // specific
+    "true word": "sumerian-5", // specific
+    "problems": "pslv-4", //Broader application
+     "problem": "pslv-4", //Broader application
+     "to find": "sumerian-6", // specific
+    "to finish": "sumerian-1", // specific
+    "solve": "pslv-4",  //Broader application
+    "solving": "pslv-4",  //Broader application
+    "solves": "pslv-4",  //Broader application
+    "solution": "pslv-4",  //Broader application
+    "solutions": "pslv-4",  //Broader application
+    "word": "sumerian-2",  // specific
+    "words": "sumerian-2", // specific
+    "to change": "sumerian-3", // specific
+    "translate": "sumerian-3", // specific
+    "translation": "sumerian-3", // specific
+    "translates": "sumerian-3", // specific
+    "translated": "sumerian-3", // specific
+    "foreign land": "sumerian-4",  // specific
+    "localization": "wprsp-6", // specific
+    "localizing": "wprsp-6", // specific
+    "localized": "wprsp-6", // specific
+    "to know": "sumerian-6", // specific
+    "writer": "adwr-5",   // Connect to the job title
+    "writing": "adwr-5", //Related
+    "writes": "adwr-5", //Related
+     "written": "adwr-5", //Related
+    "research": "htag-1", // Core skill
+    "researching": "htag-1", // Core skill
+    "researcher": "htag-1", // Core skill
+    "narrative": "adwr-5", // Related to writing
+    "narratives": "adwr-5", // Related to writing
+    "story": "adwr-5",   // Related to writing
+    "stories": "adwr-5",   // Related to writing
+    "dialogue": "acm-2", // Communication aspect
+    "dialogues": "acm-2", // Communication aspect
+    "communication": "acm-2", // Key skill
+    "communicating": "acm-2", // Key skill
+    "communicates": "acm-2", // Key skill
+    "communicator": "acm-2", // Key skill
+    "complex": "pslv-4", // Dealing with complexity
+    "complexity": "pslv-4", // Dealing with complexity
+    "problem-solving": "pslv-4", // Key skill
+    "adapt": "adwr-5",  // Key skill
+    "adaptability": "adwr-5",  // Key skill
+     "adaptable": "adwr-5",  // Key skill
+    "adapting": "adwr-5",  // Key skill
+    "genres": "adwr-5", // Working with different genres
+    "genre": "adwr-5", // Working with different genres
+    "technical": "htag-1",  // Technical skills
+    "computer science": "htag-1", // Specific technical skill
+    "cloud": "htag-1", // Specific technical skill
+    "cloud technologies": "htag-1", // Specific technical skill
+    "GCP": "htag-1", // Specific technical skill
+    "Azure": "htag-1", // Specific technical skill
+    "AWS": "htag-1", // Specific technical skill
+    "game development": "gcmd-3", // Overall context
+    "game": "gcmd-3", // Overall context
+    "games": "gcmd-3", // Overall context
+    "gaming": "gcmd-3", // Overall context
+    "design": "gcmd-3", // Related to design
+    "designing": "gcmd-3", // Related to design
+    "designer": "gcmd-3", // Related to design
+    "designs": "gcmd-3", // Related to design
+    "interface": "gcmd-3", //Related
+    "interfaces": "gcmd-3", //Related
+    "ancient civilizations": "htag-1", //Historical context
+    "Seima-Turbino": "htag-1", //Historical context
+    "World War II": "htag-1", //Historical context
+    "Petra": "htag-1", //Historical context
+    "Mensa": "pslv-4", //Related to problem solving
+    "ÄI": "htag-1", //Related to tech
+    "Y-DNA Haplogroups": "htag-1",//Related to history+tech
+    "race": "acm-2", // etymology
+    "culture": "wprsp-6", // etymology
+    "cultures": "wprsp-6", // etymology
+    "cultural": "wprsp-6", // etymology
+    "global": "wprsp-6", //world
+    "world": "wprsp-6", //global
+
+    // --- Additions specifically from YOUR original writing, with liberal connections ---
+    "grandStrategy Games": "gcmd-3", // Company name
+    "grandsTrateGymsisy Games": "gcmd-3", // Company name
+    "AAA development": "gcmd-3", // Game type
+    "talented": "adwr-5", // Desired quality
+    "experienced": "htag-1",  //  Relates to accumulated knowledge
+    "creative": "adwr-5", // Key skill
+    "highly articulate": "acm-2", //  Communication skill
+    "collaborating": "acm-2", // Teamwork aspect
+    "designers": "gcmd-3", //  Working with designers
+    "original ideas": "adwr-5", // Creativity
+    "characters": "gcmd-3", // Game element
+    "content": "gcmd-3", // General game stuff
+     "narrative": "adwr-5",
+    "strong understanding": "htag-1", //  Deep knowledge
+    "story and drama": "adwr-5", // Writing skills
+    "multiple genres": "adwr-5", // Adaptability
+    "background in or knowledge of history": "htag-1", //  Explicit requirement
+    "historical research": "htag-1", // Key task
+    "other disciplines": "acm-2", //  Communicating across fields
+    "candidates": "adwr-5", //  Referring to applicants
+    "particular area(s) of historical expertise": "htag-1", // Specialization
+    "cover letter": "adwr-5", //  Part of the application
+    "ww2": "htag-1", //  Your example area
+    "hitler": "htag-1", //  Your example area
+    "Seima-Turbino_culture": "htag-1",  // Your example area
+    "insensitive": "wprsp-6", //  Cultural awareness
+    "prussians": "htag-1", // Historical context
+    "stukas": "htag-1", // Historical context
+    "autobahn": "htag-1", // Historical context / technology
+    "religious influence": "htag-1", // Historical context
+     "special unit": "gcmd-3", // Game element
+    "waffel-shit-staff": "htag-1", // (Humorous) historical reference - coloring for context, even if made up
+    "contradiction": "pslv-4", // Logical reasoning
+    "cognitive liberty": "wprsp-6", //  Relates to global/cultural differences
+    "DLC": "gcmd-3", // Game term
+    "analog": "pslv-4",  //Finding equivalent concepts.
+    "merkel": "htag-1", //  Historical figure (used as an example)
+      "inclusion of women": "wprsp-6", //  Diversity & inclusion
+    "libel": "acm-2", // Relates to accurate communication
+    "ly true": "acm-2", //  Factuality
+    "snowflake-authoritarians": "wprsp-6", // (Humorous) political/cultural reference
+    "tall game": "gcmd-3", // Game term
+    "legendary start": "gcmd-3", // Game term
+    "wide game": "gcmd-3", // Game term
+    "old planet": "gcmd-3", // Game term
+     "axis' of predicate": "pslv-4", // Logical/analytical concept
+    "deep-long": "pslv-4", //  Game strategy concept (made-up)
+    "dense-fluffy": "pslv-4", //  Game strategy concept (made-up)
+    "stereotypes": "wprsp-6", // Cultural awareness
+    "end game situations": "gcmd-3", // Game context
+    "history of computing": "htag-1", //  Your area of interest
+     "lifetime": "htag-1", //  personal perspective on history
+     "parentage": "wprsp-6", // generational differences
+     "gaming/esports": "gcmd-3",
+     "industry": "gcmd-3",
+     "brand new": "htag-1", // in the sense of historical novelty
+    "perspective": "wprsp-6",  //Point of view
+    "biased": "wprsp-6", // subjectivity
+    "experiences": "htag-1", // accumulated knowledge
+    "computer proliferation": "htag-1", // Technological history
+     "masses": "wprsp-6", // societal impact
+      "smart peoples": "pslv-4", // referring to innovators
+     "verbage": "acm-2", // language use
+     "century": "htag-1",// historical timeframe
+    "elon musk": "htag-1", //  Contemporary figure (technology)
+     "competent": "pslv-4",
+     "logical reasoning": "pslv-4",
+    "born in -95": "htag-1", //  Historical context (your birth year)
+    "GUIs": "htag-1", //  Technological context
+    "compensation package": "pslv-4", // negotiating terms
+     "part time billings": "pslv-4", // negotiating terms
+    "artists": "gcmd-3", // collaborating
+    "team members": "acm-2", // collaboration
+     "accurate characters": "gcmd-3", // game element
+     "players’ imagination": "gcmd-3",// engaging the audience
+      "written dialogue": "acm-2", // game writing
+    "multimedia": "htag-1", // historical and game context
+     "multimodality": "htag-1", // historical and game context
+    "advancement in technology": "htag-1", // historical trend
+     "multimedia packaging inventions": "htag-1", // historical examples
+     "functional command line interface": "htag-1", //  Technical skill
+    "mainframe": "htag-1", //  Technical context
+     "ALL the funtcions": "pslv-4", // comprehensive task
+     "intuitive": "acm-2",// easy to use
+    "graphical user interface": "htag-1", //  Technological context
+    "IBM": "htag-1", //  Historical context (company)
+     "monopoly": "pslv-4", // economic/business context
+    "Andrew Carnegie": "htag-1", // Historical figure
+     "wealth": "pslv-4", // economics
+    "public enbetterment": "wprsp-6", //  Social impact
+     "non government entity": "pslv-4", // business context
+     "Teddy Roosevelt": "htag-1", // Historical figure
+    'speak softly, and carry a big stick': "wprsp-6", //  Historical quote, diplomacy
+     "busting of monopolies": "pslv-4", // Historical/economic event
+    "tourettes": "wprsp-6", //  Personal characteristic
+    "compulsory military service of finland": "wprsp-6", //  Cultural/national context
+    "finland": "wprsp-6", //  Cultural/national context
+     "unwanted minority": "wprsp-6", //  Social context
+      "praised": "wprsp-6",// social context
+    "decendent of exiled migration": "htag-1", //  Personal history
+     "ongoing holocaust": "htag-1", // Historical event
+    "russias": "htag-1", // referring to a nation
+     "dickeater": "wprsp-6", // crude, but coloring for context
+    "aryan genetics": "htag-1", //  Historical/biological context
+    "disrepresented": "acm-2", // inaccurate portrayal
+     "genotype": "htag-1",// biological context
+    "neanderthalis": "htag-1", //  Historical/biological context
+     "playingGod": "pslv-4", //  (your hashtag) - taking control
+    "civ 7": "gcmd-3", //  Specific game
+    "ONE MORE TURN": "gcmd-3", //  Game meme
+     "trauma": "wprsp-6",// personal experience
+    "triggered": "wprsp-6",// personal experience
+    "action": "pslv-4", // taking initiative
+    "backstories": "adwr-5", // game writing
+    "lore": "adwr-5",// game writing
+     "expository text": "acm-2", // game writing
+      "high level of quality": "adwr-5",// skill
+    "minimal supervision": "pslv-4", //  Independence
+     "AI": "htag-1",// tech
+     "governance of compliance": "pslv-4", //  Rules and regulations
+     "risk": "pslv-4", // risk
+    "personal disability": "wprsp-6", //  Personal context
+    "subjectivity of domain": "wprsp-6", //  Acknowledging bias
+    "History is written by the victor": "wprsp-6", //  Historical truism
+     "human to err": "wprsp-6", // human nature
+     "Peer review": "acm-2",// quality control
+     "subjective nature of perspectives": "wprsp-6", //  Acknowledging bias
+    "academic sources": "htag-1", //  Research materials
+     "general audience": "acm-2", //  Target audience
+    "light and engaging style": "acm-2", //  Writing style
+    "promts": "htag-1", // referring to AI prompts, tech
+     "unrelated lol": "acm-2",  // informal, coloring for tone
+    "negotiate usage licenses": "pslv-4", //  Business/legal
+     "copyright": "pslv-4",  // legal
+      "perpetuity": "pslv-4",// legal
+    "mental disabilities": "wprsp-6", //  Personal context (using your term)
+     "quotations": "acm-2", // your hashtag, language use
+     "multiple departments": "acm-2",// teamwork
+    "learning opportunities": "acm-2",  // Teaching/sharing knowledge
+     "disciplines": "acm-2", // different fields
+     "objective": "acm-2", // factual
+     "multipla of narrative": "adwr-5", // multiple perspectives
+      "varibleazing outputs": "htag-1", // AI context
+    "complex issues": "pslv-4", //  Dealing with complexity
+     "non-specialists": "acm-2", //  Target audience
+     "UML": "htag-1",// technical skill
+    "non conforming semantics": "acm-2", //  Language use
+    "contemporal literality": "acm-2",// language use
+     "obsoleting verbage": "acm-2", // language change
+  "potential issues": "pslv-4", //  Identifying problems
+  "writing": "adwr-5", // skill
+  "stories": "adwr-5", // skill
+   "art": "gcmd-3", // game element
+   "design": "gcmd-3", // game element
+   "potential solutions": "pslv-4",// problem-solving
+   "team": "acm-2", // collaboration
+  "hardly any": "pslv-4", // assessment
+  "offensive": "wprsp-6", //  Cultural sensitivity
+   "black plague crisis": "htag-1", // historical event
+   "non objectivity": "acm-2", // bias
+  "subjective agenda promotion": "wprsp-6", // bias
+   "inclusion of women": "wprsp-6", // diversity
+   "culture-person": "gcmd-3",// game term
+   "buildable buff packages": "gcmd-3", // game term
+  "genetical heritage": "htag-1", // biological context
+   "physiological deficiency": "htag-1", // biological context
+  "lack of representation": "wprsp-6", // societal issue
+  "wider reach of consideration conversion": "acm-2", // expanding audience
+  "test of time": "htag-1", // long term
+  "peril": "pslv-4", // risk
+   "predicate of The cult of personality": "wprsp-6", // social phenomenon
+   "market tested": "pslv-4", // business strategy
+   "fiscal benefit": "pslv-4",// business goal
+  "subjective subjects": "wprsp-6", // bias
+  "ain't libel if it ain't true": "acm-2", // truthfulness
+  "lose the customers": "pslv-4",// business risk
+  "pay and use your product": "gcmd-3", // user base
+"game design designed inclusive": "gcmd-3", // design philosophy
+   "vocal demograpic": "wprsp-6", // target audience
+  "who the fuck games on linux": "gcmd-3", // (Crude) questioning assumptions
+   "linux": "htag-1",// tech
+  "neckbeards": "wprsp-6", // stereotype
+   "science leaders in cultural economic productions": "pslv-4", // aspiration
+  "advertising space": "pslv-4", // marketing
+  "barista-conditionaries": "pslv-4", // (Made-up term, humorous) - niche market
+   "support mac": "htag-1", // platform support
+  "sales numbers": "pslv-4", // business data
+  "proportion": "pslv-4", // ratios
+   "0. 8%(0.008) of macs": "pslv-4", //  (Example) market share
+   "4% of resources": "pslv-4", // resource allocation
+  "caviats apply": "pslv-4", //  Acknowledging exceptions
+   "problem with civ": "gcmd-3", // personal issue
+  " me income": "pslv-4",// personal need
+  "negatively affect": "pslv-4",// consequences
+  "4+ years as a Writer": "adwr-5", // Job requirement
+   "Narrative Designer": "gcmd-3", // Job title
+  "commensurate duties": "adwr-5",// relevant experience
+  "taken credit": "wprsp-6", // professional ethics
+  "requirements of institutions": "wprsp-6", // external constraints
+   "Copy and Design": "adwr-5",// skills
+   "degree in History": "htag-1", //  Academic qualification
+   "History-related field": "htag-1",// Academic qualification
+  "commensurate demonstrated experience": "htag-1", //  Practical experience
+  "academic historical research": "htag-1", //  Key skill
+"organized to oppose organized exclusive schools of thought": "wprsp-6", //  Independent thinking
+    "discipline of history": "htag-1", //  Academic field
+ "broad knowledge of game principles": "gcmd-3", //  Key knowledge
+   "theories": "gcmd-3",// game knowledge
+   "concepts": "gcmd-3", // game knowledge
+  "abstract": "pslv-4", // conceptual thinking
+    "silicon processor": "htag-1",// tech comparison
+    "scale of architechture": "htag-1", // technical concept
+     "moores law": "htag-1", // tech history
+    "transistor count per area": "htag-1", //  Technical concept
+      "facade": "gcmd-3", // game design pattern, and architecture
+    "interface for all traversing message carrier flows": "htag-1", //  Technical analogy (networking)
+     "inner works of function processing": "htag-1", //  Technical analogy (computing)
+    "copy-writer": "adwr-5", //  Job title
+     "posing as an abstract to a printing press": "acm-2", //  Metaphor for communication skills
+    "paywalled behind the cost of ink": "pslv-4", //  Metaphor for resource constraints
+    "Exceptional communications": "acm-2", //  Key skill
+    "problem-solving skills": "pslv-4", //  Key skill
+     "100% correct on the finnish mensa test": "pslv-4", //  Evidence of ability
+    "finnish mensa test": "pslv-4",
+     "AI expertise": "htag-1", //  Technical skill
+    "utilization for accessability": "acm-2", //  Applying technology for inclusivity
+     "requirement of non plagiarism": "acm-2",// ethical
+    "wholly written without any assistance": "pslv-4", //  Independent work
+    "grammar correction tools": "adwr-5", // writing
+    "ability to reread": "adwr-5", // writing
+    "English is not my first language": "wprsp-6", //  Personal context
+    "internal rosetta stoned framework": "htag-1", //  (Made-up term) - Multilingual processing
+    "large language models": "htag-1", //  AI context
+     "proven track record": "htag-1",  // experience
+    "communicating complex historical content": "acm-2", //  Key skill
+     "non-specialist audience": "acm-2",// target group
+    " mapping": "acm-2",// factual data
+    "bioarchealogy": "htag-1",// scientific field
+    "fully racist": "wprsp-6", // extreme example
+    "classes of races": "htag-1", //  (Potentially problematic) categorization
+    "race for progress": "htag-1",// origin of word
+    "culture-persons": "gcmd-3",// referring to people
+    "flew their jacks": "htag-1",// referring to flags, nations
+     "Pax Britannica": "htag-1", // historical period
+    "design pattern": "gcmd-3",// programming
+    "unified gateway": "gcmd-3", // programming
+    "plethora of interfaces": "gcmd-3", // programming
+    "systems functionality": "gcmd-3", // programming
+    "non functional forward facing vanity slab": "htag-1", // architecture
+     "primary function is non functional": "pslv-4", //  Paradoxical description
+    "frontend": "gcmd-3", // programming
+    "amsterdammer housing": "htag-1", // architectural example
+    "drove full trees into marshes": "htag-1", //  Historical engineering
+   "reclaim land": "htag-1", // historical context
+  "invert everything": "pslv-4", //  Logical operation
+   "swamp": "htag-1",// geography
+  "plains": "htag-1", // geography
+   "Proof for equivalence": "pslv-4",// logic
+  "bilateral implication": "pslv-4", //  Logical concept
+   "conjecture": "pslv-4", // logical concept
+   "tone": "adwr-5",// WRITING style
+  "style": "adwr-5",// WRITING style
+   "different genres": "adwr-5",// WRITING
+  "game environments": "gcmd-3", // GAME context
+  "principle of explosion": "pslv-4", //  Logical concept
+   "contradiction": "pslv-4",  // logic
+  "entail anything": "pslv-4", //  Logical consequence
+  "interest and love of history": "htag-1", //  Passion for the subject
+  "variety of perspectives": "wprsp-6", //  Open-mindedness
+   "Iltam sumra rashputi illatim": "htag-1", //  (Possibly made-up) phrase, demonstrating interest in language/history
+  "restrictions of localization processes": "wprsp-6", //  Technical and cultural constraints
+  "This letter is illegal in russia": "wprsp-6", //  Geopolitical awareness
+   "sanctioned by fcc": "wprsp-6", //  Regulatory awareness
+  "game engines": "gcmd-3",// technical skill
+  "common game writing workflows": "gcmd-3", //  Industry knowledge
+  "underlying logic": "gcmd-3", // GAME DESIGN
+   "negation": "pslv-4", // logic
+   "tautology": "pslv-4", // logic
+   "Magic": "gcmd-3", // referring to GAME
+  "audio design techniques": "gcmd-3", //  Technical skill
+   "technology": "htag-1",// tech
+  "r21d.com/list": "gcmd-3", //  (Presumably) a link to your work
+   "Relocation assistance provided": "pslv-4",// benefits
+   "remote": "pslv-4",  // work style
+  "greencard": "wprsp-6", // legal
+  "savings for a house loan": "pslv-4", // personal finance
+   "Flexible work hours": "pslv-4", // benefits
+  "hybrid work options": "pslv-4", // benefits
+  "other side of the globe": "wprsp-6", // geographic
+  "401K": "pslv-4", // benefits
+   "spent all my savings": "pslv-4",// personal finance
+  "burning out": "wprsp-6", // personal experience
+   "Family friendly work environment": "wprsp-6", // company culture
+  "disability equity part": "wprsp-6", //  Inclusion
+"patrilinical earth-goddess (mastorava) dynasty": "htag-1", //  (Possibly made-up) cultural/historical reference
+    "river sura": "htag-1", // geographic reference
+    "erzyan finnic minority": "wprsp-6", //  Cultural context
+     "surakka": "htag-1", // personal name/history
+      "diminiutive form of sura": "htag-1", // name origin
+    "von": "htag-1", // name origin
+    "diverse inclusion equity 'bonus point matrix'": "wprsp-6", //  HR terminology (humorous)
+     "superlative return value": "pslv-4",  //  Asserting value
+     "subjectivity of said parameters": "wprsp-6",// bias
+    "literally by birthright": "wprsp-6", //  Claiming privilege (humorous)
+     "regular monetary compensation": "pslv-4",// salary
+    "legacy cost": "pslv-4", // long-term financial implications
+     "dropped out from cs-uni": "htag-1", // education
+    "3 (reading)courses from a bachelors": "htag-1", // education
+     "worked in a uni level position at CGI": "htag-1", // work experience
+    "CGI": "htag-1",  // company
+     "high school": "htag-1", // education
+     "college level position": "htag-1", // work
+     "4 times as proficient": "pslv-4", // performance
+    "average performance meter": "pslv-4", // measurement
+    "Burnout": "wprsp-6",// personal
+    "Windows Admin": "htag-1",// tech skill
+    "Dyslexia": "wprsp-6", // personal
+    "team lead for software development": "gcmd-3", // job title
+    "hire me by faith": "wprsp-6", // humorous
+    "agile": "gcmd-3",// methodology
+    "lean": "gcmd-3",// methodology
+    "mean": "pslv-4", // if need be
+    " advantage": "adwr-5",
+    "Multiinstrumentalist": "adwr-5",// creative skill
+    "specializing in metal": "adwr-5",// creative skill
+    "fully vertical 'farm to table' capable": "pslv-4"// self-sufficiency (humorous)
+};
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+}
+
+function colorizeKeywords(preId) {
+    let text = document.getElementById(preId).textContent;
+    const keywordEntries = Object.entries(keywordMap);
+    keywordEntries.sort((a, b) => b[0].length - a[0].length);
+    for (const [keyword, cssClass] of keywordEntries) {
+        const escapedKeyword = escapeRegExp(keyword);
+        const regex = new RegExp(`\\b(?<!-)(?<!\\w)${escapedKeyword}(?!\\w)\\b`, "gi");
+        const replacement = `<span class="${cssClass}">${keyword}</span>`;
+        text = text.replace(regex, replacement);
+    }
+    document.getElementById(preId).innerHTML = text;
+}
+// Font Size Control
+document.getElementById('font-size').addEventListener('input', function() {
+  document.body.style.fontSize = this.value + 'px';
+});
+
+// Font Family Control
+document.getElementById('font-family').addEventListener('change', function() {
+  if (this.value === 'OpenDyslexic') {
+    document.body.classList.add('opendyslexic');
+    document.body.style.fontFamily = "'OpenDyslexic3', sans-serif";
+  }
+   else if (this.value === 'Times New Roman')
+  {
+    document.body.classList.remove('opendyslexic');
+    document.body.style.fontFamily = "'Times New Roman', serif";
+  }
+
+  else {
+    document.body.classList.remove('opendyslexic');
+    document.body.style.fontFamily = "sans-serif"; // Default to sans-serif
+  }
+});
+
+// Dark Mode Toggle
+document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+  document.body.classList.toggle('dark-mode');
+});
+
+// Section Visibility Control (Modified for Original Writing)
+const sectionToggles = document.querySelectorAll('.section-toggle');
+sectionToggles.forEach(toggle => {
+  toggle.addEventListener('change', function() {
+    const sectionId = this.id.replace('toggle-', '');
+    const section = document.getElementById(sectionId);
+
+    if (section) {
+      //Normal handling for sections, excluding original which is handled by button
+      if(sectionId !== 'original-text-section')
+        section.style.display = this.checked ? 'block' : 'none';
+    }
+  });
+});
+
+// Section Width Control
+const widthSliders = document.querySelectorAll('.section-width');
+widthSliders.forEach(slider => {
+  slider.addEventListener('input', function() {
+    const sectionId = this.dataset.section;
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.style.width = this.value + '%';
+    }
+  });
+});
+
+// Master Width Slider
+document.getElementById('master-width-slider').addEventListener('input', function() {
+    document.getElementById('portrait-wrapper').style.width = this.value + 'px';
+    document.getElementById('landscape-wrapper').style.width = this.value + 'px';
+});
+
+// Wrapper Width Slider
+document.getElementById('wrapper-width-slider').addEventListener('input', function() {
+    const wrapperWidth = this.value + '%';
+    const wrappers = document.querySelectorAll('.section-content-wrapper');
+    wrappers.forEach(wrapper => {
+        wrapper.style.width = wrapperWidth;
+    });
+});
+
+// Portrait/Landscape Toggle (CORRECTED)
+const portraitToggles = document.querySelectorAll('.portrait-toggle');
+const portraitWrapper = document.getElementById('portrait-wrapper');
+const landscapeWrapper = document.getElementById('landscape-wrapper');
+const sections = [
+    document.getElementById('small-table-section'),
+    document.getElementById('original-text-section'), // Include original-text-section
+    document.getElementById('flash-text-section'),
+    document.getElementById('improved-text-section'),
+    document.getElementById('large-table-section')
+];
+
+portraitToggles.forEach(toggle => {
+    toggle.addEventListener('change', function() {
+        let anyPortraitChecked = false;
+        portraitToggles.forEach(t => {
+            if (t.checked) {
+                anyPortraitChecked = true;
+            }
+        });
+
+        if (anyPortraitChecked) {
+            // Portrait mode
+            portraitWrapper.style.display = 'block';
+            landscapeWrapper.style.display = 'none';
+            sections.forEach(section => {
+                if (section.parentNode !== portraitWrapper) {
+                    portraitWrapper.appendChild(section);
+                }
+            });
+        } else {
+            // Landscape mode
+            portraitWrapper.style.display = 'none';
+            landscapeWrapper.style.display = 'flex';
+            sections.forEach(section => {
+                if (section.parentNode !== landscapeWrapper) {
+                    landscapeWrapper.appendChild(section);
+                }
+            });
+        }
+    });
+});
+
+// Function to apply colorization
+function applyColorization() {
+    colorizeKeywords("original-text");
+    colorizeKeywords("flash-text");
+    colorizeKeywords("improved-text");
+}
+
+// --- Color Legend ---
+function createColorLegend() {
+    const legend = document.getElementById('color-legend');
+    const styles = getComputedStyle(document.documentElement); // Get :root variables
+
+    const colorMap = {  //  Map class names to descriptions (and exclude Sumerian)
+      "htag-1": "History + Tech",
+      "acm-2": "Accessible Communication",
+      "gcmd-3": "Game-Centric Mindset",
+      "pslv-4": "Problem Solver",
+      "adwr-5": "Adaptable Writer",
+      "wprsp-6": "Worldly Perspective",
+    };
+
+
+    for (const className in colorMap) {
+        if (colorMap.hasOwnProperty(className)) {
+            const description = colorMap[className];
+            const variableName = `--color-${description.toLowerCase().replace(/ /g, '-')}`; // Create variable name
+            const colorValue = styles.getPropertyValue(variableName).trim();
+
+            if (colorValue) { // Make sure the variable exists
+              const itemDiv = document.createElement('div');
+              const swatchDiv = document.createElement('div');
+              swatchDiv.className = 'color-swatch';
+              swatchDiv.style.backgroundColor = colorValue;
+
+              const input = document.createElement('input');
+              input.type = 'text';
+              input.value = colorValue;
+              input.readOnly = true; // Make it read-only for now
+
+              itemDiv.appendChild(swatchDiv);
+              itemDiv.appendChild(input);
+              itemDiv.title = description; // Tooltip
+              legend.appendChild(itemDiv);
+            }
+        }
+    }
+}
+// --- Initial Setup, and NEW BUTTON LOGIC ---
+document.addEventListener('DOMContentLoaded', (event) => {
+ //ADD NEW CODE BELOW HERE
+
+    // 1.  Get the button and the section:
+    const originalTextSection = document.getElementById('original-text-section');
+    const toggleButton = document.getElementById('toggle-original-button');
+
+     // 2. Hide section initially
+    originalTextSection.style.display = 'none';
+
+    // 3. Add event listener to the button:
+    toggleButton.addEventListener('click', function() {
+        const password = prompt("He is harder than Deity");
+        if (password && password.toLowerCase() === 'sid') {
+            originalTextSection.style.display = 'block';
+              applyColorization();//re-init
+        } else {
+            alert("Incorrect password!");
+        }
+    });
+// Call the function after initial load and after any dynamic content changes
+applyColorization();
+createColorLegend();
+
+}); // DOMContentLoaded end
+
+</script>
+</footer>
+</html>
