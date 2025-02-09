@@ -1,14 +1,8 @@
-# Ruby API Service Starter
+# Tight Ruby BEND
 
-This is a minimal Ruby API service starter based on [Google Cloud Run Quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-ruby-service).
+@r21d 
+www.r21d.com/ (check app.rb)
 
-## Getting Started
+r21d@r21d.com
 
-Server should run automatically when starting a workspace. To run manually, run:
-```sh
-ruby app.rb
-```
-
-## Deploying to Cloud Run
-
-The Dockerfile will be used to build the image when deploying to Cloud Run.
+public is root of r21d.com, and is a dumb dump for transparent shareology (security and trust). As is
