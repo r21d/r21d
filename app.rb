@@ -3,29 +3,42 @@ require 'json'
 require 'open3'
 require 'net/http'
 require 'uri'
-require 'open-uri' # Required for gowithit route
+require 'open-uri' # Required for the /gowithit route
 
+# --- Sinatra Configuration ---
 set :bind, '0.0.0.0'
 port = ENV["PORT"] || 3000
 set :port, port
 set :views, File.join(File.dirname(__FILE__), 'views')
-
+set :public_folder, File.join(File.dirname(__FILE__), 'public')
 
 # --- API Endpoints (No Layout) ---
 
 post '/vertex_ai' do
   content_type :json
-  # Your existing Vertex AI logic remains unchanged...
   begin
     params = JSON.parse(request.body.read)
     api_key = params['apiKey']
     project_id = params['projectId']
     location = params['location']
     prompt = params['prompt']
+
     cmd = "curl -H \"Authorization: Bearer #{api_key}\" -H \"Content-Type: application/json\" -X POST -d \"{\\\"contents\\\": [{\\\"role\\\": \\\"user\\\", \\\"parts\\\": [{\\\"text\\\": \\\"#{prompt}\\\"}]}], \\\"systemInstruction\\\": {\\\"parts\\\": [{\\\"text\\\": \\\"Respond concisely.\\\"}]}, \\\"generationConfig\\\": {\\\"temperature\\\": 1, \\\"maxOutputTokens\\\": 200, \\\"topP\\\": 0.95}, \\\"safetySettings\\\": [{\\\"category\\\": \\\"HARM_CATEGORY_HATE_SPEECH\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_DANGEROUS_CONTENT\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_SEXUALLY_EXPLICIT\\\", \\\"threshold\\\": \\\"OFF\\\"}, {\\\"category\\\": \\\"HARM_CATEGORY_HARASSMENT\\\", \\\"threshold\\\": \\\"OFF\\\"}]}\" \"https://#{location}-aiplatform.googleapis.com/v1/projects/#{project_id}/locations/#{location}/publishers/google/models/gemini-1.5-flash-002:streamGenerateContent\""
+
     stdout, stderr, status = Open3.capture3(cmd)
+
     if status.success?
-      # ... (rest of your logic)
+      begin
+        response_json = JSON.parse(stdout)
+        generated_text = response_json["result"]["parts"][0]["text"] rescue nil
+        if generated_text.nil?
+          { error: "Could not extract text from Vertex AI response" }.to_json
+        else
+          { text: generated_text }.to_json
+        end
+      rescue JSON::ParserError => e
+        { error: "Invalid JSON response from Vertex AI: #{e.message}" }.to_json
+      end
     else
       { error: "Error generating text from Vertex AI: #{stderr.strip}" }.to_json
     end
@@ -37,14 +50,20 @@ end
 
 # --- Page Routes (Using Shared Layout) ---
 
-get '/ai' do
-  erb :ai_form, layout: :layout
+get "/" do
+  # Read the content of the static pabe.html and render it within the layout
+  file_path = File.join(settings.public_folder, 'pabe.html')
+  if File.exist?(file_path)
+    html_content = File.read(file_path)
+    erb html_content, layout: :layout
+  else
+    status 404
+    "Homepage file (pabe.html) not found."
+  end
 end
 
-get "/" do
-  # Instead of redirecting, you can serve the pabe.html content directly
-  # or render a specific index view. For now, redirect is fine.
-  redirect "pabe.html"
+get '/ai' do
+  erb :ai_form, layout: :layout
 end
 
 get "/wow" do
@@ -66,7 +85,7 @@ end
 
 get "/gowithit" do
   playlist_id = "PL6sZpQz3MZtnG4B2W5RlaXUKUkr6catIr"
-  api_key = "" # IMPORTANT: Use an environment variable for this key
+  api_key = ENV['YOUTUBE_API_KEY'] || "" # IMPORTANT: Use an environment variable for this key
   url = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=#{playlist_id}&key=#{api_key}&maxResults=50"
   begin
     response = URI.open(url)
@@ -99,16 +118,12 @@ get "/dafuq" do
   end
 end
 
-
-# --- NEW PROXY ROUTE for the Latin Applet ---
+# --- Proxy Route for the Latin Applet ---
 
 get '/latin' do
   begin
-    # Fetch content from the internal Cloud Run URL
     uri = URI('https://the-didactic-codex-a-complete-latin-learning-suit-562877954055.us-west1.run.app/')
     response_body = Net::HTTP.get(uri)
-
-    # Render the fetched HTML content within our main application layout
     erb response_body, layout: :layout
   rescue StandardError => e
     status 500
