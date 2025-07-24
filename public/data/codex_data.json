@@ -1,0 +1,2768 @@
+
+{
+"codexContent": {
+"C": {
+"examples": [
+{
+"description": "A simple declarative sentence illustrating the basic typology of each language. Finnish and Latin are primarily SVO (Subject-Verb-Object), but with extensive case systems allowing for flexible word order. Old Norse is typically V2 (verb-second), with the verb appearing as the second constituent of a main clause.",
+"table": [
+{
+"Classical Latin": "FEMINA·LIBRVM·VIDET",
+"Finnish": "Nainen näkee kirjan",
+"Old Norse": "Kona sér bók"
+},
+{
+"Classical Latin": "The woman sees the book.",
+"Finnish": "The woman sees the book.",
+"Old Norse": "The woman sees a book."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "This codex explores the grammars of Finnish, Classical Latin, and Old Norse through a comparative, concept-first approach. Instead of learning each language in isolation, we will examine universal grammatical concepts and see how each language chooses to express them. This method highlights the underlying logic and reveals both surprising similarities and fundamental differences.",
+"type": "paragraph"
+},
+{
+"text": "Finnish, a member of the Uralic family, is an agglutinative language. This means it primarily uses suffixes to express grammatical relationships. A single noun or verb can have a long string of distinct suffixes, each adding a specific layer of meaning (like case, number, or possession) without changing the root of the word. It lacks grammatical gender and articles.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin, an Italic language of the Indo-European family, is a fusional (or inflected) language. Like Finnish, it uses endings to show grammatical function, but a single ending often 'fuses' multiple concepts at once (e.g., an ending can signify nominative, plural, and masculine simultaneously). It has three grammatical genders, no articles, and a complex system of noun declensions and verb conjugations.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse, a North Germanic language of the Indo-European family, is also fusional. It shares many structural similarities with Latin, including three grammatical genders and a robust case system. However, it also features distinct Germanic characteristics like strong and weak verb/noun classes, the V2 word order rule in main clauses, and the use of a suffixed definite article.",
+"type": "paragraph"
+}
+],
+"title": "Core Concepts"
+},
+"C.1": {
+"examples": [
+{
+"description": "Example words demonstrating key orthographic and phonetic features. Note the one-to-one sound-letter correspondence in Finnish, the use of monumental capitals and V for 'u' in Latin, and the special characters in Old Norse.",
+"table": [
+{
+"Concept": "Vowel Length",
+"Classical Latin": "VENIT (he comes) vs. VĒNIT (he came)",
+"Finnish": "tuli (fire) vs. tuuli (wind)",
+"Old Norse": "hol (hole) vs. hól (hill)"
+},
+{
+"Concept": "Special Consonants",
+"Classical Latin": "CAESAR (pronounced /kaisar/)",
+"Finnish": "Ranta (no special consonants)",
+"Old Norse": "Þing (thing), maðr (man)"
+},
+{
+"Concept": "Vowel Harmony/Umlaut",
+"Classical Latin": "N/A",
+"Finnish": "talo·ssa (in the house - back vowels)",
+"Old Norse": "fótr (foot) vs. fætr (feet - i-umlaut)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The sound and writing systems of these three languages are foundational to their study. Each has a unique relationship between its phonology (sounds) and orthography (writing).",
+"type": "paragraph"
+},
+{
+"text": "Finnish boasts a highly regular and phonetic orthography. Each letter (grapheme) corresponds to a single sound (phoneme), and vice-versa. This means that once you learn the alphabet, you can pronounce any word you see. Key features include vowel harmony (vowels are grouped into 'front', 'back', and 'neutral' sets, and suffixes must match the vowel type in the stem), consonant gradation (a complex system of sound changes in the middle of words), and a clear distinction between short and long vowels and consonants, indicated by writing the letter once or twice (e.g., 'tuli' vs 'tuuli').",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin, as presented here, uses a 23-letter alphabet written in monumental capitals. It lacks the letters J, U, and W. The letter I represents both the vowel /i/ and the consonant /j/ (like 'y' in 'yes'). The letter V represents both the vowel /u/ and the consonant /w/. The most critical phonological feature is vowel length; many words are distinguished only by whether a vowel is long (e.g., 'mālum' - apple) or short (e.g., 'malum' - evil). This distinction, often unmarked in texts, is crucial for poetry and correct pronunciation. Consonants like C and G were always hard (like in 'cat' and 'go').",
+"type": "paragraph"
+},
+{
+"text": "Old Norse was written in two systems: runes (the Younger Futhark) and, increasingly, the Latin alphabet. The Latin-based orthography includes letters not found in English, such as 'þ' (thorn, like 'th' in 'thin'), 'ð' (eth, like 'th' in 'this'), and various accented vowels representing sounds produced by a process called umlaut (e.g., 'ǫ', 'ø', 'æ'). Umlaut (or mutation) is a historical sound change where a vowel in a root word changes to be more like a vowel in the suffix. Though the suffix might later disappear, the mutated root vowel remains, serving as a grammatical marker (e.g., for plural or in verb conjugation).",
+"type": "paragraph"
+}
+],
+"title": "Phonology & Orthography"
+},
+"C.2": {
+"examples": [
+{
+"description": "Finnish Vowel Harmony: Suffixes must match the vowel 'type' of the word stem. Back vowels (a, o, u) take back-vowel suffixes, while front vowels (ä, ö, y) take front-vowel suffixes. Neutral vowels (e, i) can appear with either.",
+"table": [
+{
+"Case": "Inessive ('in')",
+"Finnish (Back Vowel Stem)": "talo -> talo·ssa",
+"Finnish (Front Vowel Stem)": "metsä -> metsä·ssä",
+"Meaning": "house -> in the house; forest -> in the forest"
+}
+]
+},
+{
+"description": "Finnish Consonant Gradation: Consonants within the stem may weaken when a suffix is added.",
+"table": [
+{
+"Case": "Nominative (Strong) vs. Genitive (Weak)",
+"Finnish (k:kk)": "kukka -> kukan",
+"Finnish (p:v)": "lupa -> luvan",
+"Finnish (t:d)": "katu -> kadun",
+"Meaning": "flower -> flower's; permission -> permission's; street -> street's"
+}
+]
+},
+{
+"description": "Old Norse I-Umlaut: A '/i/' or '/j/' sound in an ending causes a vowel in the stem to 'front'. This is very common in plural formation.",
+"table": [
+{
+"Number": "Singular",
+"Old Norse": "fótr",
+"Vowel": "ó /oː/"
+},
+{
+"Number": "Plural",
+"Old Norse": "fætr",
+"Vowel": "æ /ɛː/"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Beyond the basic sounds, each language has core rules that govern how sounds interact and change in predictable ways. These rules are essential for understanding word formation and inflection.",
+"type": "paragraph"
+},
+{
+"text": "In Finnish, the two most important phonological rules are Vowel Harmony and Consonant Gradation. Vowel Harmony dictates that suffixes must phonologically align with the stem. Vowels are divided into back (a, o, u) and front (ä, ö, y) categories; a word stem containing back vowels can only take suffixes with back vowels, and vice-versa. Consonant Gradation is a mutation of plosive consonants (k, p, t) in the stem, which alternate between a 'strong' and 'weak' grade depending on the syllable structure, which is usually affected by the addition of a suffix. This is a complex but regular system that affects the majority of nouns and verbs.",
+"type": "paragraph"
+},
+{
+"text": "In Classical Latin, the most significant rule is for stress placement. Stress falls on the penultimate (second-to-last) syllable if that syllable is 'heavy' (contains a long vowel or ends in a consonant). If the penultimate syllable is 'light' (contains a short vowel and ends in a vowel), stress falls on the antepenultimate (third-to-last) syllable. This rule is exceptionless for words of three or more syllables and is critical for the language's rhythm. Another key process, especially in poetry, is elision, where a word-final vowel is omitted before a word that starts with a vowel or 'h'.",
+"type":"paragraph"
+},
+{
+"text": "In Old Norse, the most pervasive phonological rule is Umlaut (also called mutation). This is a process where a vowel in a word's stem changes to sound more like a vowel in its suffix. The two main types are I-umlaut (caused by an 'i' or 'j' in the suffix) and U-umlaut (caused by a 'u'). For example, the plural of 'bók' (book) is 'bœkr' because the original plural ending contained an 'i', which fronted the 'ó' to 'œ' before the ending itself changed. This process is fundamental to Old Norse morphology, creating vowel alternations in noun plurals, verb conjugations, and adjective forms.",
+"type": "paragraph"
+}
+],
+"title": "Core Phonological Rules"
+},
+"C.3": {
+"examples": [
+{
+"description": "Comparison of stem types. Latin and Old Norse verbs have different stems for different tenses/aspects (e.g., present vs. past). Finnish stems remain more constant, with phonological rules applying as suffixes are added.",
+"table": [
+{
+"Language": "Finnish",
+"Concept": "Vowel stem + case ending",
+"Example": "talo (house, nom.) -> talo·n (gen.) -> talo·a (part.) -> talo·ssa (iness.)"
+},
+{
+"Language": "Classical Latin",
+"Concept": "Present vs. Perfect Stems",
+"Example": "Present: AMĀ- (from AMĀRE, 'to love') -> AMĀ·T (he loves). Perfect: AMĀV- (from AMĀVĪ, 'I have loved') -> AMĀV·IT (he has loved)."
+},
+{
+"Language": "Old Norse",
+"Concept": "Strong Verb (Ablaut)",
+"Example": "Present: bíta (to bite). Past Singular: beit. Past Plural: bitu. Participle: bitinn. The stem vowel changes."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "A 'stem' is the core part of a word to which inflectional endings are attached. Understanding how each language forms and uses stems is key to mastering its morphology.",
+"type": "paragraph"
+},
+{
+"text": "In Finnish, words are built upon a stem that can be either a vowel stem or a consonant stem. Most inflections are added to the vowel stem. For example, the noun 'talo' (house) has the vowel stem 'talo-', to which case endings are added: 'talo·ssa' (in the house). The consonant stem appears in only a few specific forms. The stem itself is subject to phonological rules like consonant gradation when endings are added.",
+"type": "paragraph"
+},
+{
+"text": "In Classical Latin, verbs have three principal stems, derived from the four principal parts of the verb. The Present Stem (from the infinitive) is used for present, imperfect, and future tenses. The Perfect Stem (from the third principal part) is used for the perfect, pluperfect, and future perfect tenses. The Supine Stem (from the fourth principal part) is used to form participles. Nouns and adjectives have a single stem to which all case endings for that declension are added.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse makes a crucial distinction between 'strong' and 'weak' stems for both nouns and verbs. Strong verbs indicate tense through a vowel change in the root, a system called ablaut (e.g., 'syngva' - to sing, 'söngr' - he sang). Weak verbs, by contrast, form their past tense by adding a dental suffix (containing a 'd' or 't'), similar to English '-ed' (e.g., 'kalla' - to call, 'kallaði' - he called). Similarly, strong nouns have varied and complex endings, while weak nouns follow more predictable patterns, often involving an '-n' sound.",
+"type": "paragraph"
+}
+],
+"title": "Stem Formation Principles"
+},
+"O": {
+"examples": [
+{
+"description": "A simple noun phrase, 'a big house', showing a noun and its modifier.",
+"table": [
+{
+"Classical Latin": "DOMVS·MAGNA",
+"Finnish": "iso talo",
+"Old Norse": "stórt hús"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The Objective Pillar concerns itself with the 'things' in a sentence: the entities (nouns), their qualities (adjectives), and their quantities (numerals). This section explores how languages classify, count, and describe the objective world. We will cover the core nominal categories of case, number, and gender, and see how modifiers must agree with the nouns they describe.",
+"type": "paragraph"
+}
+],
+"title": "The Objective Pillar: Nouns & Their Modifiers"
+},
+"O.1": {
+"examples": [
+{
+"description": "The word for 'stone' in each language, representing a basic, concrete entity.",
+"table": [
+{
+"Classical Latin": "LAPIS",
+"Finnish": "kivi",
+"Old Norse": "steinn"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Entities are represented grammatically by nouns. A noun is a word that names a person, place, thing, or idea. In the languages we are studying, nouns are not standalone words; they are encoded with information about their function in a sentence and their relationship to other words. This information is conveyed through a system of grammatical categories, primarily classification (gender), number, and case.",
+"type": "paragraph"
+}
+],
+"title": "Entities (Nouns)"
+},
+"O.1.1": {
+"examples": [],
+"lessons": [
+{
+"text": "Before we can decline nouns (change their endings for case and number), we must understand how they are classified. Languages often group nouns into categories based on inherent properties. The most common system of classification is grammatical gender, but other distinctions like animacy can also play a role.",
+"type": "paragraph"
+}
+],
+"title": "Classification"
+},
+"O.1.1.1": {
+"examples": [
+{
+"description": "The distinction between 'who' (animate) and 'what' (inanimate) is a near-universal reflection of animacy in language.",
+"table": [
+{
+"Language": "Finnish",
+"Animate Interrogative ('who?')": "kuka",
+"Inanimate Interrogative ('what?')": "mikä"
+},
+{
+"Language": "Classical Latin",
+"Animate Interrogative ('who?')": "QVIS",
+"Inanimate Interrogative ('what?')": "QVID"
+},
+{
+"Language": "Old Norse",
+"Animate Interrogative ('who?')": "hverr",
+"Inanimate Interrogative ('what?')": "hvat"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Animacy is a grammatical or semantic distinction between entities that are considered 'alive' (e.g., people, animals) and those that are not (e.g., objects, concepts). While not a primary organizing principle in these three languages in the way gender is, it still has subtle effects.",
+"type": "paragraph"
+},
+{
+"text": "In Finnish, the distinction is primarily lexical and semantic. There is no grammatical agreement based on animacy. However, the choice of pronoun for 'who' (kuka) versus 'what' (mikä) reflects a clear animacy distinction. Furthermore, in some contexts, the personal accusative case is required for personal pronouns, marking them as distinct from inanimate objects.",
+"type": "paragraph"
+},
+{
+"text": "In Classical Latin, animacy is not a formal grammatical category for nouns. However, like in Finnish, it is clearly visible in interrogative and indefinite pronouns, such as the distinction between 'quis' (who) and 'quid' (what).",
+"type": "paragraph"
+},
+{
+"text": "Old Norse also lacks a formal system of grammatical animacy, but the distinction is present in the pronominal system ('hverr' vs. 'hvat'). The concept is semantic rather than a core part of the noun-adjective agreement system.",
+"type": "paragraph"
+}
+],
+"title": "Animacy"
+},
+"O.1.1.2": {
+"examples": [
+{
+"description": "A noun of each gender in Latin and Old Norse, shown with an agreeing adjective ('good'). Finnish, lacking gender, uses a single form.",
+"table": [
+{
+"Gender": "Masculine",
+"Classical Latin": "VIR·BONVS (good man)",
+"Old Norse": "góðr maðr (good man)"
+},
+{
+"Gender": "Feminine",
+"Classical Latin": "FEMINA·BONA (good woman)",
+"Old Norse": "góð kona (good woman)"
+},
+{
+"Gender": "Neuter",
+"Classical Latin": "BELLVM·BONVM (good war)",
+"Old Norse": "gott barn (good child)"
+},
+{
+"Gender": "N/A",
+"Classical Latin": "N/A",
+"Old Norse": "N/A"
+}
+]
+},
+{
+"description": "The third-person singular pronoun ('he/she/it').",
+"table": [
+{
+"Language": "Finnish",
+"Pronoun": "hän (he/she)",
+"Note": "One pronoun for people. 'Se' is used for animals and things."
+},
+{
+"Language": "Classical Latin",
+"Pronoun": "IS (he), EA (she), ID (it)",
+"Note": "Gendered pronouns are used for all nouns according to their grammatical gender."
+},
+{
+"Language": "Old Norse",
+"Pronoun": "hann (he), hon (she), þat (it)",
+"Note": "Gendered pronouns are used for all nouns according to their grammatical gender."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Grammatical gender is a system of noun classification. Unlike natural gender (male/female), grammatical gender can be arbitrary and must be memorized for each noun. It is a fundamental concept in Latin and Old Norse, but completely absent in Finnish.",
+"type": "paragraph"
+},
+{
+"text": "Finnish is a genderless language. There is no grammatical distinction between masculine, feminine, or neuter. The same adjectives and pronouns are used for all nouns. The personal pronoun 'hän' is used for any person ('he' or 'she'), while 'se' is typically used for objects and animals.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin has three genders: Masculine, Feminine, and Neuter. Every noun has one of these genders, which is not always predictable from its meaning (e.g., 'MANVS' - hand, is feminine). The gender of a noun determines the form of any adjectives, pronouns, or participles that agree with it. This agreement is a cornerstone of Latin syntax.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse, like Latin, has three genders: Masculine, Feminine, and Neuter. The system is also pervasive, requiring agreement from adjectives and pronouns. The gender of a noun often correlates with its declension class, but many exceptions exist. For example, 'maðr' (man) is masculine, 'kona' (woman) is feminine, but 'barn' (child) is neuter.",
+"type": "paragraph"
+}
+],
+"title": "Gender"
+},
+"O.1.1.3": {
+"examples": [
+{
+"description": "Expressing 'a man' (indefinite) versus 'the man' (definite).",
+"table": [
+{
+"Form": "Indefinite ('a man')",
+"Classical Latin": "VIR",
+"Finnish": "mies",
+"Old Norse": "maðr"
+},
+{
+"Form": "Definite ('the man')",
+"Classical Latin": "ILLE·VIR (lit. 'that man')",
+"Finnish": "mies (definiteness from context/word order)",
+"Old Norse": "maðrinn"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Definiteness is the grammatical concept that distinguishes between a specific, identifiable entity (definite, 'the') and a non-specific one (indefinite, 'a/an'). Languages express this in very different ways.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has no definite or indefinite articles. Definiteness is inferred from context, word order, and case selection. For example, a sentence with a total object (in the accusative case) often implies a definite object, while a partial object (in the partitive case) implies an indefinite one. 'Nainen luki kirjan' (The woman read the book) vs. 'Nainen luki kirjaa' (The woman was reading a book/books).",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin also lacks articles. As in Finnish, definiteness is determined by context. When specificity is required, a demonstrative pronoun like 'HIC' (this), 'ISTE' (that, by you), or 'ILLE' (that, over there) can be used. 'ILLE' in particular evolved into the definite article in many Romance languages.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse is the only one of the three with a formal article system. The definite article is typically a suffix attached to the end of the noun. For example, 'hús' (a house) becomes 'húsit' (the house). The form of the suffix changes depending on the noun's gender, number, and case. When an adjective is used with a definite noun, a separate 'weak' form of the adjective is used, often preceded by a standalone definite article ('hinn', 'hin', 'hitt').",
+"type": "paragraph"
+}
+],
+"title": "Definiteness"
+},
+"O.1.2": {
+"examples": [],
+"lessons": [
+{
+"text": "Grammatical number refers to the quantity of entities a noun refers to. The most common distinction is between singular (one) and plural (more than one). All three languages have a robust singular/plural distinction.",
+"type": "paragraph"
+}
+],
+"title": "Number"
+},
+"O.1.2.1": {
+"examples": [
+{
+"description": "The singular form for the noun 'ship'. This is the basic, unmarked form.",
+"table": [
+{
+"Classical Latin": "NAVIS",
+"Finnish": "laiva",
+"Old Norse": "skip"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The singular is the fundamental form of a noun, indicating a single instance of an entity. In dictionaries and grammatical paradigms, the singular nominative form is typically the lemma, or headword, under which the noun is listed.",
+"type": "paragraph"
+}
+],
+"title": "Singular"
+},
+"O.1.2.2": {
+"examples": [
+{
+"description": "Singular and Plural forms for 'stone' and 'woman', showing different pluralization strategies.",
+"table": [
+{
+"Language": "Finnish",
+"Singular": "kivi (stone)",
+"Plural": "kivet"
+},
+{
+"Language": "Finnish",
+"Singular": "nainen (woman)",
+"Plural": "naiset"
+},
+{
+"Language": "Classical Latin",
+"Singular": "LAPIS (stone)",
+"Plural": "LAPIDES"
+},
+{
+"Language": "Classical Latin",
+"Singular": "FEMINA (woman)",
+"Plural": "FEMINAE"
+},
+{
+"Language": "Old Norse",
+"Singular": "steinn (stone)",
+"Plural": "steinar"
+},
+{
+"Language": "Old Norse",
+"Singular": "kona (woman)",
+"Plural": "konur"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The plural indicates more than one entity. The formation of the plural is a core part of the morphology of each language.",
+"type": "paragraph"
+},
+{
+"text": "In Finnish, the nominative plural is consistently marked with the suffix '-t'. In other cases, a plural marker, typically '-i-', is inserted between the stem and the case ending. For example, 'talo' (house), 'talot' (houses), 'taloissa' (in the houses, stem 'talo' + plural '-i-' + inessive '-ssa').",
+"type": "paragraph"
+},
+{
+"text": "In Classical Latin, plural formation is entirely dependent on the noun's declension. Each of the five declensions has a unique set of endings for the plural in every case. For example, 1st declension 'puella' -> 'puellae', 2nd declension 'servus' -> 'servi', 3rd declension 'rex' -> 'reges'. There is no single plural marker.",
+"type": "paragraph"
+},
+{
+"text": "In Old Norse, plural formation depends on the noun's declension class (strong or weak) and gender. It can involve both a suffix and a change to the stem vowel via umlaut. For example, 'fótr' (foot) becomes 'fætr' (feet) via i-umlaut, while 'armr' (arm) becomes 'armar' with a simple ending.",
+"type": "paragraph"
+}
+],
+"title": "Plural"
+}
+,
+"O.1.2.3": {
+"examples": [
+{
+"description": "The dual number in Old Norse personal pronouns, compared with the plural forms used in Finnish and Latin.",
+"table": [
+{
+"Concept": "We two / You two",
+"Classical Latin": "NOS·DVO / VOS·DVO (Plural pronoun + number)",
+"Finnish": "me kaksi / te kaksi (Plural pronoun + number)",
+"Old Norse": "vit / it (Specific dual pronouns)"
+},
+{
+"Concept": "We (pl.) / You (pl.)",
+"Classical Latin": "NOS / VOS",
+"Finnish": "me / te",
+"Old Norse": "vér / ér"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The dual is a grammatical number that refers to exactly two of an entity. It is distinct from both singular (one) and plural (more than two). While common in ancient languages like Sanskrit and Ancient Greek, it is rare today.",
+"type": "paragraph"
+},
+{
+"text": "Neither Finnish nor Classical Latin has a grammatical dual number. To express 'two of something', they simply use the numeral 'two' with the plural form of the noun.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse preserves a functional dual, but only in its 1st and 2nd person personal pronouns. 'vit' means 'we two' (and is distinct from 'vér', we more-than-two), and 'it' means 'you two' (distinct from 'ér', you more-than-two). This distinction also carries through to their case forms (e.g., genitive 'okkar' for 'of us two' vs. 'vár' for 'of us pl.'). For all nouns and other pronouns, Old Norse uses the plural for quantities of two or more.",
+"type": "paragraph"
+}
+],
+"title": "Dual"
+},
+"O.1.3": {
+"examples": [
+{
+"description": "A conceptual illustration of how case endings mark the function of nouns. The specific endings are placeholders for the concept.",
+"table": [
+{
+"Function": "Subject (Who is acting?)",
+"Sentence": "The WOMAN sees the book.",
+"Form": "WOMAN-[nominative]"
+},
+{
+"Function": "Possession (Whose is it?)",
+"Sentence": "The book of the WOMAN.",
+"Form": "WOMAN-[genitive]"
+},
+{
+"Function": "Location (In what?)",
+"Sentence": "The key is in the HOUSE.",
+"Form": "HOUSE-[inessive/ablative]"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Case is a grammatical category that reflects a noun's function in a clause. In languages with a rich case system, the noun's ending changes to show whether it is the subject, object, possessor, location, and so on. This system allows for highly flexible word order, as the grammatical roles are clear from the noun endings themselves, not from their position relative to the verb.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has an extensive agglutinative case system with 15 cases, which handle not only core grammatical functions but also a vast array of locational and state-of-being meanings that would require prepositions in English.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin and Old Norse have fusional case systems. Latin uses 6 main cases (Nominative, Genitive, Dative, Accusative, Ablative, Vocative), while Old Norse uses 4 (Nominative, Genitive, Dative, Accusative). In these languages, a single ending often conveys case, number, and gender simultaneously.",
+"type": "paragraph"
+}
+],
+"title": "Case & Function"
+},
+"O.1.3.1": {
+"examples": [],
+"lessons": [
+{
+"text": "The grammatical cases (also called syntactic cases) form the core of the sentence structure. They identify the main participants in the action: the subject (who or what performs the action), the direct object (who or what receives the action), and the indirect object (to or for whom the action is done). The genitive case, marking possession, is also typically included in this group.",
+"type": "paragraph"
+}
+],
+"title": "Grammatical Cases"
+},
+"O.1.3.1.1": {
+"examples": [
+{
+"description": "The noun 'wolf' as the subject of a sentence, shown in the nominative case.",
+"table": [
+{
+"Classical Latin": "LVPVS·CVRRIT. (The wolf runs.)",
+"Finnish": "Susi juoksee. (The wolf runs.)",
+"Old Norse": "Ulfr renn. (A wolf runs.)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The nominative case is the case of the subject of a finite verb. It answers the question 'who?' or 'what?' is performing the action. It is also the citation form, or lemma, of a noun—the form listed in dictionaries.",
+"type": "paragraph"
+}
+],
+"title": "Case: Nominative"
+},
+"O.1.3.1.2": {
+"examples": [
+{
+"description": "The phrase 'the king's sword', showing the noun 'king' in the genitive case to express possession.",
+"table": [
+{
+"Classical Latin": "GLADIVS·REGIS",
+"Finnish": "kuninkaan miekka",
+"Old Norse": "konungs sverð"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The genitive case primarily indicates possession, origin, or relationship. It is the equivalent of the English possessive 's' or the preposition 'of'.",
+"type": "paragraph"
+},
+{
+"text": "In Finnish, the genitive singular ending is '-n'. Besides possession, it has a crucial secondary function: it also marks the total direct object of a verb in many sentence types, making it function as an accusative case.",
+"type": "paragraph"
+},
+{
+"text": "In Latin and Old Norse, the genitive is the classic case of possession. It is also used in partitive constructions (e.g., 'part of the army') and for various descriptions.",
+"type": "paragraph"
+}
+],
+"title": "Case: Genitive"
+},
+"O.1.3.1.3": {
+"examples": [
+{
+"description": "A sentence showing the direct object 'house' in the accusative case (or its equivalent).",
+"table": [
+{
+"Sentence": "The man builds a house.",
+"Classical Latin": "VIR·DOMVM·AEDIFICAT.",
+"Finnish": "Mies rakentaa talon.",
+"Old Norse": "Maðr byggir hús."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The accusative case marks the direct object of a transitive verb. It identifies the person or thing directly affected by the action of the verb.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin and Old Norse have distinct accusative case endings which are used consistently to mark the direct object. The accusative is also used as the object of many prepositions in Latin.",
+"type": "paragraph"
+},
+{
+"text": "Finnish is more complex. It lacks a single, universal accusative ending for nouns. The function of the direct object is marked in one of three ways: 1) The Genitive case ending '-n' is used for total, specific objects (as in the example 'talon'). 2) The Nominative case is used in certain structures like imperatives. 3) A dedicated Accusative ending '-t' exists, but it is only used for personal pronouns ('minut' - me, 'sinut' - you) and the interrogative 'kuka' ('kenet').",
+"type": "paragraph"
+}
+],
+"title": "Case: Accusative"
+},
+"O.1.3.1.4": {
+"examples": [
+{
+"description": "Expressing an indefinite quantity or an incomplete action, a primary function of the Finnish Partitive.",
+"table": [
+{
+"Concept": "Partial Object ('some water')",
+"Classical Latin": "AQVAM (Acc.) or AQVAE (Gen.)",
+"Finnish": "vettä (Partitive)",
+"Old Norse": "vatns (Genitive)"
+},
+{
+"Concept": "Negated Object ('I don't see a house')",
+"Classical Latin": "DOMVM·NON·VIDEO (Acc.)",
+"Finnish": "En näe taloa (Partitive)",
+"Old Norse": "Ek sé eigi hús (Acc.)"
+},
+{
+"Concept": "Ongoing Action ('I am reading a book')",
+"Classical Latin": "LIBRVM·LEGO (Acc.)",
+"Finnish": "Luen kirjaa (Partitive)",
+"Old Norse": "Ek les bók (Acc.)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The partitive case indicates that an action or state applies to only a part of something, an unspecified amount, or is incomplete. It contrasts with a total, complete, or definite object.",
+"type": "paragraph"
+},
+{
+"text": "The partitive is a cornerstone of Finnish grammar, marked by the ending '-a/-ä' or '-ta/-tä'. Its uses are extensive: 1) For partial objects ('syön leipää' - I eat some bread). 2) For the object in negative sentences ('en osta autoa' - I am not buying a car). 3) For objects of verbs describing an ongoing or incomplete process ('luen kirjaa' - I am reading a book). 4) With numerals other than one ('kaksi taloa' - two houses).",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin and Old Norse do not have a distinct partitive case. They express the concept of 'part of a whole' by using the Genitive case (the 'Partitive Genitive'). For other functions covered by the Finnish partitive, such as ongoing actions or objects in negative sentences, they simply use the standard Accusative case.",
+"type": "paragraph"
+}
+],
+"title": "Case: Partitive"
+},
+"O.1.3.1.5": {
+"examples": [
+{
+"description": "The sentence 'I give a gift to the queen', showing the indirect object 'queen' in the dative case or its equivalent.",
+"table": [
+{
+"Classical Latin": "REGINAE·DONVM·DO.",
+"Finnish": "Annan lahjan kuningattarelle.",
+"Old Norse": "Ek gef dróttningu gjǫf."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The dative case marks the indirect object of a verb. It typically indicates the recipient or beneficiary of an action, answering the question 'to whom?' or 'for whom?'.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin and Old Norse have a dedicated dative case that serves this function. It is also used with certain verbs and adjectives that inherently take a dative complement.",
+"type": "paragraph"
+},
+{
+"text": "Finnish does not have a dative case. Instead, it uses one of its locative cases, the Allative ('to/onto'), to express the recipient of an action. In the example, 'kuningattarelle' is the allative form of 'kuningatar' (queen).",
+"type": "paragraph"
+}
+],
+"title": "Case: Dative"
+}
+,
+"O.1.3.1.6": {
+"examples": [
+{
+"description": "Directly addressing a person, for example 'Marcus'.",
+"table": [
+{
+"Sentence": "Marcus, where are you?",
+"Classical Latin": "MARCE,·VBI·ES?",
+"Finnish": "Marcus, missä olet?",
+"Old Norse": "Markús, hvar ert þú?"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The vocative case is used for direct address, when calling out to or naming a person or thing being spoken to. Its use is very limited compared to other cases.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin has a distinct vocative case. For most nouns, its form is identical to the nominative. The major exception is for second declension masculine nouns ending in '-us', which change to '-e' in the vocative singular (e.g., 'Marcus' -> 'Marce'). Nouns ending in '-ius' change to '-ī' (e.g., 'Iulius' -> 'Iulī').",
+"type": "paragraph"
+},
+{
+"text": "Finnish and Old Norse do not have a separate vocative case. They simply use the nominative form for direct address.",
+"type": "paragraph"
+}
+],
+"title": "Case: Vocative"
+},
+"O.1.3.2": {
+"examples": [
+{
+"description": "The core concepts of being inside, moving out of, and moving into a location.",
+"table": [
+{
+"Concept": "In the house (static)",
+"Classical Latin": "IN·DOMO (Ablative)",
+"Finnish": "talo·ssa (Inessive)",
+"Old Norse": "í húsi (Dative)"
+},
+{
+"Concept": "Out of the house (motion from)",
+"Classical Latin": "EX·DOMO (Ablative)",
+"Finnish": "talo·sta (Elative)",
+"Old Norse": "ór húsi (Dative)"
+},
+{
+"Concept": "Into the house (motion to)",
+"Classical Latin": "IN·DOMVM (Accusative)",
+"Finnish": "talo·on (Illative)",
+"Old Norse": "í hús (Accusative)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The internal locative cases specify a relationship of location or movement with respect to the interior of something. They answer the questions 'where?', 'from where (inside)?', and 'to where (inside)?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has a dedicated set of three internal locative cases: the Inessive ('in'), the Elative ('out of'), and the Illative ('into'). These cases make prepositions for these concepts largely unnecessary.",
+"type": "paragraph"
+},
+{
+"text": "Latin and Old Norse do not have this dedicated system. They express these ideas using their grammatical cases (Ablative in Latin, Dative/Accusative in Old Norse) in combination with prepositions. The choice of case often depends on whether the situation is static (location) or involves motion.",
+"type": "paragraph"
+}
+],
+"title": "Locative Cases (Internal)"
+},
+"O.1.3.2.1": {
+"examples": [
+{
+"description": "The sentence 'The king is in the city'.",
+"table": [
+{
+"Classical Latin": "REX·EST·IN·VRBE.",
+"Finnish": "Kuningas on kaupungissa.",
+"Old Norse": "Konungr er í borginni."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The inessive function indicates static location within a defined space. It answers the question 'where?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses the Inessive case, marked by the ending '-ssa/-ssä'. For example, 'kaupunki' (city) becomes 'kaupungissa' (in the city).",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses the Ablative case with the preposition 'IN' to denote location inside something. For example, 'urbs' (city) becomes 'in urbe' (in the city).",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses the Dative case with the preposition 'í' (in) to denote static location. For example, 'borg' (city) becomes 'í borginni' (in the city).",
+"type": "paragraph"
+}
+],
+"title": "Case: Inessive ('in')"
+},
+"O.1.3.2.2": {
+"examples": [
+{
+"description": "The sentence 'The king comes out of the city'.",
+"table": [
+{
+"Classical Latin": "REX·EX·VRBE·VENIT.",
+"Finnish": "Kuningas tulee kaupungista.",
+"Old Norse": "Konungr kemr ór borginni."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The elative function indicates movement from the interior of a space. It answers the question 'from where?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses the Elative case, marked by the ending '-sta/-stä'. For example, 'kaupunki' (city) becomes 'kaupungista' (out of the city).",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses the Ablative case with the preposition 'E' or 'EX' (out of, from). For example, 'urbs' (city) becomes 'ex urbe' (out of the city).",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses the Dative case with the preposition 'ór' (out of, from). For example, 'borg' (city) becomes 'ór borginni' (out of the city).",
+"type": "paragraph"
+}
+],
+"title": "Case: Elative ('out of')"
+},
+"O.1.3.2.3": {
+"examples": [
+{
+"description": "The sentence 'The king goes into the city'.",
+"table": [
+{
+"Classical Latin": "REX·IN·VRBEM·IT.",
+"Finnish": "Kuningas menee kaupunkiin.",
+"Old Norse": "Konungr ferr í borgina."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The illative function indicates movement into a space. It answers the question 'to where?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses the Illative case. Its ending is complex, typically formed by lengthening the stem's final vowel and adding '-n'. For example, 'kaupunki' (city) has the stem 'kaupunki-', but the illative is 'kaupunkiin' (into the city).",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin expresses motion into with the Accusative case and the preposition 'IN'. For example, 'urbs' (city) becomes 'in urbem' (into the city). Note the difference: 'in' + Ablative = location, 'in' + Accusative = motion towards.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse expresses motion into with the Accusative case and the preposition 'í'. For example, 'borg' (city) becomes 'í borgina' (into the city). Note the difference: 'í' + Dative = location, 'í' + Accusative = motion towards.",
+"type": "paragraph"
+}
+],
+"title": "Case: Illative ('into')"
+},
+"O.1.3.3": {
+"examples": [
+{
+"description": "The core concepts of being on a surface, moving from a surface, and moving onto a surface.",
+"table": [
+{
+"Concept": "On the table (static)",
+"Classical Latin": "IN·MENSA (Ablative)",
+"Finnish": "pöydä·llä (Adessive)",
+"Old Norse": "á borði (Dative)"
+},
+{
+"Concept": "From the table (motion from)",
+"Classical Latin": "DE·MENSA (Ablative)",
+"Finnish": "pöydä·ltä (Ablative)",
+"Old Norse": "af borði (Dative)"
+},
+{
+"Concept": "Onto the table (motion to)",
+"Classical Latin": "IN·MENSAM (Accusative)",
+"Finnish": "pöydä·lle (Allative)",
+"Old Norse": "á borð (Accusative)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The external locative cases specify a relationship of location or movement with respect to an outer surface or a general vicinity. They answer the questions 'on what?', 'from what?', and 'onto what?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has a dedicated set of three external locative cases: the Adessive ('on/at'), the Ablative ('from off/from'), and the Allative ('onto/to').",
+"type": "paragraph"
+},
+{
+"text": "Latin and Old Norse again use their grammatical cases with prepositions to convey these meanings. The distinction between static location and motion towards is often crucial for choosing the correct case.",
+"type": "paragraph"
+}
+],
+"title": "Locative Cases (External)"
+},
+"O.1.3.3.1": {
+"examples": [
+{
+"description": "The sentence 'The book is on the table'.",
+"table": [
+{
+"Classical Latin": "LIBER·EST·IN·MENSA.",
+"Finnish": "Kirja on pöydällä.",
+"Old Norse": "Bókin er á borðinu."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The adessive function indicates static location on a surface or in the vicinity of something. It answers the question 'on what?' or 'at what?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses the Adessive case, marked by the ending '-lla/-llä'. For example, 'pöytä' (table) becomes 'pöydällä' (on the table). This case is also famously used to express possession: 'Minulla on kirja' (lit. 'At-me is book') means 'I have a book'.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses the Ablative case, often with the preposition 'IN', which can mean 'in' or 'on'. For example, 'mensa' (table) becomes 'in mensa' (on the table).",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses the Dative case with the preposition 'á' (on). For example, 'borð' (table) becomes 'á borðinu' (on the table).",
+"type": "paragraph"
+}
+],
+"title": "Case: Adessive ('on/at')"
+},
+"O.1.3.3.2": {
+"examples": [
+{
+"description": "The sentence 'He takes the book from the table'.",
+"table": [
+{
+"Classical Latin": "LIBRVM·DE·MENSA·CAPIT.",
+"Finnish": "Hän ottaa kirjan pöydältä.",
+"Old Norse": "Hann tekur bókina af borðinu."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The ablative function indicates movement away from a surface or vicinity. It answers the question 'from where?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses its Ablative case, marked by the ending '-lta/-ltä'. For example, 'pöytä' (table) becomes 'pöydältä' (from the table).",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses its own Ablative case, often clarified with prepositions like 'A/AB' (away from) or 'DE' (down from). For example, 'mensa' (table) becomes 'de mensa' (from the table). The Latin Ablative is a multi-purpose case, covering meanings of 'by', 'with', and 'from'.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses the Dative case with the preposition 'af' (off, from). For example, 'borð' (table) becomes 'af borðinu' (from the table).",
+"type": "paragraph"
+}
+],
+"title": "Case: Ablative ('from off')"
+},
+"O.1.3.3.3": {
+"examples": [
+{
+"description": "The sentence 'He puts the book onto the table'.",
+"table": [
+{
+"Classical Latin": "LIBRVM·IN·MENSAM·PONIT.",
+"Finnish": "Hän laittaa kirjan pöydälle.",
+"Old Norse": "Hann leggr bókina á borðit."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The allative function indicates movement onto a surface or towards a location/person. It answers the question 'to where?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses the Allative case, marked by the ending '-lle'. For example, 'pöytä' (table) becomes 'pöydälle' (onto the table). This case also serves the function of the Dative (indirect object), as in 'Annan kirjan miehelle' (I give the book to the man).",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses the Accusative case with prepositions like 'IN' (onto) or 'AD' (towards). For example, 'mensa' (table) becomes 'in mensam' (onto the table).",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses the Accusative case with the preposition 'á' (onto). For example, 'borð' (table) becomes 'á borðit' (onto the table).",
+"type": "paragraph"
+}
+],
+"title": "Case: Allative ('onto/to')"
+},
+"O.1.3.4": {
+"examples": [],
+"lessons": [
+{
+"text": "Beyond grammatical and locative functions, some cases describe the state or role of a noun, or a transformation into a new state. These are often called 'marginal' or 'stative' cases.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has a dedicated pair of cases for this purpose: the Essive (describing a temporary role or state, 'as a...') and the Translative (describing a change into a role or state, 'becoming a...').",
+"type": "paragraph"
+},
+{
+"text": "Latin and Old Norse do not have specific cases for these functions. Instead, they handle these concepts using predicative constructions, where a noun in the nominative or accusative case renames or describes another noun in the same clause.",
+"type": "paragraph"
+}
+],
+"title": "Marginal Cases (State)"
+},
+"O.1.3.4.1": {
+"examples": [
+{
+"description": "The phrase 'as a child' or 'when he was a child'.",
+"table": [
+{
+"Sentence": "As a child, he lived in Rome.",
+"Classical Latin": "PVER,·ROMAE·HABITABAT. (lit. A boy, he lived in Rome.)",
+"Finnish": "Lapsena hän asui Roomassa.",
+"Old Norse": "At barni bjó hann í Rúm."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The essive function describes a temporary state, role, or quality. It answers the question 'as what?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses the Essive case, marked by the ending '-na/-nä'. For example, 'lapsi' (child) becomes 'lapsena' (as a child). It can also denote time, as in 'maanantaina' (on Monday).",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin expresses this idea with a predicate noun in the nominative case, agreeing with the subject. The noun 'puer' (boy) is in the nominative, in apposition to the implied 'he'.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse can use a prepositional phrase, often with 'at' + dative, to express this role or state.",
+"type": "paragraph"
+}
+],
+"title": "Case: Essive ('as a...')"
+},
+"O.1.3.4.2": {
+"examples": [
+{
+"description": "The sentence 'The man became a king'.",
+"table": [
+{
+"Classical Latin": "VIR·REX·FACTVS·EST. (The man was made a king.)",
+"Finnish": "Mies tuli kuninkaaksi.",
+"Old Norse": "Maðrinn varð konungr."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The translative function describes a change of state or a transformation into something else. It answers the question 'into what?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses the Translative case, marked by the ending '-ksi'. For example, 'kuningas' (king) becomes 'kuninkaaksi' (into a king). It is also used to express purpose ('for what reason?').",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses a predicate nominative with a verb of becoming, like 'fieri' (to become, be made). The noun 'rex' (king) is in the nominative, agreeing with the subject 'vir' (man).",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses a predicate nominative with a verb of becoming, like 'verða' (to become). The noun 'konungr' (king) is in the nominative, agreeing with the subject 'maðrinn' (the man).",
+"type": "paragraph"
+}
+],
+"title": "Case: Translative ('becoming a...')"
+}
+,
+"O.1.3.5": {
+"examples": [],
+"lessons": [
+{
+"text": "This group of cases describes the means, accompaniment, or absence of something in relation to an action. They answer questions like 'with what?', 'with whom?', and 'without what?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish again has a dedicated set of cases for these functions: the Instructive, the Abessive, and the Comitative. These are less common than the locative cases but follow regular patterns.",
+"type": "paragraph"
+},
+{
+"text": "Latin and Old Norse express these ideas through a combination of case usage (primarily the Latin Ablative and the Old Norse Dative) and prepositions.",
+"type": "paragraph"
+}
+],
+"title": "Marginal Cases (Instrumental)"
+},
+"O.1.3.5.1": {
+"examples": [
+{
+"description": "The phrase 'with bare hands'.",
+"table": [
+{
+"Classical Latin": "NVDI·MANIBVS (lit. with naked hands - Ablative of Means)",
+"Finnish": "paljain käsin (Instructive Plural)",
+"Old Norse": "berum hǫndum (Dative of Instrument)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The instructive function indicates the instrument or means by which an action is performed. It answers the question 'by means of what?'.",
+"type": "paragraph"
+},
+{
+"text": "The Finnish Instructive case is somewhat rare and primarily used in the plural, with the ending '-n'. It's found in many fixed expressions. For example, 'paljas käsi' (bare hand) becomes 'paljain käsin' (with bare hands).",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses the Ablative case without a preposition to show the means or instrument of an action. This is called the Ablative of Means.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses the Dative case to indicate the instrument, often without a preposition.",
+"type": "paragraph"
+}
+],
+"title": "Case: Instructive ('by means of')"
+},
+"O.1.3.5.2": {
+"examples": [
+{
+"description": "The phrase 'without money'.",
+"table": [
+{
+"Classical Latin": "SINE·PECVNIA (preposition + Ablative)",
+"Finnish": "rahatta (Abessive)",
+"Old Norse": "án fjár (preposition + Genitive)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The abessive function indicates the absence of something. It answers the question 'without what?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses the Abessive case, marked by the ending '-tta/-ttä'. For example, 'raha' (money) becomes 'rahatta' (without money).",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses the preposition 'SINE' followed by the Ablative case to express 'without'.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses the preposition 'án' followed by the Genitive case to express 'without'. Alternatively, the adjectival suffix '-lauss' ('-less') can be used.",
+"type": "paragraph"
+}
+],
+"title": "Case: Abessive ('without')"
+},
+"O.1.3.5.3": {
+"examples": [
+{
+"description": "The phrase 'with his family'.",
+"table": [
+{
+"Classical Latin": "CVM·FAMILIA·SVA (preposition + Ablative)",
+"Finnish": "perheineen (Comitative)",
+"Old Norse": "með sinni fjölskyldu (preposition + Dative)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The comitative function indicates accompaniment. It answers the question 'together with whom/what?'.",
+"type": "paragraph"
+},
+{
+"text": "The Finnish Comitative case is marked by the suffix '-ine-' followed by a mandatory possessive suffix. It is used for both singular and plural nouns. For example, 'perhe' (family) + '-ine-' + '-en' (his/her) becomes 'perheineen' (with his/her family).",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses the preposition 'CVM' followed by the Ablative case to show accompaniment. This is called the Ablative of Accompaniment.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses the preposition 'með' followed by the Dative case to show accompaniment.",
+"type": "paragraph"
+}
+],
+"title": "Case: Comitative ('together with')"
+},
+"O.2": {
+"examples": [
+{
+"description": "A noun modified by a quality (adjective) and a quantity (numeral).",
+"table": [
+{
+"Phrase": "Two big ships",
+"Classical Latin": "DVAE·NAVES·MAGNAE",
+"Finnish": "kaksi isoa laivaa",
+"Old Norse": "tvau stór skip"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Modification is the process by which we add detail and specificity to nouns. The two primary types of modifiers are adjectives, which describe a noun's quality, and numerals, which describe its quantity. In inflected languages, these modifiers must often change their form to 'agree' with the noun they describe.",
+"type": "paragraph"
+}
+],
+"title": "Modification"
+},
+"O.2.1": {
+"examples": [
+{
+"description": "The adjective 'big' agreeing with the noun 'ship' in the genitive case ('of the big ship').",
+"table": [
+{
+"Classical Latin": "NAVIS·MAGNAE",
+"Finnish": "ison laivan",
+"Old Norse": "stórs skips"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Adjectives are words that describe the qualities or states of being of nouns. In all three languages, adjectives must agree with the nouns they modify.",
+"type": "paragraph"
+},
+{
+"text": "In Finnish, an adjective must agree with its noun in both number (singular/plural) and case. Since Finnish has no gender, gender agreement is not a factor. For example, 'iso talo' (big house, nom.), 'isossa talossa' (in the big house, inessive).",
+"type": "paragraph"
+},
+{
+"text": "In Classical Latin, an adjective must agree with its noun in gender, number, and case. This is a critical rule of Latin syntax. The adjective does not need to be of the same declension as the noun, but it must match its grammatical properties. For example, 'NAVIS' (ship) is a 3rd declension feminine noun, while 'MAGNA' (big) is a 1st declension adjective, but 'NAVIS MAGNA' is correct because both are nominative, singular, feminine.",
+"type": "paragraph"
+},
+{
+"text": "In Old Norse, an adjective must agree with its noun in gender, number, and case. Additionally, Old Norse adjectives have two different sets of declensions: 'strong' and 'weak'. The strong declension is used when the noun is indefinite ('stórt hús' - a big house). The weak declension is used when the noun is definite ('stóra húsit' - the big house).",
+"type":"paragraph"
+}
+],
+"title": "Quality (Adjective)"
+},
+"O.2.2": {
+"examples": [
+{
+"description": "Using the number 'three' with the noun 'man'.",
+"table": [
+{
+"Phrase": "three men (nominative)",
+"Classical Latin": "TRES·VIRI",
+"Finnish": "kolme miestä",
+"Old Norse": "þrír menn"
+},
+{
+"Phrase": "of three men (genitive)",
+"Classical Latin": "TRIVM·VIRORVM",
+"Finnish": "kolmen miehen",
+"Old Norse": "þriggja manna"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Numerals are words that express quantity. Their grammatical behavior varies significantly between languages.",
+"type": "paragraph"
+},
+{
+"text": "In Finnish, the numeral 'yksi' (one) behaves like a regular adjective, agreeing in case with its noun ('yksi talo', 'yhdessä talossa'). All other cardinal numbers (two, three, etc.) when used in the nominative require the noun they modify to be in the partitive singular case ('kaksi taloa', 'kolme taloa'). If the numeral itself is in another case, the noun is in the partitive plural ('kahdessa talossa').",
+"type": "paragraph"
+},
+{
+"text": "In Classical Latin, the numbers one ('VNVS'), two ('DVO'), and three ('TRES') are declined to agree with their nouns in gender, number, and case. Hundreds from 200-900 also decline. Other cardinal numbers are indeclinable.",
+"type": "paragraph"
+},
+{
+"text": "In Old Norse, the numbers one through four are declined to agree with their nouns in gender, number, and case. Other cardinal numbers are generally not declined.",
+"type": "paragraph"
+}
+],
+"title": "Quantity (Numeral)"
+},
+"O.2.3": {
+"examples": [
+{
+"description": "The three degrees of comparison for the adjective 'long'.",
+"table": [
+{
+"Degree": "Positive (long)",
+"Classical Latin": "LONGVS",
+"Finnish": "pitkä",
+"Old Norse": "langr"
+},
+{
+"Degree": "Comparative (longer)",
+"Classical Latin": "LONGIOR",
+"Finnish": "pidempi",
+"Old Norse": "lengri"
+},
+{
+"Degree": "Superlative (longest)",
+"Classical Latin": "LONGISSIMVS",
+"Finnish": "pisin",
+"Old Norse": "lengstr"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Adjectives can be used to compare nouns. There are three degrees of comparison: the positive (the basic form), the comparative (expressing 'more'), and the superlative (expressing 'most').",
+"type": "paragraph"
+},
+{
+"text": "In Finnish, the comparative is formed with the suffix '-mpi', and the superlative with the suffix '-in'. Both comparative and superlative forms are declined for case and number just like regular adjectives.",
+"type": "paragraph"
+},
+{
+"text": "In Classical Latin, the regular comparative is formed with the suffix '-IOR' (masc/fem) / '-IVS' (neuter), and the superlative with '-ISSIMVS, -A, -VM'. There are also many irregular forms (e.g., 'BONVS' -> 'MELIOR' -> 'OPTIMVS'). Comparative adjectives follow the 3rd declension, while superlatives follow the 1st/2nd.",
+"type": "paragraph"
+},
+{
+"text": "In Old Norse, the regular comparative is formed with the suffix '-ari', and the superlative with '-astr'. Many common adjectives show umlaut in their comparative and superlative forms in addition to the suffix (e.g., 'langr' -> 'lengri' -> 'lengstr').",
+"type": "paragraph"
+}
+],
+"title": "Comparison (Degree)"
+},
+"O.3": {
+"examples": [
+{
+"description": "A sentence using a personal pronoun ('I'), a demonstrative pronoun ('this'), and an interrogative pronoun ('what').",
+"table": [
+{
+"Sentence": "I see this, but what is it?",
+"Classical Latin": "EGO·HOC·VIDEO,·SED·QVID·EST?",
+"Finnish": "Minä näen tämän, mutta mikä se on?",
+"Old Norse": "Ek sé þetta, en hvat er þat?"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Pronouns are words that stand in for nouns. They are a closed class of words, meaning new pronouns are not easily created. They are essential for avoiding repetition and for functions like asking questions. Like nouns, pronouns in these languages decline for case and number.",
+"type": "paragraph"
+}
+],
+"title": "Pronouns"
+},
+"O.3.1": {
+"examples": [
+{
+"description": "First person pronouns ('I', 'we') in the nominative and genitive cases.",
+"table": [
+{
+"Form": "I / of me",
+"Classical Latin": "EGO / MEI",
+"Finnish": "minä / minun",
+"Old Norse": "ek / mín"
+},
+{
+"Form": "we / of us",
+"Classical Latin": "NOS / NOSTRI",
+"Finnish": "me / meidän",
+"Old Norse": "vér / vár"
+}
+]
+},
+{
+"description": "Third person pronouns ('he/she/it') in the nominative case.",
+"table": [
+{
+"Form": "he / she / it",
+"Classical Latin": "IS / EA / ID",
+"Finnish": "hän / hän / se",
+"Old Norse": "hann / hon / þat"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Personal pronouns refer to the speaker (first person), the addressee (second person), or another person/thing (third person).",
+"type": "paragraph"
+},
+{
+"text": "Finnish pronouns are 'minä' (I), 'sinä' (you), 'hän' (he/she), 'me' (we), 'te' (you pl.), 'he' (they). There is also 'se' (it/they for non-humans). They decline fully through all cases. The accusative case has a special ending for personal pronouns ('minut', 'sinut').",
+"type": "paragraph"
+},
+{
+"text": "Latin pronouns have highly irregular declensions. The third person pronoun 'IS, EA, ID' also functions as a weak demonstrative ('that'). When used reflexively ('-self'), the special pronoun 'SVI, SIBI, SE, SE' is used for the third person.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse pronouns are fully declined. A key feature is the preservation of the dual number: 'vit' (we two) and 'it' (you two), which have their own full set of case forms distinct from the plurals 'vér' (we) and 'ér' (you pl.).",
+"type": "paragraph"
+}
+],
+"title": "Personal Pronouns"
+}
+,
+"O.3.2": {
+"examples": [
+{
+"description": "The concepts 'this man' (proximal) and 'that book' (distal).",
+"table": [
+{
+"Phrase": "this man (nom.)",
+"Classical Latin": "HIC·VIR",
+"Finnish": "tämä mies",
+"Old Norse": "þessi maðr"
+},
+{
+"Phrase": "that book (nom.)",
+"Classical Latin": "ILLE·LIBER",
+"Finnish": "tuo kirja",
+"Old Norse": "sú bók"
+},
+{
+"Phrase": "of this man (gen.)",
+"Classical Latin": "HVIVS·VIRI",
+"Finnish": "tämän miehen",
+"Old Norse": "þessa manns"
+},
+{
+"Phrase": "of that book (gen.)",
+"Classical Latin": "ILLIVS·LIBRI",
+"Finnish": "tuon kirjan",
+"Old Norse": "þeirar bókar"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Demonstrative pronouns point to specific entities, indicating their location relative to the speaker. The most common distinction is between proximal ('this', near the speaker) and distal ('that', far from the speaker).",
+"type": "paragraph"
+},
+{
+"text": "Finnish has a three-way distinction: 'tämä' (this, here), 'tuo' (that, over there and visible), and 'se' (that, it, previously mentioned or not present). All three decline fully in all cases and numbers.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin also has a three-way system: 'HIC, HAEC, HOC' (this, near me), 'ISTE, ISTA, ISTVD' (that, near you), and 'ILLE, ILLA, ILLVD' (that, over there). They all decline fully for gender, number, and case. 'ILLE' is the pronoun that evolved into the definite article in Romance languages.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse has several demonstratives. The most common are 'þessi' (this) and 'sá' (that). 'Sá, sú, þat' is a very common pronoun that functions both as a demonstrative ('that man') and as a personal pronoun ('he'). When used with the weak adjective, 'hinn' functions as a definite article ('hinn gamli maðr' - the old man). All demonstratives decline for gender, number, and case.",
+"type": "paragraph"
+}
+],
+"title": "Demonstrative Pronouns"
+},
+"O.3.3": {
+"examples": [
+{
+"description": "Asking 'who?' (animate) and 'what?' (inanimate).",
+"table": [
+{
+"Question": "Who is coming?",
+"Classical Latin": "QVIS·VENIT?",
+"Finnish": "Kuka tulee?",
+"Old Norse": "Hverr kemr?"
+},
+{
+"Question": "What do you see?",
+"Classical Latin": "QVID·VIDES?",
+"Finnish": "Mitä sinä näet?",
+"Old Norse": "Hvat sér þú?"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Interrogative pronouns are used to ask questions. The fundamental distinction in all three languages is between an animate 'who?' and an inanimate 'what?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses 'kuka' for 'who' and 'mikä' for 'what'. Both are fully declined. 'Mikä' can also be used adjectivally for 'which'. 'Kumpainen' is used for 'which of two?'.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses 'QVIS' for 'who?' and 'QVID' for 'what?'. These are the substantival forms. The adjectival form, 'which...?', is 'QVI, QVAE, Qvod', which declines like the relative pronoun.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses 'hverr' for 'who?' and 'hvat' for 'what?'. 'Hverr' can also be used adjectivally to mean 'which?' or 'each'. Both are declined, though 'hvat' is only neuter singular.",
+"type": "paragraph"
+}
+],
+"title": "Interrogative Pronouns"
+},
+"O.3.4": {
+"examples": [
+{
+"description": "A relative clause: 'The woman who is reading the book is my mother.'",
+"table": [
+{
+"Classical Latin": "FEMINA·QVAE·LIBRVM·LEGIT·MATER·MEA·EST.",
+"Finnish": "Nainen, joka lukee kirjaa, on äitini.",
+"Old Norse": "Kona, er les bók, er móðir mín."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Relative pronouns introduce relative clauses, which are subordinate clauses that modify a noun (the antecedent). They function like adjectives, providing more information about the noun they refer to.",
+"type": "paragraph"
+},
+{
+"text": "Finnish primarily uses 'joka' as its relative pronoun. It must agree in number with its antecedent, but its case is determined by its function within the relative clause. For antecedents that are entire clauses, 'mikä' is used instead.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses the pronoun 'QVI, QVAE, Qvod'. The rule for its use is fundamental: it agrees with its antecedent in gender and number, but its case is determined by its function in its own clause. In the example, 'FEMINA' is nominative, so 'QVAE' is feminine and singular to agree with it. 'QVAE' is also nominative because it is the subject of 'LEGIT'.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse most commonly uses the indeclinable particles 'er' or 'sem' to introduce a relative clause. The function of the missing pronoun within the clause is understood from context. Sometimes, a full demonstrative pronoun is used before the particle for clarity (e.g., 'maðrinn, sá er...' - the man, he who...).",
+"type": "paragraph"
+}
+],
+"title": "Relative Pronouns"
+},
+"O.3.5": {
+"examples": [
+{
+"description": "Expressing indefinite concepts like 'someone' and 'nothing'.",
+"table": [
+{
+"Sentence": "Someone is at the door.",
+"Classical Latin": "ALIQVIS·AD·OSTIVM·EST.",
+"Finnish": "Joku on ovella.",
+"Old Norse": "Einhverr er at durum."
+},
+{
+"Sentence": "I know nothing.",
+"Classical Latin": "NIHIL·SCIO.",
+"Finnish": "En tiedä mitään.",
+"Old Norse": "Ek veit ekki."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Indefinite pronouns refer to non-specific people or things. This category includes words like 'someone', 'anything', 'nobody', 'each', 'all', etc.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has a rich set of indefinite pronouns. A key feature is the use of different pronouns in affirmative vs. negative/interrogative clauses. 'joku' (someone) is used in affirmative statements, while 'kukaan' (anyone) is used in negative ones ('En nähnyt ketään' - I didn't see anyone).",
+"type": "paragraph"
+},
+{
+"text": "Latin has a wide array of indefinite pronouns, each with a slightly different nuance. 'Aliquis' (someone) is a general indefinite. 'Quidam' (a certain one) implies a specific but unnamed person. 'Quisquam' (anyone) is used in negative contexts. 'Nemo' (nobody) and 'nihil' (nothing) are the negative pronouns.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses pronouns like 'einhverr' (someone, anyone), 'nökkurr' (some, a certain one), and 'hverr' (each). For negatives, it uses 'engi' (no one, nothing) or combines the negative particle 'eigi' with an indefinite ('eigi einn' - not one).",
+"type": "paragraph"
+}
+],
+"title": "Indefinite Pronouns"
+},
+"P": {
+"examples": [
+{
+"description": "A simple sentence highlighting the predicate, which consists of the verb and its objects/complements.",
+"table": [
+{
+"Subject": "The woman",
+"Predicate": "sees the book.",
+"Classical Latin": "FEMINA·LIBRVM·VIDET.",
+"Finnish": "Nainen näkee kirjan.",
+"Old Norse": "Kona sér bók."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The Predicate Pillar deals with the part of the sentence that makes a statement about the subject. Its core is the verb, which expresses an action, occurrence, or state of being. This pillar explores how verbs function and how they are modified by adverbs to describe the manner of the action.",
+"type": "paragraph"
+}
+],
+"title": "The Predicate Pillar: Verbs & Their Modifiers"
+},
+"P.1": {
+"examples": [
+{
+"description": "The infinitive form (the basic dictionary form) of the verb 'to speak' or 'to say'.",
+"table": [
+{
+"Classical Latin": "DICERE",
+"Finnish": "puhua / sanoa",
+"Old Norse": "mæla / segja"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Verbs are the engines of language. They convey actions (run, build), occurrences (happen, die), or states of being (be, seem). In the languages we are studying, verbs are inflected, meaning they change their form to encode a great deal of grammatical information, such as who is performing the action (person/number), when it occurs (tense), its duration or completion (aspect), its reality (mood), and the relationship of the subject to the action (voice).",
+"type": "paragraph"
+}
+],
+"title": "Actions (Verbs)"
+},
+"P.1.1": {
+"examples": [
+{
+"description": "The distinction between an ongoing action (imperfective aspect) in the past (past tense) and a completed action (perfective aspect) in the past (past tense).",
+"table": [
+{
+"Concept": "He was writing (ongoing).",
+"Classical Latin": "SCRIBEBAT.",
+"Finnish": "Hän kirjoitti (kirjettä). (Object case implies aspect)",
+"Old Norse": "Hann skrifaði."
+},
+{
+"Concept": "He wrote (completed).",
+"Classical Latin": "SCRIPSIT.",
+"Finnish": "Hän kirjoitti (kirjeen). (Object case implies aspect)",
+"Old Norse": "Hann skrifaði."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Temporality is the dimension of grammar that deals with time. It is expressed through two related but distinct concepts: Tense and Aspect.",
+"type": "paragraph"
+},
+{
+"text": "Tense locates an event in time, typically relative to the moment of speaking (e.g., past, present, future).",
+"type": "paragraph"
+},
+{
+"text": "Aspect describes the internal temporal structure of an event—whether it is viewed as complete, ongoing, habitual, or instantaneous. For example, 'I was reading' (ongoing) and 'I read' (completed) can both refer to the same past event, but they view it with a different aspectual lens.",
+"type": "paragraph"
+}
+],
+"title": "Temporality"
+},
+"P.1.1.1": {
+"examples": [
+{
+"description": "The verb 'to carry' in the third-person singular across three basic tenses.",
+"table": [
+{
+"Tense": "Present ('he carries')",
+"Classical Latin": "PORTAT",
+"Finnish": "kantaa",
+"Old Norse": "berr"
+},
+{
+"Tense": "Past ('he carried')",
+"Classical Latin": "PORTAVIT",
+"Finnish": "kantoi",
+"Old Norse": "bar"
+},
+{
+"Tense": "Future ('he will carry')",
+"Classical Latin": "PORTABIT",
+"Finnish": "kantaa (present form used)",
+"Old Norse": "mun bera (auxiliary + infinitive)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Tense is the grammatical marking of a verb that locates its action in time. The most common tenses are past, present, and future.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has a simple tense system with four main forms: Present (which also covers the future), Imperfect (a simple past), Perfect (a compound past using 'olla' (to be) + participle, like 'have carried'), and Pluperfect (a compound past using 'olla' in its past form, like 'had carried'). It has no dedicated morphological future tense.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin has a rich, six-tense system: Present, Imperfect (past ongoing), Future, Perfect (simple past or present perfect), Pluperfect (past perfect), and Future Perfect ('will have carried'). These are divided between two stems: the present stem for the first three, and the perfect stem for the last three.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse has only two simple tenses: Present and Past (often called Preterite). The present tense can be used to express future time, often with an adverb of time. A future can also be formed with auxiliary verbs like 'munu' or 'skulu'. Compound perfect and pluperfect tenses are formed with 'hafa' (to have) + participle.",
+"type": "paragraph"
+}
+],
+"title": "Tense (Time)"
+},
+"P.1.1.2": {
+"examples": [
+{
+"description": "Distinguishing an ongoing or partial action from a completed one. In Finnish, this is shown by the case of the object. In Latin, it's shown by the tense choice.",
+"table": [
+{
+"Concept": "I was building the house (Imperfective)",
+"Classical Latin": "DOMVM·AEDIFICABAM.",
+"Finnish": "Rakensin taloa. (Partitive object)",
+"Old Norse": "Ek byggða húsit."
+},
+{
+"Concept": "I built the house (Perfective)",
+"Classical Latin": "DOMVM·AEDIFICAVI.",
+"Finnish": "Rakensin talon. (Accusative/Genitive object)",
+"Old Norse": "Ek byggða húsit."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Aspect refers to how an action is viewed in time, regardless of when it happened. The primary distinction is between perfective aspect (the action is viewed as a single, completed whole) and imperfective aspect (the action is viewed as ongoing, habitual, or incomplete).",
+"type": "paragraph"
+},
+{
+"text": "In Finnish, aspect is not primarily a verbal category. Instead, it is famously expressed through the case of the direct object. An object in the partitive case ('taloa') gives the sentence an imperfective aspect (the action is ongoing, incomplete, or only affects part of the object). An object in the accusative/genitive case ('talon') gives the sentence a perfective aspect (the action was completed successfully).",
+"type": "paragraph"
+},
+{
+"text": "In Classical Latin, tense and aspect are fused. The tenses formed from the present stem (Present, Imperfect, Future) are inherently imperfective. The tenses formed from the perfect stem (Perfect, Pluperfect, Future Perfect) are inherently perfective. The Imperfect tense ('-bam') is specifically for past imperfective actions, while the Perfect tense ('-vi') is for past perfective actions.",
+"type": "paragraph"
+},
+{
+"text": "In Old Norse, the simple past tense does not have an inherent aspectual distinction; 'hann las bók' could mean 'he was reading a book' or 'he read the book'. Aspect is determined by context, adverbs, or the inherent meaning of the verb (its 'Aktionsart').",
+"type": "paragraph"
+}
+],
+"title": "Aspect (Duration/Completion)"
+}
+,
+"P.1.2": {
+"examples": [
+{
+"description": "A simple action expressed in different moods to show fact, potentiality, and command.",
+"table": [
+{
+"Mood": "Indicative (Fact)",
+"Sentence": "He comes.",
+"Classical Latin": "VENIT.",
+"Finnish": "Hän tulee.",
+"Old Norse": "Hann kemr."
+},
+{
+"Mood": "Subjunctive/Conditional (Potentiality)",
+"Sentence": "May he come. / If he comes...",
+"Classical Latin": "VENIAT.",
+"Finnish": "Jos hän tulisi...",
+"Old Norse": "Ef hann kœmi..."
+},
+{
+"Mood": "Imperative (Command)",
+"Sentence": "Come!",
+"Classical Latin": "VENI!",
+"Finnish": "Tule!",
+"Old Norse": "Kom!"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Modality refers to the way a verb's action or state is expressed in relation to reality. It indicates the speaker's attitude towards the factuality of the statement—whether it is a fact, a possibility, a necessity, a wish, or a command. The primary grammatical system for expressing modality is mood.",
+"type": "paragraph"
+}
+],
+"title": "Modality"
+},
+"P.1.2.1": {
+"examples": [
+{
+"description": "A simple statement of fact, the primary function of the indicative mood.",
+"table": [
+{
+"Sentence": "The man sees the ship.",
+"Classical Latin": "VIR·NAVEM·VIDET.",
+"Finnish": "Mies näkee laivan.",
+"Old Norse": "Maðr sér skip."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The indicative mood is the mood of reality and fact. It is used to make factual statements, ask questions about facts, and describe what is, was, or will be the case. It is the most frequently used mood and can be considered the default or 'unmarked' mood in most languages.",
+"type": "paragraph"
+}
+],
+"title": "Indicative Mood"
+},
+"P.1.2.2": {
+"examples": [
+{
+"description": "A hypothetical 'if... then' statement, a classic use of the subjunctive or conditional mood.",
+"table": [
+{
+"Sentence": "If I were the king, I would live in a castle.",
+"Classical Latin": "SI·REX·ESSEM,·IN·CASTELLO·HABITAREM.",
+"Finnish": "Jos olisin kuningas, asuisin linnassa.",
+"Old Norse": "Ef ek væra konungr, þá byggða ek í kastala."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "This category covers moods of non-reality, potentiality, and hypothesis. The Subjunctive and Conditional moods express actions that are wished for, supposed, hypothetical, or dependent on a condition.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has a Conditional mood, marked by the infix '-isi-'. It is used in 'if... then' clauses ('jos'-clauses) and to express polite requests or wishes.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin has a fully developed Subjunctive mood with four tenses (present, imperfect, perfect, pluperfect). Its use is extensive and complex, appearing in purpose clauses, result clauses, indirect questions, commands, and various types of conditional sentences.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse has a Subjunctive mood with two tenses (present and past). It is used to express wishes, hypothetical situations (in 'ef'-clauses), and in a variety of subordinate clauses, often after verbs of saying or thinking.",
+"type": "paragraph"
+}
+],
+"title": "Subjunctive & Conditional Mood"
+},
+"P.1.2.3": {
+"examples": [
+{
+"description": "The command 'speak!' given to one person (singular) and multiple people (plural).",
+"table": [
+{
+"Form": "Singular Imperative",
+"Classical Latin": "DIC!",
+"Finnish": "Puhu!",
+"Old Norse": "Mæl!"
+},
+{
+"Form": "Plural Imperative",
+"Classical Latin": "DICITE!",
+"Finnish": "Puhukaa!",
+"Old Norse": "Mælið!"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The imperative mood is used to give direct commands, orders, or make requests. All three languages have distinct imperative forms, and they all distinguish between a singular imperative (addressed to one person) and a plural imperative (addressed to more than one person).",
+"type": "paragraph"
+}
+],
+"title": "Imperative Mood"
+},
+"P.1.2.4": {
+"examples": [
+{
+"description": "Expressing the probability or possibility that 'he will leave'.",
+"table": [
+{
+"Classical Latin": "DISCEDAT. (Subjunctive)",
+"Finnish": "Hän lähtenee. (Potential)",
+"Old Norse": "Hann muni fara. (Auxiliary + Infinitive)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The potential mood expresses possibility, likelihood, or probability ('may', 'might', 'probably will'). Its realization differs significantly across these languages.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has a distinct Potential mood, formed with the infix '-ne-'. It signifies that the action is probable but not certain. For example, 'Hän tulee' (He is coming), but 'Hän tullee' (He will probably come). It is more common in formal and written language.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin does not have a separate potential mood. It uses the Subjunctive mood to express potentiality. The 'Potential Subjunctive' is a common use of the present or perfect subjunctive to mean 'may' or 'might'.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse typically expresses potentiality with the Subjunctive mood or, more commonly, with an auxiliary verb like 'munu' (will, may) or 'mega' (may, be able).",
+"type": "paragraph"
+}
+],
+"title": "Potential Mood"
+},
+"P.1.3": {
+"examples": [
+{
+"description": "The same event described from an active and a passive perspective.",
+"table": [
+{
+"Perspective": "Active",
+"Sentence": "The woman praises the poet.",
+"Classical Latin": "FEMINA·POETAM·LAVDAT.",
+"Finnish": "Nainen kehuu runoilijaa.",
+"Old Norse": "Kona lofar skáldit."
+},
+{
+"Perspective": "Passive",
+"Sentence": "The poet is praised by the woman.",
+"Classical Latin": "POETA·A·FEMINA·LAVDATVR.",
+"Finnish": "Runoilijaa kehutaan. (Agent not specified)",
+"Old Norse": "Skáldit lofask af konu."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Perspective, grammatically known as voice, describes the relationship between the subject of the sentence and the action of the verb. It indicates whether the subject performs the action or receives the action.",
+"type": "paragraph"
+}
+],
+"title": "Perspective (Voice)"
+},
+"P.1.3.1": {
+"examples": [
+{
+"description": "A standard active sentence where the subject performs the action.",
+"table": [
+{
+"Sentence": "The farmer plows the field.",
+"Classical Latin": "AGRICOLA·AGRVM·ARAT.",
+"Finnish": "Maanviljelijä kyntää pellon.",
+"Old Norse": "Bóndi arar akr."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The active voice is the most common voice in all three languages. In an active sentence, the grammatical subject is the 'agent'—the one who performs the action expressed by the verb. This is the default, unmarked voice for transitive clauses.",
+"type": "paragraph"
+}
+],
+"title": "Active Voice"
+},
+"P.1.3.2": {
+"examples": [
+{
+"description": "A passive sentence where the subject receives the action.",
+"table": [
+{
+"Sentence": "The field is plowed (by the farmer).",
+"Classical Latin": "AGER·AB·AGRICOLA·ARATVR.",
+"Finnish": "Pelto kynnetään. (Impersonal passive, agent cannot be specified)",
+"Old Norse": "Akr er arðr (af bónda)."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "In the passive voice, the grammatical subject is the 'patient'—the one who receives or is affected by the action. The agent, if mentioned, is expressed as an object of a preposition or in an oblique case.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin has a full set of synthetic passive endings for verbs. The agent is expressed with the preposition 'A/AB' followed by the ablative case.",
+"type": "paragraph"
+},
+{
+"text": "The Finnish 'passive' is unique. It is a generic or impersonal voice, not a true passive. It indicates that an unspecified agent performs the action ('one plows the field'). There is no way to specify the agent in a Finnish passive clause.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse can form a passive in two ways: analytically, using the verb 'verða' (to become) or 'vera' (to be) with a past participle, or synthetically, using the middle-voice endings (-sk/-st). When formed analytically, the agent can be expressed with 'af' + dative.",
+"type":"paragraph"
+}
+],
+"title": "Passive Voice"
+},
+"P.1.3.3": {
+"examples": [
+{
+"description": "A reflexive action where the subject acts upon itself.",
+"table": [
+{
+"Sentence": "The warrior arms himself.",
+"Classical Latin": "MILES·SE·ARMAT.",
+"Finnish": "Soturi aseistaa itsensä.",
+"Old Norse": "Gumi armask."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The middle voice describes an action that the subject performs on itself (reflexive) or for its own benefit. It occupies a space between the active and passive voices.",
+"type": "paragraph"
+},
+{
+"text": "Finnish expresses reflexive actions using an active verb and a reflexive pronoun ('itse' + possessive suffix). It does not have a distinct middle voice morphology.",
+"type": "paragraph"
+},
+{
+"text": "Latin expresses reflexive actions with an active verb and a reflexive pronoun ('se'). However, it also has a large class of 'deponent' verbs, which use passive endings but have active (and often middle/reflexive) meanings, such as 'VESCO' (I feed myself, I eat).",
+"type": "paragraph"
+},
+{
+"text": "Old Norse has a true synthetic middle voice, formed with the suffix '-sk' or '-st' (a contraction of the verb ending and the reflexive pronoun 'sik'). This form can be reflexive ('armast' - to arm oneself), reciprocal ('berjask' - to fight one another), or passive ('kallask' - to be called).",
+"type": "paragraph"
+}
+],
+"title": "Middle Voice"
+},
+"P.1.4": {
+"examples": [
+{
+"description": "A sample verb from a primary conjugation/class in each language.",
+"table": [
+{
+"Language": "Finnish",
+"Class": "Verb Type 1 (-a/ä)",
+"Example": "sanoa (to say) -> sanon (I say)"
+},
+{
+"Language": "Classical Latin",
+"Class": "1st Conjugation (-āre)",
+"Example": "AMARE (to love) -> AMO (I love)"
+},
+{
+"Language": "Old Norse",
+"Class": "Weak Verb (Class 1)",
+"Example": "kalla (to call) -> kalla (I call)"
+},
+{
+"Language": "Old Norse",
+"Class": "Strong Verb (Class 1)",
+"Example": "bíta (to bite) -> bít (I bite)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "In inflected languages, verbs are not all conjugated in the same way. They are grouped into classes, or conjugations, which share a common pattern of endings and stem changes.",
+"type": "paragraph"
+},
+{
+"text": "Finnish verbs are grouped into about 6 main types based on the ending of their infinitive stem. This type determines the personal endings and how the stem changes due to consonant gradation.",
+"type": "paragraph"
+},
+{
+"text": "Latin verbs are grouped into four main conjugations, plus a few irregular and mixed types. The conjugation is identified by the theme vowel in the present infinitive: 1st (-āre), 2nd (-ēre), 3rd (-ere), 4th (-īre).",
+"type": "paragraph"
+},
+{
+"text": "The most fundamental division in Old Norse is between Strong and Weak verbs. Strong verbs change tense by altering the vowel in their root (a system called ablaut). Weak verbs form their past tense by adding a suffix containing a 'd' or 't'. Both groups are further subdivided into several classes.",
+"type": "paragraph"
+}
+],
+"title": "Verb Classes (Conjugations)"
+}
+,
+"P.1.5": {
+"examples": [
+{
+"description": "The verb 'to write' in its non-finite forms, which do not specify a person or number.",
+"table": [
+{
+"Form Type": "Infinitive ('to write')",
+"Classical Latin": "SCRIBERE",
+"Finnish": "kirjoittaa",
+"Old Norse": "skrifa"
+},
+{
+"Form Type": "Participle ('writing')",
+"Classical Latin": "SCRIBENS",
+"Finnish": "kirjoittava",
+"Old Norse": "skrifandi"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Non-finite verb forms are forms of the verb that are not limited by a specific subject (person and number). They cannot, by themselves, be the main verb of an independent clause. Instead, they function as nouns, adjectives, or adverbs within a sentence. The main categories of non-finite verbs are infinitives, participles, and gerunds/supines.",
+"type": "paragraph"
+}
+],
+"title": "Non-Finite Forms"
+},
+"P.1.5.1": {
+"examples": [
+{
+"description": "Using the infinitive in the sentence 'I want to learn'.",
+"table": [
+{
+"Classical Latin": "DISCERE·VOLO.",
+"Finnish": "Haluan oppia.",
+"Old Norse": "Ek vil læra."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The infinitive is the basic, uninflected form of a verb, often translated with 'to...' in English. It typically functions as a noun.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has a highly developed system of infinitives. There are five different infinitives, each of which can be declined in certain cases to express different nuances of purpose, manner, or time. The first infinitive ('oppia') is the basic dictionary form. Others, like the third infinitive in the illative case ('oppimaan'), are used after verbs of motion ('I am going to learn').",
+"type":"paragraph"
+},
+{
+"text": "Classical Latin has six infinitives, organized by tense (present, perfect, future) and voice (active, passive). For example, 'AMARE' (to love), 'AMAVISSE' (to have loved), 'AMATVRVS·ESSE' (to be about to love), 'AMARI' (to be loved), etc. They are crucial for constructing indirect statements.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse has a single infinitive form, the present active, which typically ends in '-a' (e.g., 'kalla', 'læra'). It is used with auxiliary verbs and in constructions similar to English.",
+"type": "paragraph"
+}
+],
+"title": "Infinitives"
+},
+"P.1.5.2": {
+"examples": [
+{
+"description": "Using a participle as an adjective: 'the running man'.",
+"table": [
+{
+"Classical Latin": "VIR·CVRRENS",
+"Finnish": "juokseva mies",
+"Old Norse": "rennandi maðr"
+}
+]
+},
+{
+"description": "Using a participle to form a compound tense: 'I have spoken'.",
+"table": [
+{
+"Classical Latin": "LOCVTVS·SVM. (Deponent verb)",
+"Finnish": "Olen puhunut.",
+"Old Norse": "Ek hefi mælt."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "A participle is a verbal adjective. It is a form of a verb that can be used as an adjective to modify a noun or pronoun, but it retains some verbal qualities, such as tense and voice, and can take objects.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has two main participles, each with an active and passive form: Present (active '-va/-vä', passive '-ttava/-ttävä') and Past (active '-nut/-nyt', passive '-tu/-ty'). They are declined like regular adjectives.",
+"type": "paragraph"
+},
+{
+"text": "Latin has four main participles: Present Active ('-ns', e.g., 'amans' - loving), Perfect Passive ('-tus', e.g., 'amatus' - having been loved), Future Active ('-turus', e.g., 'amaturus' - about to love), and Future Passive ('-ndus', also called the gerundive, e.g., 'amandus' - to be loved, deserving of love). They are essential for forming compound tenses and complex sentence structures like the ablative absolute.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse has two participles: a Present Active ('-andi', e.g., 'kallandi' - calling) and a Past Passive (formed from the fourth principal part of a verb, e.g., 'kallaðr' - called). The past participle is used with 'hafa' or 'vera' to form perfect tenses.",
+"type": "paragraph"
+}
+],
+"title": "Participles"
+},
+"P.1.5.3": {
+"examples": [
+{
+"description": "Expressing purpose: 'He came to fight.'",
+"table": [
+{
+"Classical Latin": "VENIT·PVGNATVM. (Supine)",
+"Finnish": "Hän tuli taistelemaan. (3rd Infinitive Illative)",
+"Old Norse": "Hann kom at berjask. (Preposition + Infinitive)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Gerunds and supines are other types of verbal nouns used to express various adverbial or nominal functions.",
+"type": "paragraph"
+},
+{
+"text": "Finnish does not have a gerund in the Latin sense, but its extensive system of cased infinitives serves the same purpose. For example, the second infinitive inessive ('tehdessä' - in the act of doing) functions as a gerund expressing simultaneous action.",
+"type": "paragraph"
+},
+{
+"text": "Latin has a Gerund, which is a verbal noun declined in the genitive, dative, accusative, and ablative cases of the singular. It is used to express ideas like 'the art of living' ('ars vivendi'). The Supine is another verbal noun with only two forms: an accusative ('-um') to show purpose after a verb of motion, and an ablative ('-u') to specify 'in respect to what'.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse lacks a formal gerund or supine. It expresses these concepts using the infinitive, often with a preposition like 'at' (to) or 'til' (for the purpose of).",
+"type": "paragraph"
+}
+],
+"title": "Gerunds & Supines"
+},
+"P.2": {
+"examples": [
+{
+"description": "The verb 'to fight' modified by the adverb 'bravely'.",
+"table": [
+{
+"Sentence": "He fights bravely.",
+"Classical Latin": "FORTITER·PVGNAT.",
+"Finnish": "Hän taistelee urheasti.",
+"Old Norse": "Hann berst frœknliga."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Adverbs are words that modify verbs, adjectives, or other adverbs. They typically provide information about the manner, place, time, frequency, or degree of the action or quality they modify.",
+"type": "paragraph"
+},
+{
+"text": "In Finnish, many adverbs of manner are formed from adjectives by adding the suffix '-sti'. For example, 'urhea' (brave) -> 'urheasti' (bravely).",
+"type": "paragraph"
+},
+{
+"text": "In Latin, adverbs are commonly formed from adjectives. For 1st/2nd declension adjectives, the suffix is '-e' (e.g., 'longus' -> 'longe'). For 3rd declension adjectives, the suffix is '-iter' (e.g., 'fortis' -> 'fortiter').",
+"type": "paragraph"
+},
+{
+"text": "In Old Norse, adverbs are often formed from the neuter singular form of an adjective (e.g., 'frœkn' -> 'frœknt') or by adding the suffix '-liga' (e.g., 'frœkn' -> 'frœknliga').",
+"type": "paragraph"
+}
+],
+"title": "Manner (Adverb)"
+},
+"S": {
+"examples": [
+{
+"description": "A complete sentence showing the combination of a subject and a predicate to form a clause.",
+"table": [
+{
+"Classical Latin": "NAVIS·IN·PORTVM·ADVENIT.",
+"Finnish": "Laiva saapuu satamaan.",
+"Old Norse": "Skip kemr at hǫfn."
+},
+{
+"Classical Latin": "The ship arrives in the harbor.",
+"Finnish": "The ship arrives in the harbor.",
+"Old Norse": "A ship comes to the harbor."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The Subjective Pillar focuses on syntax: the rules that govern how words are combined to form clauses and sentences. This section moves beyond individual words to explore the architecture of language, including word order, negation, questions, and how clauses are connected to build complex thoughts.",
+"type": "paragraph"
+}
+],
+"title": "The Subjective Pillar: Syntax & Sentence Structure"
+},
+"S.1": {
+"examples": [],
+"lessons": [
+{
+"text": "A clause is the fundamental building block of a sentence, typically consisting of a subject and a predicate. This section examines the internal structure of a single clause.",
+"type": "paragraph"
+}
+],
+"title": "Clause Structure"
+},
+"S.1.1": {
+"examples": [
+{
+"description": "The same sentence, 'The farmer killed the wolf', showing different possible word orders.",
+"table": [
+{
+"Order": "SVO (Standard)",
+"Classical Latin": "AGRICOLA·LVPVM·INTERFECIT.",
+"Finnish": "Maanviljelijä tappoi suden.",
+"Old Norse": "Bóndi drap úlfinn."
+},
+{
+"Order": "OVS (Object-fronted for emphasis)",
+"Classical Latin": "LVPVM·AGRICOLA·INTERFECIT.",
+"Finnish": "Suden maanviljelijä tappoi.",
+"Old Norse": "Úlfinn drap bóndi."
+},
+{
+"Order": "V2 (Verb-Second, Old Norse main clause rule)",
+"Classical Latin": "N/A",
+"Finnish": "N/A",
+"Old Norse": "Þá drap bóndi úlfinn. (Then the farmer killed the wolf.)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Word order refers to the conventional arrangement of words in a sentence. While English relies heavily on a strict Subject-Verb-Object (SVO) order, languages with rich case systems allow for much more flexibility.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has a flexible word order, but the neutral, unmarked order is SVO. Other orders are used to signal topic and focus. The first element in a Finnish sentence is typically the topic (what the sentence is about), which is often, but not always, the subject.",
+"type":"paragraph"
+},
+{
+"text": "Classical Latin has an extremely flexible word order due to its case system. While the most common neutral order in prose is often cited as Subject-Object-Verb (SOV), virtually any permutation is possible. Word order is used for emphasis and stylistic effect rather than to mark grammatical roles.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse is a Verb-Second (V2) language. This is a strict rule for main clauses, stating that the finite verb must be the second constituent of the sentence. If another element (like an adverb or the object) is placed first for emphasis, the subject must move to a position after the verb to maintain the V2 structure. In subordinate clauses, the word order is typically SVO or SOV.",
+"type": "paragraph"
+}
+],
+"title": "Word Order"
+},
+"S.1.2": {
+"examples": [],
+"lessons": [
+{
+"text": "Negation is the process of making a clause negative, typically to state that something is false. Languages employ different strategies to achieve this, such as using a negative particle or a dedicated negative verb.",
+"type": "paragraph"
+}
+],
+"title": "Negation"
+},
+"S.1.2.1": {
+"examples": [
+{
+"description": "Negating the sentence 'I see the house'.",
+"table": [
+{
+"Sentence": "I do not see the house.",
+"Classical Latin": "DOMVM·NON·VIDEO.",
+"Finnish": "En näe taloa.",
+"Old Norse": "Ek sé eigi húsit."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "The core mechanism of negation varies significantly across these languages.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses a negative verb. This verb, 'ei', is conjugated for person and number ('en', 'et', 'ei', 'emme', 'ette', 'eivät'). The main verb that follows it is put into a special form called the connegative (which is usually identical to the verb stem). The object of a negated sentence is always in the partitive case.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses the negative particle 'NON', which is typically placed directly before the verb it negates.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse primarily uses the negative particle 'eigi' or 'ekki', which usually follows the finite verb. In poetry, a negative suffix '-a' or '-at' could also be attached to the verb.",
+"type": "paragraph"
+}
+],
+"title": "Negative Verb / Particle"
+}
+,
+"S.1.3": {
+"examples": [
+{
+"description": "The two main types of questions: a yes/no question and an information (wh-) question.",
+"table": [
+{
+"Type": "Yes/No Question",
+"Sentence": "Is the man coming?",
+"Classical Latin": "VENITNE·VIR?",
+"Finnish": "Tuleeko mies?",
+"Old Norse": "Kemr maðr?"
+},
+{
+"Type": "Information Question",
+"Sentence": "Who is coming?",
+"Classical Latin": "QVIS·VENIT?",
+"Finnish": "Kuka tulee?",
+"Old Norse": "Hverr kemr?"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Interrogation is the formation of questions. There are two primary types. Yes/no questions (polar questions) can be answered with a simple 'yes' or 'no'. Information questions (wh-questions) use an interrogative pronoun or adverb (who, what, where, why, etc.) to ask for specific information.",
+"type": "paragraph"
+}
+],
+"title": "Interrogation"
+},
+"S.1.3.1": {
+"examples": [
+{
+"description": "Forming the yes/no question 'Do you see the ship?'.",
+"table": [
+{
+"Classical Latin": "VIDESNE·NAVEM?",
+"Finnish": "Näetkö sinä laivan?",
+"Old Norse": "Sér þú skipit?"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Languages have specific strategies for forming yes/no questions.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses the enclitic (attached) interrogative particle '-ko/-kö'. This particle is attached to the word being questioned, which is then moved to the front of the sentence. Usually, this is the verb.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin most commonly uses the enclitic particle '-ne' attached to the first word of the sentence (usually the verb) to form a neutral question. For questions expecting a 'yes' answer, 'NONNE' is used. For questions expecting a 'no' answer, 'NVM' is used.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse forms yes/no questions simply by inverting the standard subject-verb order to verb-subject. This is the same mechanism used in modern English.",
+"type": "paragraph"
+}
+],
+"title": "Interrogative Particle"
+},
+"S.1.4": {
+"examples": [
+{
+"description": "Expressing possession with a genitive noun ('the man's house') and with a possessive pronoun/suffix ('my house').",
+"table": [
+{
+"Type": "Genitive Noun",
+"Phrase": "the man's house",
+"Classical Latin": "DOMVS·VIRI",
+"Finnish": "miehen talo",
+"Old Norse": "hús mannsins"
+},
+{
+"Type": "Pronoun/Suffix",
+"Phrase": "my house",
+"Classical Latin": "DOMVS·MEA",
+"Finnish": "minun taloni",
+"Old Norse": "hús mitt"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Possessive structures indicate ownership or a close relationship. The two primary methods are using the genitive case of a noun, or using possessive pronouns/adjectives.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses both the genitive case ('miehen talo') and a system of possessive suffixes that attach to the noun ('talo·ni' - my house, 'talo·si' - your house). It is common to use both the genitive personal pronoun and the suffix for emphasis ('minun taloni').",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses the genitive case for nouns ('domus viri') and possessive adjectives for pronouns ('domus mea'). These possessive adjectives must agree in gender, number, and case with the noun they modify (the thing possessed), not the possessor.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses the genitive case for nouns ('hús mannsins') and possessive adjectives for pronouns ('hús mitt'). Like in Latin, these adjectives agree with the noun they modify.",
+"type": "paragraph"
+}
+],
+"title": "Possessive Structures"
+},
+"S.1.5": {
+"examples": [
+{
+"description": "Expressing 'with a man' and 'after the war'.",
+"table": [
+{
+"Phrase": "with a man",
+"Classical Latin": "CVM·VIRO (Preposition + Ablative)",
+"Finnish": "miehen kanssa (Postposition + Genitive)",
+"Old Norse": "með manni (Preposition + Dative)"
+},
+{
+"Phrase": "after the war",
+"Classical Latin": "POST·BELLVM (Preposition + Accusative)",
+"Finnish": "sodan jälkeen (Postposition + Genitive)",
+"Old Norse": "eptir orrostu (Preposition + Dative)"
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Adpositions are words that specify the relationship between a noun (or pronoun) and another word in the sentence. They indicate relationships of time, space, or logic. If the adposition comes before its noun, it is a preposition. If it comes after, it is a postposition.",
+"type": "paragraph"
+},
+{
+"text": "Finnish heavily relies on its case system to express relationships that would require prepositions in other languages. However, it also has a large system of postpositions, which govern the genitive case of the noun. A smaller number of prepositions also exist.",
+"type": "paragraph"
+},
+{
+"text": "Classical Latin uses only prepositions. Each preposition 'governs' a specific case, either the accusative (often for motion towards) or the ablative (often for location or motion from).",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses only prepositions. They can govern the accusative, dative, or genitive case, depending on the preposition and its meaning in context (e.g., motion vs. location).",
+"type": "paragraph"
+}
+],
+"title": "Adpositions"
+},
+"S.2": {
+"examples": [
+{
+"description": "Connecting two clauses through coordination (equal rank) and subordination (unequal rank).",
+"table": [
+{
+"Type": "Coordination",
+"Sentence": "The man arrived and the woman left.",
+"Classical Latin": "VIR·ADVENIT·ET·FEMINA·DISCESSIT.",
+"Finnish": "Mies saapui ja nainen lähti.",
+"Old Norse": "Maðr kom ok kona fór."
+},
+{
+"Type": "Subordination",
+"Sentence": "The man arrived after the woman left.",
+"Classical Latin": "VIR·ADVENIT·POSTQVAM·FEMINA·DISCESSIT.",
+"Finnish": "Mies saapui sen jälkeen, kun nainen oli lähtenyt.",
+"Old Norse": "Maðr kom, síðan kona fór."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Sentences can be made more complex by combining multiple clauses. Interclausal relations describe how these clauses are linked. The two main types of linking are coordination, which joins clauses of equal importance, and subordination, which joins a main (independent) clause with a dependent (subordinate) clause.",
+"type": "paragraph"
+}
+],
+"title": "Interclausal Relations"
+},
+"S.2.1": {
+"examples": [
+{
+"description": "Linking two clauses with the conjunction 'but'.",
+"table": [
+{
+"Sentence": "I called, but he did not answer.",
+"Classical Latin": "VOCAVI,·SED·NON·RESPONDIT.",
+"Finnish": "Soitin, mutta hän ei vastannut.",
+"Old Norse": "Ek kallaða, en hann svaraði eigi."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Coordination links two or more independent clauses using a coordinating conjunction. The most common conjunctions express addition ('and'), contrast ('but'), or choice ('or').",
+"type": "paragraph"
+},
+{
+"text": "The primary coordinating conjunctions are: Finnish: 'ja' (and), 'mutta' (but), 'tai' (or). Latin: 'et' or '-que' (and), 'sed' (but), 'aut' (or). Old Norse: 'ok' (and), 'en' (but), 'eða' (or).",
+"type": "paragraph"
+}
+],
+"title": "Coordination"
+},
+"S.2.2": {
+"examples": [
+{
+"description": "A main clause ('I know') with a subordinate clause ('that he is coming').",
+"table": [
+{
+"Sentence": "I know that he is coming.",
+"Classical Latin": "SCIO·EVNT·VENTVRVM·ESSE. (Accusative and Infinitive construction)",
+"Finnish": "Tiedän, että hän tulee.",
+"Old Norse": "Ek veit, at hann kemr."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Subordination connects a dependent (subordinate) clause to an independent (main) clause. The subordinate clause cannot stand on its own as a complete sentence and functions as a single part of speech (like a noun, adjective, or adverb) within the main clause. Subordinate clauses are introduced by subordinating conjunctions (e.g., 'that', 'because', 'if') or relative pronouns.",
+"type": "paragraph"
+}
+],
+"title": "Subordination"
+},
+"S.2.2.1": {
+"examples": [
+{
+"description": "A relative clause modifying 'the book'.",
+"table": [
+{
+"Sentence": "This is the book that I read.",
+"Classical Latin": "HIC·EST·LIBER·QVEM·LEGI.",
+"Finnish": "Tämä on se kirja, jonka luin.",
+"Old Norse": "Þetta er bókin, er ek las."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Relative clauses are a type of subordinate clause that function as an adjective, modifying a noun (the antecedent). They are introduced by relative pronouns.",
+"type": "paragraph"
+},
+{
+"text": "In Finnish, the pronoun 'joka' is used. Its case is determined by its role in the subordinate clause (in the example, 'jonka' is the genitive/accusative object of 'luin').",
+"type": "paragraph"
+},
+{
+"text": "In Latin, 'qui, quae, quod' is used. It agrees with its antecedent in gender and number, but its case is determined by its role in its own clause (in the example, 'liber' is masculine singular, so the pronoun is 'quem', the masculine singular accusative object of 'legi').",
+"type": "paragraph"
+},
+{
+"text": "In Old Norse, the indeclinable particle 'er' or 'sem' is most common. The grammatical role of the pronoun is understood from context.",
+"type": "paragraph"
+}
+],
+"title": "Relative Clauses"
+},
+"S.2.2.2": {
+"examples": [
+{
+"description": "A simple, factual conditional clause.",
+"table": [
+{
+"Sentence": "If you see him, you will know.",
+"Classical Latin": "SI·EVM·VIDEBIS,·SCIES.",
+"Finnish": "Jos näet hänet, tiedät.",
+"Old Norse": "Ef þú sér hann, þá veizt þú."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Conditional clauses are subordinate clauses that express a condition, typically introduced by 'if'. They state the condition under which the main clause is true.",
+"type": "paragraph"
+},
+{
+"text": "Finnish uses the conjunction 'jos'. For real conditions, the indicative mood is used. For unreal or hypothetical conditions, the conditional mood ('-isi-') is used.",
+"type": "paragraph"
+},
+{
+"text": "Latin uses the conjunction 'si'. A complex system of rules dictates the tense and mood (indicative or subjunctive) in both the 'if' clause and the main clause to express different types of conditions (factual, future, contrary-to-fact).",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses the conjunction 'ef'. The indicative mood is used for real conditions, and the subjunctive mood is used for unreal or hypothetical conditions.",
+"type": "paragraph"
+}
+],
+"title": "Conditional Clauses"
+},
+"S.2.2.3": {
+"examples": [
+{
+"description": "A clause expressing the purpose of an action.",
+"table": [
+{
+"Sentence": "He came to see the city.",
+"Classical Latin": "VENIT·VT·VRBEM·VIDERET.",
+"Finnish": "Hän tuli nähdäkseen kaupungin.",
+"Old Norse": "Hann kom til at sjá borgina."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Purpose clauses are subordinate clauses that state the purpose or goal of the action in the main clause. They answer the question 'why?' or 'for what purpose?'.",
+"type": "paragraph"
+},
+{
+"text": "Finnish can express purpose in several ways, including using the first infinitive with a possessive suffix ('nähdäkseen' - in order for him to see) or the third infinitive illative case ('katsomaan' - to watch).",
+"type": "paragraph"
+},
+{
+"text": "Latin uses the conjunction 'ut' (for a positive purpose) or 'ne' (for a negative purpose, 'lest') followed by a verb in the subjunctive mood.",
+"type": "paragraph"
+},
+{
+"text": "Old Norse typically uses the construction 'til at' followed by the infinitive to express purpose.",
+"type": "paragraph"
+}
+],
+"title": "Purpose Clauses"
+},
+"S.3": {
+"examples": [
+{
+"description": "Using a focus particle to emphasize a word ('even').",
+"table": [
+{
+"Sentence": "Even the king laughed.",
+"Classical Latin": "ETIAM·REX·RISIT.",
+"Finnish": "Jopa kuningas nauroi.",
+"Old Norse": "Jafnvel konungrinn hló."
+}
+]
+}
+],
+"lessons": [
+{
+"text": "Particles are small, uninflected words that add nuance and emphasis to a sentence. Focus particles, in particular, draw attention to a specific word or phrase, indicating that it is the most important or surprising piece of information.",
+"type": "paragraph"
+},
+{
+"text": "Finnish has a rich system of enclitic particles. The most common are '-kin' (also, too, emphasis on something additional) and '-kaan/-kään' (the negative equivalent of -kin). Other particles like 'jopa' (even) and 'vain' (only) are separate words.",
+"type": "paragraph"
+},
+{
+"text": "Latin uses various particles for focus and connection, such as 'quidem' (indeed, certainly), 'etiam' (also, even), and 'quoque' (also, too). 'Ne...quidem' is a construction that means 'not even', bracketing the word it focuses on (e.g., 'NE·REX·QUIDEM' - not even the king).",
+"type": "paragraph"
+},
+{
+"text": "Old Norse uses particles like 'jafnvel' (even) and 'ok' (which can mean 'and' or 'also') for focus. Emphasis is also frequently achieved through word order by moving the focused element to the beginning of the clause.",
+"type": "paragraph"
+}
+],
+"title": "Particles & Focus"
+}
+},
+"status": {
+"state": "COMPLETE"
+}
+}
