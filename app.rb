@@ -141,6 +141,18 @@ get '/fin' do
     "Could not connect to the applet service: #{e.message}"
   end
 end
+
+get '/fret' do
+  begin
+    uri = URI('https://interactive-color-instrument-suite-562877954055.us-west1.run.app/')
+    response_body = Net::HTTP.get(uri)
+    erb response_body, layout: :layout
+  rescue StandardError => e
+    status 500
+    "Could not connect to the applet service: #{e.message}"
+  end
+end
+
 # --- External Redirects (No Layout) ---
 
 get "/insta" do
